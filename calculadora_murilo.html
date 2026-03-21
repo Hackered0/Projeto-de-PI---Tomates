@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calculador Financeira</h1>
+    <p><i>Essa simulação considera uma estufa sem controle de microclima durante 4 meses. <br>
+    Segundo artigos da embrapa.</i></p>
+    <p>Quantidade de m³ que a estufa possui:</p>
+    <input type="text" id="ipt_metros">
+    <p>Quantidade de plantas por m³:</p>
+    <input type="text" id="ipt_plantas">
+    <p>Quantos R$ é vendida por Kg?</p>
+    <input type="text" id="ipt_venda">
+    <p>Insira quantas estufas do mesmo tamanho no total você possui:</p>
+    <input type="text" id="ipt_estufa">
+    <button onclick="calcular()">Calcular</button><br><br>
+    <p id="p_resul"></p>
+</body>
+</html>
+<script>
+    function calcular(){
+        p_resul.innerHTML = ``;
+        let metros = Number(ipt_metros.value);
+        let qtd_plantas = Number(ipt_plantas.value);
+        let venda = Number(ipt_venda.value);
+        let qtd_estufa = Number(ipt_estufa.value);
+        
+        let qtd_tomateiros = metros * qtd_plantas;
+        let qtd_tomates = qtd_tomateiros * 10;
+        let valor_total = qtd_tomates * venda;
+        
+        let valor_total_real = valor_total * 0.6;
+        let dif_valores = valor_total - valor_total_real;
+
+        p_resul.innerHTML += `
+        <h3>Em média o prejuízo gerado é de 60%</h3>
+        <h4>Considerando uma estufa</h4>
+        Por ciclo,
+        o prejuízo total seria de <strong>R$${dif_valores.toFixed(2)}.</strong><br><br>
+        Por ano,
+        o prejuízo seria de <strong>R$${(dif_valores * 3).toFixed(2)}.</strong>
+        `;
+
+        if (qtd_estufa > 2){
+            let valor_total_estufas = valor_total * qtd_estufa;
+            let valor_total_real_estufas = valor_total_real * qtd_estufa;
+            let dif_valores_estufa = valor_total_estufas - valor_total_real_estufas;
+            p_resul.innerHTML += `<h4>Considerando todas as estufas</h4>
+            Por ciclo, 
+            o prejuízo seria de <strong>R$${dif_valores_estufa.toFixed(2)}.</strong><br><br>
+            Por ano,
+            o prejuízo seria de <strong>R$${(dif_valores_estufa * 3).toFixed(2)}.</strong>
+            `;
+        }
+
+    }
+</script>
