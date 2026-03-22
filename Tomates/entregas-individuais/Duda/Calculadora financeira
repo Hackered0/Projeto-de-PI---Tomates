@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: lavender;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulador Financeiro da Estufa Micro-Controlada (Apenas tomates italianos)</h1>
+    <br>
+    <br>
+    <h3> Qual o preço de custo do seu tomate (por Kg)?</h3>
+    <input type="text" id="ipt_tomate">
+    <h3>Insira a quantidade de estufas que você possui:</h3>
+    <input type="text" id="ipt_estufa">
+    <br>
+    <h3>Insira a quantidade de tomateiros que tem dentro da estufa:</h3>
+    <input type="text" id="ipt_tomateiros">
+    <br>
+    <h3>Qual a sua porcentagem média de perda mensal (tomates descartados)?</h3>
+    <input type="text" id="ipt_descarte">
+    <br>
+    <br>
+    <button onclick="analisarPlantação()">Analisar Sua Plantação</button>
+
+    <div id="div"></div>
+</body>
+</html>
+<script>
+    function analisarPlantação(){
+
+        let tomate = Number(ipt_tomate.value); /*input*/
+        let estufa = Number(ipt_estufa.value);/*input, seria a quantidade de tomateiros que tem em uma unica estufa*/
+        let tomateiros = Number(ipt_tomateiros.value);/*input*/
+        let descarte = Number(ipt_descarte.value);/*input*/
+
+        let total_tomateiros = estufa * tomateiros;  /*Aqui serve para saber o total de tomateiros que tem por estufa*/
+        let producao_kg_atual = total_tomateiros * 4;  /*Total de quilos que ele colhe hoje (Cenário de perda: 4kg por planta)*/
+        let potencial_maximo = 10; /*Potencial maximo(fonte da embarga)*/
+        let kg_perdidos = potencial_maximo * 0.60; /*Quanto o produtor perde (60% de 10kg = 6kg de perda)*/
+        let faturamento_atual = producao_kg_atual * tomate; /*O que sobra para ele colher*/
+        let producao_kg_otimizada = total_tomateiros * 10; /*Preço se ele não perdesse os tomates*/
+        let faturamento_otimizado = producao_kg_otimizada * tomate; /*preço usando o nosso sensor*/
+        let prejuizo_ciclo = faturamento_otimizado - faturamento_atual; /*A diferença real de dinheiro entre o que ele ganha e o que poderia ganhar*/
+        let prejuizo_ano = prejuizo_ciclo * 3; /*O prejuizo acumulado em 1 ano (considerando 3 safras de 4 meses)*/
+
+        if (tomate <=0 || estufa <=0 || tomateiros <=0 || descarte <=0 ){
+            alert("Por favor, não deixe nenhum campo em branco")
+        }
+
+        div.innerHTML =
+        ` <h2><br>Analise total</br></h2>
+        
+          <br> Com sua estrutura atual de ${total_tomateiros}, seu faturamento por ciclo (meses) é: ${faturamento_atual.toFixed(2)}.</br>
+
+          <br>Devido à falta de controle em tempo real, você está deixando de ganhar  ${prejuizo_ciclo.toFixed(2)}.</br>
+
+          <br>No acumulado de um ano, seu prejuízo chega a: ${prejuizo_ano.toFixed(2)}.</br>
+
+          <br> Com o nosso sensor, você poderia estar ganhando: ${faturamento_otimizado.toFixed(2)}.</br>
+
+          <br><b><strong style="color:red;">Cálculos baseados em dados da FAO/EMBRAPA para Tomate Italiano (Ciclo de 4 meses).</b> </br>
+        `
+
+    }
+</script>
