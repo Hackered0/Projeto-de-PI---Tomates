@@ -24,7 +24,7 @@ void loop() {
   Serial.print("Leitura Bruta: ");
   Serial.print(valorUmidadeSolo);
   Serial.print(" | Umidade: ")
-  Serial.print(porecentagemUmidade);
+  Serial.print(porcentagemUmidade);
   Serial.println(" % ");
 
   delay(1000); 
