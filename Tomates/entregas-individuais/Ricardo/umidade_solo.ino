@@ -16,6 +16,8 @@ void loop() {
 
   int distancia = ValorAr - valorUmidadeSolo;
 
+  porcentagemUmidade = (float)distancia / faixa * 100.00;
+
   if (porcentagemUmidade < 0) porcentagemUmidade = 0;
   if (porcentagemUmidade > 100) porcentagemUmidade = 100;
 
