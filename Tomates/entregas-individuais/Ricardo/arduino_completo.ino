@@ -1,5 +1,5 @@
 // Sensor de Temperatura e Umidade
-#include "DHT.h
+#include "DHT.h";
 
 #define TIPO_SENSOR DHT11
 const int PINO_SENSOR_DHT11 = A0;
@@ -24,7 +24,8 @@ void loop() {
   // Sensor de Temperatura e Umidade 
   float umidade = sensorDHT.readHumidity();
   float temperatura = sensorDHT.readTemperature();
-
+  porcentagemmUmidade = (float)distancia / faixa * 100.00;
+  
   if (isnan(temperatura) || isnan(umidade)) {
     Serial.println ("Erro ao ler os dados do sensor");
   } else {
@@ -48,7 +49,7 @@ void loop() {
   Serial.print("Leitura Bruta: ");
   Serial.print(valorUmidadeSolo);
   Serial.print(" | Umidade: ")
-  Serial.print(porecentagemUmidade);
+  Serial.print(porcentagemUmidade);
   Serial.println(" % ");
 
 }
