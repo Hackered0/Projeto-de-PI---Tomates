@@ -21,11 +21,12 @@ void loop() {
   if (porcentagemUmidade < 0) porcentagemUmidade = 0;
   if (porcentagemUmidade > 100) porcentagemUmidade = 100;
 
-  Serial.print("Leitura Bruta: ");
+ // Serial.print("Leitura Bruta: ");
   Serial.print(valorUmidadeSolo);
-  Serial.print(" | Umidade: ")
-  Serial.print(porcentagemUmidade);
-  Serial.println(" % ");
+  Serial.print (';');
+  //Serial.print(" | Umidade: ")
+  Serial.println(porcentagemUmidade);
+  //Serial.println(" % ");
 
   delay(1000); 
 }
