@@ -1,1 +1,1 @@
-Este espaço é destinado às diretrizes de convivência, prazos e responsabilidades do grupo.
+Diretrizes de colaboração, prazos de Sprint e critérios de avaliação do time.
