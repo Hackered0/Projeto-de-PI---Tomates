@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calculadora Financeira: Cultivo de Tomate Italiano 🍅</h1>
+    <p><i>Essa simulação considera uma estufa sem controle de microclima durante 4 meses. <br>
+    Segundo artigos da embrapa.</i></p>
+    <p>Quantidade de m³ que a estufa possui:</p>
+    <input type="text" id="ipt_metros">
+    <p>Quantidade de plantas por m³:</p>
+    <input type="text" id="ipt_plantas">
+    <p>Quantos R$ é vendida por Kg?</p>
+    <input type="text" id="ipt_venda">
+    <p>Insira quantas estufas do mesmo tamanho no total você possui:</p>
+    <input type="text" id="ipt_estufa">
+    <button onclick="calcular()">Calcular</button><br><br>
+    <p id="p_resul"></p>
+</body>
+</html>
+<script>
+    function calcular(){
+        p_resul.innerHTML = ``;
+        let metros = Number(ipt_metros.value);
+        let qtd_plantas = Number(ipt_plantas.value);
+        let venda = Number(ipt_venda.value);
+        let qtd_estufa = Number(ipt_estufa.value);
+        
+        let qtd_tomateiros = metros * qtd_plantas;
+        let qtd_tomates = qtd_tomateiros * 10;
+        let valor_total = qtd_tomates * venda;
+        
+        let valor_total_real = valor_total * 0.6;
+        let dif_valores = valor_total - valor_total_real;
+
+        p_resul.innerHTML += `
+        <h3><span style="color: red;">⚠️ ALERTA! EM MÉDIA O PREJUÍZO GERADO É  DE 60%</span></h3>
+        <h4>O seu negócio está operando com uma  <span style="color: red;">eficiência crítica</span> . Cada ciclo que passa sem ajuste,  <span style="color: red;">você está literalmente descartando o seu lucro</span>.</h4>
+        <h4>O valor em vermelho abaixo é o que sai do seu bolso direto para o ralo todos os anos.
+        <h4>Enquanto você não agir, esse dinheiro continuará sendo queimado.</h4>
+        <h4><i><span style="color: red;">Você prefere investir na solução ou continuar financiando o prejuízo?</span></h4>
+        <h4><br>Considerando uma estufa</h4>
+        Por ciclo,
+        o prejuízo total seria de <strong>R$<span style="color: red;">${dif_valores.toFixed(2)}</span>.</strong><br><br>
+        Por ano,
+        o prejuízo seria de <strong>R$<span style="color: red;">${(dif_valores * 3).toFixed(2)}</span>.</strong>
+        `;
+
+        if (qtd_estufa > 2){
+            let valor_total_estufas = valor_total * qtd_estufa;
+            let valor_total_real_estufas = valor_total_real * qtd_estufa;
+            let dif_valores_estufa = valor_total_estufas - valor_total_real_estufas;
+            p_resul.innerHTML += `<h4>Considerando todas as estufas</h4>
+            Por ciclo, 
+            o prejuízo seria de <strong>R$ <span style="color: red;">${dif_valores_estufa.toFixed(2)}</span>.</strong><br><br>
+            Por ano,
+            o prejuízo seria de <strong>R$ <span style="color: red;">${(dif_valores_estufa * 3).toFixed(2)}</span>.</strong>
+            `;
+        }
+       p_resul.innerHTML += ` <br><br><h4>Não deixe o seu lucro ao acaso. 
+        <br>A Tomato Metric oferece a única tecnologia de monitoramento de microclima especializada em tomate italiano.
+        <br> Pare de financiar o prejuízo e comece a colher resultados.
+       `
+    }
+</script>
