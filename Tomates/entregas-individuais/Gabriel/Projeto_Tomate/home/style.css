@@ -1,0 +1,60 @@
+* {
+  padding: 0;
+  margin: 0;
+  gap: 0;
+  list-style: none;
+}
+
+.greentxt{
+    color: rgb(68, 211, 68);
+}
+
+.alinhar{
+  display: flex;
+  align-items: center;
+}
+.fundo{
+  background: url(public/assets/imgs/bg-jelly-fish-para_outras_pags.png);
+  display: flex;
+}
+/* header */
+header {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  background-color: rgba(110, 89, 89, 0.75);
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+header div {
+  display: flex;
+}
+header h1 {
+  font-size: 2rem;
+  color: white;
+}
+header nav {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+}
+header nav a {
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+  background-color: transparent;
+  transition: ease-in-out 0.1s;
+}
+header nav a:hover {
+  background-color: white;
+  color: black;
+}
+
+/* main */
+main {
+  margin-top: 4.2rem;
+}
