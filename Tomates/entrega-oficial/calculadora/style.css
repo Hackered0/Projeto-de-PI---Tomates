@@ -75,7 +75,7 @@ header nav a:hover {
 
 .card h1{
     margin: 30px 40px 10px 40px;
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 750;
     text-align: center;
 }
@@ -87,9 +87,9 @@ header nav a:hover {
     border-color: #9C969680;
     border-radius: 10px;
     background-color: #DEDEDE;
-    font-size: 15px;
+    font-size: 13px;
     padding: 0 0 0 20px;
-    height: 40px;
+    height: 35px;
 }
 
 .campos{
@@ -100,7 +100,7 @@ header nav a:hover {
 
 .campos p{
     margin: 20px 0 5px 0;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .card button{
@@ -109,30 +109,30 @@ header nav a:hover {
     border-radius: 20px;
     background-color: #32AD62;
     color: #FFFFFF;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 100;
     width: 170px;
-    height: 50px;
+    height: 45px;
 }
 
 .subtitle {
     font-style: italic;
-    font-size: 15px;
+    font-size: 12px;
     text-align: center;
 }
 
 .resultado {
-    margin: 30px 200px 0 0;
+    margin: 100px 200px 0 0;
     text-align: right;
     color: #FFFFFF;
-    font-size:25px;
+    font-size:22px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .resultado h3{
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bolder;
-    margin: auto auto 13px auto;
+    margin: auto auto 11px auto;
 }
 
 .resultado span{
@@ -144,5 +144,5 @@ header nav a:hover {
   height: 2px;
   background-color: #ffffff;
   width: 100%;
-  margin: 10px ;
+  margin: 8px ;
 }
