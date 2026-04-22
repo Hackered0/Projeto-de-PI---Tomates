@@ -5,6 +5,14 @@
   list-style: none;
 }
 
+.fonteG{
+  font-family:'Garamond', serif;
+}
+
+.fonteA{
+  font-family:Arial;
+}
+
 .greentxt {
   color: rgb(68, 211, 68);
 }
@@ -60,6 +68,11 @@ header nav a:hover {
   color: black;
 }
 
+/* .login{
+  background-color: #b5bbb8;
+
+} */
+
 .section-1 {
   background-image: url(../imagens/Fundo.png);
   background-position: center;
@@ -97,8 +110,9 @@ header nav a:hover {
 }
 
 .btn-verde {
-  background: #00ff66;
-  border: none;
+  background: #16b907;
+  opacity: 0.5;
+  border: 0.1px solid white;
   padding: 12px 20px;
   border-radius: 8px;
   cursor: pointer;
@@ -106,6 +120,7 @@ header nav a:hover {
 
 .btn-branco {
   background: white;
+  opacity: 0.5;
   border: none;
   padding: 12px 20px;
   border-radius: 8px;
@@ -121,6 +136,7 @@ header nav a:hover {
   z-index: 1;
   box-shadow: 0 -20px 20px 30px white;
 }
+
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -211,6 +227,14 @@ header nav a:hover {
   gap: 10px;
 }
 
+.beneficios li h3{
+  color:#07A66E;
+  display: block;
+  overflow: hidden;
+  font-size: 30px;
+  font-family:'Garamond', serif;
+}
+
 .b {
   display: flex;
   flex-direction: row-reverse;
@@ -218,6 +242,7 @@ header nav a:hover {
   padding: 40px;
   gap: 10px;
 }
+
 .beneficios{
   padding: 0px 300px 100px 300px;
 }
