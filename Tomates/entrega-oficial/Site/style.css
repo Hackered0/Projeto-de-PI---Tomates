@@ -68,13 +68,28 @@ header nav a:hover {
   color: black;
 }
 
+.btn-login {
+  background: #00aa55;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+
+  display: inline-block;
+}
+
+.btn-login:hover {
+  background: #008f47;
+}
+
 /* .login{
   background-color: #b5bbb8;
 
 } */
 
 .section-1 {
-  background-image: url(../imagens/Fundo.png);
+  background-image: url(../Site/imagens/Fundo.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
