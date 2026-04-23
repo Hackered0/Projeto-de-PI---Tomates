@@ -67,67 +67,66 @@
 </html>
 <script>
 
-   function validarFormulario(usuarioInput, emailInput, senhaInput,
-                          erroUsuario, erroEmail, erroSenha, sucesso) {
+   function validarFormulario(usuario, email, senha, erro_usuario, erro_email, erro_senha, mensagem_sucesso) {
 
     // pega o valor digitado nos inputs
-    let usuario = usuarioInput.value;
-    let email = emailInput.value;
-    let senha = senhaInput.value;
+    let valorusuario = usuario.value;
+    let valoremail = email.value;
+    let valorsenha = senha.value;
 
     // verifica se tem letra maiúscula
-    let temMaiuscula = /[A-Z]/.test(senha);
+    let temMaiuscula = /[A-Z]/.test(valorsenha);
 
     // verifica se tem caractere especial (@, #, $, etc)
-    let temEspecial = /[^A-Za-z0-9]/.test(senha);
+    let temEspecial = /[^A-Za-z0-9]/.test(valorsenha);
 
     // limpa mensagens de erro anteriores
-    erroUsuario.innerHTML = "";
-    erroEmail.innerHTML = "";
-    erroSenha.innerHTML = "";
-    sucesso.innerHTML = "";
+    erro_usuario.innerHTML = "";
+    erro_email.innerHTML = "";
+    erro_senha.innerHTML = "";
+    mensagem_sucesso.innerHTML = "";
 
     // variável que controla se tudo está válido
     let valido = true;
 
     // valida usuário vazio
-    if (usuario == "") {
-        erroUsuario.innerHTML = "Preencha o usuário"; // mostra erro
+    if (valorusuario == "") {
+        erro_usuario.innerHTML = "Preencha o usuário"; // mostra erro
         valido = false; // marca como inválido
     }
 
     // valida email vazio
-    if (email == "") {
-        erroEmail.innerHTML = "Preencha o email";
+    if (valoremail == "") {
+        erro_email.innerHTML = "Preencha o email";
         valido = false;
     }
 
     // valida senha
-    if (senha == "") {
-        erroSenha.innerHTML = "Preencha a senha";
-        erroSenha.style.color = "red"; // deixa vermelho
+    if (valorsenha == "") {
+        erro_senha.innerHTML = "Preencha a senha";
+        erro_senha.style.color = "red"; // deixa vermelho
         valido = false;
 
-    } else if (senha.length < 9) { // verifica tamanho mínimo
-        erroSenha.innerHTML = "Mínimo 9 caracteres";
-        erroSenha.style.color = "red";
+    } else if (valorsenha.length < 9) { // verifica tamanho mínimo
+        erro_senha.innerHTML = "Mínimo 9 caracteres";
+        erro_senha.style.color = "red";
         valido = false;
 
     } else if (!temMaiuscula) { // verifica maiúscula
-        erroSenha.innerHTML = "Precisa de letra maiúscula";
-        erroSenha.style.color = "red";
+        erro_senha.innerHTML = "Precisa de letra maiúscula";
+        erro_senha.style.color = "red";
         valido = false;
 
     } else if (!temEspecial) { // verifica caractere especial
-        erroSenha.innerHTML = "Precisa de caractere especial";
-        erroSenha.style.color = "red";
+        erro_senha.innerHTML = "Precisa de caractere especial";
+        erro_senha.style.color = "red";
         valido = false;
     }
 
     // se tudo estiver certo
     if (valido) {
         alert("Cadastro realizado!"); // mensagem de sucesso
-        window.location.href = "login.html"
+         window.location.href = "login.html"
     }
 }
 </script>
