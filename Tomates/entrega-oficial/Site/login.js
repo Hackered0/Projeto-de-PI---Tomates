@@ -1,4 +1,4 @@
-const usuario = document.querySelector('#usuario');
+const usuario = document.querySelector('#usuario'); 
 const senha = document.querySelector('#senha');
 const form = document.querySelector('form');
 const erroUsuario = document.querySelector('#erro-usuario');
@@ -34,7 +34,10 @@ form.addEventListener('submit', (e) => {
     // Se houver qualquer erro, impedimos o envio
     if (enviarForm) {
         e.preventDefault();
+    }
 
+    if (!enviarForm) {
+        window.location.href = "index.html";
     }
 })
 
