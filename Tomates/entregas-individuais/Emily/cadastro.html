@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TomatoMetrics - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+</head>
+<body>
+    <div class="main-cadastro">
+        <div class="left-cadastro">
+            <h1>Cultive sua conexão<br>E entre para o nosso time</h1>
+            <!-- <img src="tomate3.png" class="img-tomate3" alt="tomate3"> -->
+            <img src="sign-up-animate.svg" class="img" alt="Ilustração de Login">
+        </div>
+<form>
+        <div class="right-cadastro">
+            <div class="card-cadastro">
+                <img src="tomate.png" class="img1-tomate1" alt="tomate">
+                <img src="tomate2.png" class="img2-tomate2" alt="tomate2">
+                <h1>Cadastrar</h1>
+                
+                <div class="textfield">
+                    <label  for="usuario">Usuário</label>
+                    <div class="input-container">
+                        <i class='bx bx-user'></i>
+                        <input type="text" id="usuario" name="usuario" placeholder="Username" required>
+                    </div>
+                    
+                   <span id="erro_usuario"></span>
+                </div>
+
+                <div class="textfield">
+                    <label  for="senha">Email</label>
+                    <div class="input-container">
+                        <i class="bx bx-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <span id="erro_email"></span>
+
+                </div>
+                <div class="textfield">
+                    <label  for="usuario">Senha</label>
+                    <div class="input-container">
+                        <i class='bx bx-user'></i>
+                        <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                    </div>
+                    <span id="erro_senha"></span>
+                </div>
+                <span id="mensagem_sucesso"></span>
+            
+
+                <button type="button" class="btn-login" onclick="validarFormulario(usuario, email, senha, erro_usuario, erro_email, erro_senha, mensagem_sucesso)">Acessar Estufa</button>
+
+                <div class="register">
+                    <p>Já tem uma conta? <a href="login.html">Login</a></p>
+                </div>
+            </div>
+
+        </div>
+        </form>
+    </div>
+    
+</body>
+</html>
+<script>
+
+   function validarFormulario(usuarioInput, emailInput, senhaInput,
+                          erroUsuario, erroEmail, erroSenha, sucesso) {
+
+    // pega o valor digitado nos inputs
+    let usuario = usuarioInput.value;
+    let email = emailInput.value;
+    let senha = senhaInput.value;
+
+    // verifica se tem letra maiúscula
+    let temMaiuscula = /[A-Z]/.test(senha);
+
+    // verifica se tem caractere especial (@, #, $, etc)
+    let temEspecial = /[^A-Za-z0-9]/.test(senha);
+
+    // limpa mensagens de erro anteriores
+    erroUsuario.innerHTML = "";
+    erroEmail.innerHTML = "";
+    erroSenha.innerHTML = "";
+    sucesso.innerHTML = "";
+
+    // variável que controla se tudo está válido
+    let valido = true;
+
+    // valida usuário vazio
+    if (usuario == "") {
+        erroUsuario.innerHTML = "Preencha o usuário"; // mostra erro
+        valido = false; // marca como inválido
+    }
+
+    // valida email vazio
+    if (email == "") {
+        erroEmail.innerHTML = "Preencha o email";
+        valido = false;
+    }
+
+    // valida senha
+    if (senha == "") {
+        erroSenha.innerHTML = "Preencha a senha";
+        erroSenha.style.color = "red"; // deixa vermelho
+        valido = false;
+
+    } else if (senha.length < 9) { // verifica tamanho mínimo
+        erroSenha.innerHTML = "Mínimo 9 caracteres";
+        erroSenha.style.color = "red";
+        valido = false;
+
+    } else if (!temMaiuscula) { // verifica maiúscula
+        erroSenha.innerHTML = "Precisa de letra maiúscula";
+        erroSenha.style.color = "red";
+        valido = false;
+
+    } else if (!temEspecial) { // verifica caractere especial
+        erroSenha.innerHTML = "Precisa de caractere especial";
+        erroSenha.style.color = "red";
+        valido = false;
+    }
+
+    // se tudo estiver certo
+    if (valido) {
+        alert("Cadastro realizado!"); // mensagem de sucesso
+    }
+}
+</script>
