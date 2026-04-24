@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+      <div class="logo">
+        <img src="../imagens/TM.png" alt="" />
+        <h1>TomatoMetrics</h1>
+      </div>
+      <nav>
+        <a href="">Home</a>
+        <a href="">Sobre</a>
+        <a href="">Calculadora</a>
+        <a href="">Dashboards</a>
+        <a href="">Beneficios</a>
+        <a href="">Contato</a>
+      </nav>
+    </header>
+    <div class="conteiner">
+    <div class="card">
+        <h1>Informações da Estufa</h1>
+        <div class="campos">
+            <p>Tamanho em m³ da estufa:</p>
+            <input type="text" id="ipt_metros">
+            <p>Quantidade de plantas por m³:</p>
+            <input type="text" id="ipt_plantas">
+            <p>Preço em R$ vendido por Kg?</p>
+            <input type="text" id="ipt_venda">
+            <p>Quantas estufas iguais você tem?</p>
+            <input type="text" id="ipt_estufa" placeholder="Considere o total de estufas">
+        </div>
+        <button onclick="calcular()">Calcular</button>
+        <p class="subtitle">Considerando sem controle de microclima durante 4 meses. <br>
+            Segundo artigos da embrapa. 
+        </p>
+    </div>
+    <div id="div_resul" class="resultado"></div>
+    </div>
+</body>
+</html>
+<script>
+    function calcular(){
+        div_resul.innerHTML = ``;
+        let regex = new RegExp("[A-Za-z]");
+
+        if(regex.test(ipt_metros.value) || ipt_metros.value == ''){
+            alert('O campo do tamanho deve ser preenchido por um número');
+        }else if(regex.test(ipt_plantas.value) || ipt_plantas.value == ''){
+            alert('O campo da quantidade de plantas deve ser preenchido por um número');
+        } else if(regex.test(ipt_venda.value) || ipt_venda.value == ''){
+            alert('O campo preço deve ser preenchido por um número');
+        } else if(regex.test(ipt_estufa.value) || ipt_estufa.value == ''){
+            alert('O campo estufa deve ser preenchido por um número');
+        }
+        else{
+        let metros = Number(ipt_metros.value);
+        let qtd_plantas = Number(ipt_plantas.value);
+        let venda = Number(ipt_venda.value);
+        let qtd_estufa = Number(ipt_estufa.value);
+        
+        let qtd_tomateiros = metros * qtd_plantas;
+        let qtd_tomates = qtd_tomateiros * 10;
+        let valor_total = qtd_tomates * venda;
+        
+        let valor_total_real = valor_total * 0.6;
+        let dif_valores = valor_total - valor_total_real;
+
+        div_resul.innerHTML += `
+        <p><h3>Em média o prejuízo gerado é de <br>60%</h3>
+        Considerando uma estufa:<br><br>
+        Por ciclo,
+        o prejuízo total seria de <br><br><span>R$${dif_valores.toFixed(2)}</span><br><br>
+        Por ano,
+        o prejuízo seria de <br><br><span>R$${(dif_valores * 3).toFixed(2)}</span></p>
+        `;
+
+        if (qtd_estufa >= 2){
+            let valor_total_estufas = valor_total * qtd_estufa;
+            let valor_total_real_estufas = valor_total_real * qtd_estufa;
+            let dif_valores_estufa = valor_total_estufas - valor_total_real_estufas;
+            div_resul.innerHTML += `<hr class="line">Considerando todas as estufas:<br><br>
+            Por ciclo, 
+            o prejuízo seria de <br><br><span>R$${dif_valores_estufa.toFixed(2)}</span><br><br>
+            Por ano,
+            o prejuízo seria de <br><br><span>R$${(dif_valores_estufa * 3).toFixed(2)}</span>
+            `;
+        }
+    }
+    }
+</script>

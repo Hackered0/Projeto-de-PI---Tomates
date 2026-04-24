@@ -1,0 +1,148 @@
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+
+.logo{
+    display: flex;
+    justify-items: last baseline;
+    
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  align-items: center;
+  backdrop-filter: blur(2px);
+  background-color: rgba(51, 44, 44, 0.5);
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+header div {
+  display: flex;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: white;
+}
+
+header nav {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    translate: -50%;
+}
+
+header nav a {
+    text-decoration: none;
+    color: white;
+    padding: 0.5rem;
+  background-color: transparent;
+  transition: ease-in-out 0.1s;
+}
+
+header nav a:hover {
+    background-color: white;
+    color: black;
+}
+
+.conteiner{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)), url('imagem_fundo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    margin: 150px 0 0 200px;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 450px;
+    border-radius: 20px;
+}
+
+.card h1{
+    margin: 30px 40px 10px 40px;
+    font-size: 35px;
+    font-weight: 750;
+    text-align: center;
+}
+
+
+.card input{
+    margin: 0 2px;
+    border-width: 1px;
+    border-color: #9C969680;
+    border-radius: 10px;
+    background-color: #DEDEDE;
+    font-size: 13px;
+    padding: 0 0 0 20px;
+    height: 35px;
+}
+
+.campos{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.campos p{
+    margin: 20px 0 5px 0;
+    font-size: 15px;
+}
+
+.card button{
+    margin: 38px 0 0 0;
+    border-width: 0;
+    border-radius: 20px;
+    background-color: #32AD62;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 100;
+    width: 170px;
+    height: 45px;
+}
+
+.subtitle {
+    font-style: italic;
+    font-size: 12px;
+    text-align: center;
+}
+
+.resultado {
+    margin: 100px 200px 0 0;
+    text-align: right;
+    color: #FFFFFF;
+    font-size:22px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.resultado h3{
+    font-size: 30px;
+    font-weight: bolder;
+    margin: auto auto 11px auto;
+}
+
+.resultado span{
+    font-weight: bold;
+}
+
+.line {
+  border: none;
+  height: 2px;
+  background-color: #ffffff;
+  width: 100%;
+  margin: 8px ;
+}
