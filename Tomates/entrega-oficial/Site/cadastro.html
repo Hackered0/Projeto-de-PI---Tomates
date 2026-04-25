@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TomatoMetrics - Login</title>
-    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
 </head>
@@ -13,13 +13,13 @@
         <div class="left-cadastro">
             <h1>Cultive sua conexão<br>E entre para o nosso time</h1>
             <!-- <img src="tomate3.png" class="img-tomate3" alt="tomate3"> -->
-            <img src="../Site/imagens/sign-up-animate.svg" class="img" alt="Ilustração de Login">
+            <img src="sign-up-animate.svg" class="img" alt="Ilustração de Login">
         </div>
 <form>
         <div class="right-cadastro">
             <div class="card-cadastro">
-                <img src="../Site/imagens/tomate.png" class="img1-tomate1" alt="tomate">
-                <img src="../Site/imagens/tomate2.png" class="img2-tomate2" alt="tomate2">
+                <img src="tomate.png" class="img1-tomate1" alt="tomate">
+                <img src="tomate2.png" class="img2-tomate2" alt="tomate2">
                 <h1>Cadastrar</h1>
                 
                 <div class="textfield">
@@ -28,7 +28,8 @@
                         <i class='bx bx-user'></i>
                         <input type="text" id="usuario" name="usuario" placeholder="Username" required>
                     </div>
-                    <span id="erro-usuario" class="ErroUsuario"></span>
+                    
+                   <span id="erro_usuario"></span>
                 </div>
 
                 <div class="textfield">
@@ -37,7 +38,8 @@
                         <i class="bx bx-envelope"></i>
                         <input type="email" id="email" name="email" placeholder="Email" required>
                     </div>
-                    <span id="erro-email" class="erroEmail"></span>
+                    <span id="erro_email"></span>
+
                 </div>
                 <div class="textfield">
                     <label  for="usuario">Senha</label>
@@ -45,12 +47,12 @@
                         <i class='bx bx-user'></i>
                         <input type="password" id="senha" name="senha" placeholder="Senha" required>
                     </div>
-                    <span id="erro-senha" class="ErroSenha"></span>
+                    <span id="erro_senha"></span>
                 </div>
-                <span id="mensagem-sucesso"></span>
+                <span id="mensagem_sucesso"></span>
             
 
-                <button type="submit" class="btn-login">Acessar Estufa</button>
+                <button type="button" class="btn-login" onclick="validarFormulario(usuario, email, senha, erro_usuario, erro_email, erro_senha, mensagem_sucesso)">Acessar Estufa</button>
 
                 <div class="register">
                     <p>Já tem uma conta? <a href="login.html">Login</a></p>
@@ -60,6 +62,70 @@
         </div>
         </form>
     </div>
-    <script src="cadastro.js"></script>
+    
 </body>
 </html>
+<script>
+
+   function validarFormulario(usuario, email, senha, erro_usuario, erro_email, erro_senha, mensagem_sucesso) {
+
+  
+    let valorusuario = usuario.value;
+    let valoremail = email.value;
+    let valorsenha = senha.value;
+
+    let temMaiuscula = /[A-Z]/.test(valorsenha);
+
+
+    let temEspecial = /[^A-Za-z0-9]/.test(valorsenha);
+
+  
+    erro_usuario.innerHTML = "";
+    erro_email.innerHTML = "";
+    erro_senha.innerHTML = "";
+    mensagem_sucesso.innerHTML = "";
+
+   
+    let valido = true;
+
+
+    if (valorusuario == "") {
+        erro_usuario.innerHTML = "Preencha o usuário"; 
+        valido = false; 
+    }
+
+  
+    if (valoremail == "") {
+        erro_email.innerHTML = "Preencha o email";
+        valido = false;
+    }
+
+ 
+    if (valorsenha == "") {
+        erro_senha.innerHTML = "Preencha a senha";
+        erro_senha.style.color = "red";
+        valido = false;
+
+    } else if (valorsenha.length < 9) { 
+        erro_senha.innerHTML = "Mínimo 9 caracteres";
+        erro_senha.style.color = "red";
+        valido = false;
+
+    } else if (!temMaiuscula) { 
+        erro_senha.innerHTML = "Precisa de letra maiúscula";
+        erro_senha.style.color = "red";
+        valido = false;
+
+    } else if (!temEspecial) {
+        erro_senha.innerHTML = "Precisa de caractere especial";
+        erro_senha.style.color = "red";
+        valido = false;
+    }
+
+  
+    if (valido) {
+        alert("Cadastro realizado!"); 
+         window.location.href = "login.html"
+    }
+}
+</script>

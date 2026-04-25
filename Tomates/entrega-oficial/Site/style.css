@@ -7,6 +7,7 @@
 
 .fonteG{
   font-family:'Garamond', serif;
+  font-size: 32px;
 }
 
 .fonteA{
@@ -25,6 +26,10 @@
   display: flex;
   justify-items: last baseline;
   
+  
+}
+.logo img {
+  height: 50px;
 }
 
 header {
@@ -82,11 +87,6 @@ header nav a:hover {
 .btn-login:hover {
   background: #008f47;
 }
-
-/* .login{
-  background-color: #b5bbb8;
-
-} */
 
 .section-1 {
   background-image: url(../Site/imagens/Fundo.png);
