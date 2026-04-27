@@ -68,12 +68,12 @@
         let dif_valores = valor_total - valor_total_real;
 
         div_resul.innerHTML += `
-        <p><h3>Em média o prejuízo gerado é de <br>60%</h3>
+        <p><h3>Em média o prejuízo gerado é de <br><span style = "color: red">60%</span></h3>
         Considerando uma estufa:<br><br>
         Por ciclo,
-        o prejuízo total seria de <br><br><span>R$${dif_valores.toFixed(2)}</span><br><br>
+        o prejuízo total seria de <br><br><span style = "color: red">R$${dif_valores.toFixed(2)}</span><br><br>
         Por ano,
-        o prejuízo seria de <br><br><span>R$${(dif_valores * 3).toFixed(2)}</span></p>
+        o prejuízo seria de <br><br><span style = "color: red">R$${(dif_valores * 3).toFixed(2)}</span></p>
         `;
 
         if (qtd_estufa >= 2){
@@ -82,9 +82,9 @@
             let dif_valores_estufa = valor_total_estufas - valor_total_real_estufas;
             div_resul.innerHTML += `<hr class="line">Considerando todas as estufas:<br><br>
             Por ciclo, 
-            o prejuízo seria de <br><br><span>R$${dif_valores_estufa.toFixed(2)}</span><br><br>
+            o prejuízo seria de <br><br><span style = "color: red">R$${dif_valores_estufa.toFixed(2)}</span><br><br>
             Por ano,
-            o prejuízo seria de <br><br><span>R$${(dif_valores_estufa * 3).toFixed(2)}</span>
+            o prejuízo seria de <br><br><span style = "color: red">R$${(dif_valores_estufa * 3).toFixed(2)}</span>
             `;
         }
     }
