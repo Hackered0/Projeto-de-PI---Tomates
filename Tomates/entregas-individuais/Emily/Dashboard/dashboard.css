@@ -223,3 +223,128 @@ header nav a:hover {
 .grafico.medias {
     height: 220px;
 }
+
+/* MÉTRICAS */
+
+.metricas{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.metrica-card{
+    background: #356f52;
+    padding: 25px;
+    border-radius: 18px;
+    border: 3px solid #183126;
+    box-shadow: 5px 5px 0px #183126;
+    transition: 0.3s;
+    color: white;
+}
+
+.metrica-card:hover{
+    transform: translateY(-5px);
+}
+
+.metrica-card h3{
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.metrica-card p{
+    font-size: 35px;
+    margin: 10px 0;
+    color: #d8ffd8;
+}
+
+.metrica-card span{
+    font-size: 14px;
+    color: #d9f7e1;
+}
+
+
+.graficos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+/* BLOCO GRÁFICO + TEXTO */
+
+.grafico-texto{
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+}
+
+
+/* GRÁFICO */
+
+.grafico{
+    width: 50%;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+
+/* TEXTO */
+
+.explicacao{
+    width: 40%;
+    background: #356f52;
+    padding: 20px;
+    border-radius: 20px;
+    border: 4px solid #183126;
+    box-shadow: 6px 6px 0px #183126;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.explicacao h2{
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #ffe66d;
+}
+
+.explicacao p{
+    font-size: 15px;
+    line-height: 28px;
+    margin-bottom: 18px;
+}
+
+.explicacao span{
+    background: rgba(255,255,255,0.15);
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+
+/* RESPONSIVO */
+
+@media screen and (max-width: 1400px){
+
+    .graficos{
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media screen and (max-width: 900px){
+
+    .grafico-texto{
+        flex-direction: column;
+    }
+
+    .grafico,
+    .explicacao{
+        width: 100%;
+    }
+
+}

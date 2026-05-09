@@ -96,25 +96,115 @@
 
         </div>
 
-        <div class="graficos">
+        <!-- MÉTRICAS -->
 
-            <div class="grafico">
-                <canvas id="grafico_temperatura"></canvas>
+        <div class="metricas">
+
+            <div class="metrica-card">
+                <h3>🌡️ Pico de Temperatura</h3>
+                <p>31°C</p>
+                <span>Maior temperatura registrada hoje</span>
             </div>
 
-            <div class="grafico">
-                <canvas id="grafico_umidade"></canvas>
+            <div class="metrica-card">
+                <h3>💧 Pico de Umidade</h3>
+                <p>82%</p>
+                <span>Maior umidade registrada hoje</span>
             </div>
 
-            <div class="grafico">
-                <canvas id="grafico_umidade_solo"></canvas>
+            <div class="metrica-card">
+                <h3>🌱 Irrigações Realizadas</h3>
+                <p>12</p>
+                <span>Sistema automático ativo</span>
             </div>
 
-            <div class="grafico medias">
-                <canvas id="graficoMedias"></canvas>
+            <div class="metrica-card">
+                <h3>🛰️ Sensores Online</h3>
+                <p>12/12</p>
+                <span>Todos funcionando</span>
+            </div>
+
+            <div class="metrica-card">
+                <h3>🍅 Produção Estimada</h3>
+                <p>320kg</p>
+                <span>Estimativa diária da estufa</span>
+            </div>
+
+            <div class="metrica-card">
+                <h3>⚡ Consumo de Energia</h3>
+                <p>45kWh</p>
+                <span>Uso moderado do sistema</span>
             </div>
 
         </div>
+
+<!-- GRÁFICOS + TEXTO -->
+
+<div class="graficos">
+
+    <!-- TEMPERATURA -->
+    <div class="grafico-texto">
+
+        <div class="grafico">
+            <canvas id="grafico_temperatura"></canvas>
+        </div>
+
+        <div class="explicacao">
+            <h2>🌡️ Temperatura da Estufa</h2>
+
+            <p>
+                Este gráfico mostra a variação da temperatura dentro da estufa.
+                O monitoramento constante ajuda a evitar temperaturas extremas
+                que podem prejudicar o crescimento dos tomates.
+            </p>
+
+            <span>✔️ Faixa ideal: 20°C até 28°C</span>
+        </div>
+
+    </div>
+
+    <!-- UMIDADE -->
+    <div class="grafico-texto">
+
+        <div class="grafico">
+            <canvas id="grafico_umidade"></canvas>
+        </div>
+
+        <div class="explicacao">
+            <h2>💧 Umidade do Ar</h2>
+
+            <p>
+                O gráfico apresenta os níveis de umidade do ar registrados
+                pelos sensores da estufa.
+            </p>
+
+            <span>✔️ Faixa ideal: 50% até 70%</span>
+        </div>
+
+    </div>
+
+    <!-- SOLO -->
+    <div class="grafico-texto">
+
+        <div class="grafico">
+            <canvas id="grafico_umidade_solo"></canvas>
+        </div>
+
+        <div class="explicacao">
+            <h2>🌱 Umidade do Solo</h2>
+
+            <p>
+                Este gráfico monitora a quantidade de água presente no solo.
+            </p>
+
+            <span>✔️ Faixa ideal: 65% até 80%</span>
+        </div>
+
+    </div>
+
+
+</div>
+
 
     </div>
 
@@ -215,12 +305,12 @@
                 },
 
 
-            scales: {
-                y: {
-                    beginAtZero: true
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
         });
     </script>
 
