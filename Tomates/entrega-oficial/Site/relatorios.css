@@ -4,7 +4,6 @@ body {
     background-color: #eef2f1;
 }
 
-
 header {
   display: flex;
   padding: 15px 40px;
@@ -84,108 +83,73 @@ header nav a:hover {
     padding: 20px;
 }
 .alerta_critico {
-
     width: 420px;
-
     background-color: white;
-
     border-left: 10px solid #d90429;
-
     border-radius: 14px;
-
     padding: 20px;
-
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .topo_alerta {
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     margin-bottom: 20px;
 }
 
 .topo_alerta h2 {
-
     margin: 0;
     color: #7f1d1d;
 }
 
 .status_critico {
-
     background-color: #d90429;
-
     color: white;
-
     padding: 6px 12px;
-
     border-radius: 20px;
-
     font-size: 13px;
     font-weight: bold;
 }
 
 .info_alerta {
-
     display: flex;
     flex-direction: column;
-
     gap: 15px;
-
     margin-bottom: 20px;
 }
 
 .dado {
-
     background-color: #f8f9fa;
-
     padding: 12px;
-
     border-radius: 10px;
 }
 
 .dado h3 {
-
     margin: 0 0 5px 0;
-
     font-size: 15px;
-
     color: #2d6a4f;
 }
 
 .dado p {
-
     margin: 0;
-
     font-size: 20px;
     font-weight: bold;
-
     color: #1b4332;
 }
 
 .btn_alerta {
-
     width: 100%;
-
     padding: 12px;
-
     border: none;
-
     border-radius: 10px;
-
     background-color: #d90429;
-
     color: white;
-
     font-size: 16px;
     font-weight: bold;
-
     cursor: pointer;
 }
 
 .btn_alerta:hover {
-
     background-color: #ef233c;
 }
