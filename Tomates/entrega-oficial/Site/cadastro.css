@@ -197,12 +197,7 @@
 
 /* Cadastro */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-     font-family:'Garamond', serif;
-}
+
 
 .main-cadastro {
     width: 100vw;

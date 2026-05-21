@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+     font-family:'Garamond', serif;
+    background-color: #eef2f1;
+}
+
+header {
+  display: flex;
+  padding: 15px 40px;
+  align-items: center;
+  background-color: #1b4332;
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+header h1 {
+  font-size: 26px;
+  color: white;
+}
+
+header nav {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  gap: 20px;
+}
+
+header nav a {
+  text-decoration: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+header nav a:hover {
+  background-color: #40916c;
+}
+
+
+.barra {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 230px;
+    height: 100%;
+    background-color: #2d6a4f;
+    color: white;
+    padding: 25px 15px;
+}
+
+.barra img {
+    padding: 20px;
+    width: 150px;
+}
+
+.barra h2 {
+    margin-bottom: 25px;
+}
+
+.barra li {
+    margin: 18px 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.barra li:hover {
+    color: #b7e4c7;
+}
+
+.conteudo {
+    margin-left: 250px;
+    margin-top: 100px;
+    padding: 20px;
+}
+.alerta_critico {
+    width: 420px;
+    background-color: white;
+    border-left: 10px solid #d90429;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.topo_alerta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.topo_alerta h2 {
+    margin: 0;
+    color: #7f1d1d;
+}
+
+.status_critico {
+    background-color: #d90429;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.info_alerta {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.dado {
+    background-color: #f8f9fa;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.dado h3 {
+    margin: 0 0 5px 0;
+    font-size: 15px;
+    color: #2d6a4f;
+}
+
+.dado p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1b4332;
+}
+
+.btn_alerta {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #d90429;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn_alerta:hover {
+    background-color: #ef233c;
+}
