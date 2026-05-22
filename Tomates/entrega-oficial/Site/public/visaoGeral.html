@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link rel="stylesheet" href="relatorios.css">
+ <link rel="stylesheet" href="./css/dashboard.css">
 <title>Relatórios</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -15,7 +15,7 @@
 <body>
     <header>
       <div class="logo">
-        <img src="/Tomates/entrega-oficial/Site/imagens/TM.png" alt="" />
+        <img src="./imagens/TM.png" alt="" />
         <h1>TomatoMetrics</h1>
       </div>
       <nav>
@@ -31,12 +31,11 @@
 <div class="container">
 
     <div class="barra">
-        <img src="/Tomates/entrega-oficial/Site/imagens/user.png" alt = "imagem_usuario">
+        <img src="./imagens/user.png" alt = "imagem_usuario">
         <h2>Nome Usuário</h2>
         <ul>
-            <li><a href = "dashboard_tomates.html"> Estufas </a></li>
+            <li><a href = "visaoGeral.html"> Visão Geral </a></li>
             <li>Colaboradores</li>
-            <li> <a href = "#"> Relatórios </a></li>
             <li> <a> Como Usar </a> </li>
             <li>Configurações</li>
         </ul>
@@ -64,8 +63,8 @@
             <p>Agora mesmo</p>
         </div>
     </div>
-    <button class="btn_alerta">
-        Ver Detalhes
+    <button  class="btn_alerta">
+       <a href="detalhe-hoje.html">Ver Detalhes</a> 
     </button>
 
 </div>
