@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TomatoMetrics - Login</title>
-    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="./css/cadastro.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
 </head>
@@ -13,13 +13,13 @@
         <div class="left-cadastro">
             <h1>Cultive sua conexão<br>E entre para o nosso time</h1>
             <!-- <img src="tomate3.png" class="img-tomate3" alt="tomate3"> -->
-            <img src="../Site/imagens/sign-up-animate.svg" class="img" alt="Ilustração de Login">
+            <img src="./imagens/sign-up-animate.svg" class="img" alt="Ilustração de Login">
         </div>
 <form>
         <div class="right-cadastro">
             <div class="card-cadastro">
-                <img src="../Site/imagens/tomate.png" class="img1-tomate1" alt="tomate">
-                <img src="../Site/imagens/tomate2.png" class="img2-tomate2" alt="tomate2">
+                <img src="./imagens/tomate.png" class="img1-tomate1" alt="tomate">
+                <img src=".imagens/tomate2.png" class="img2-tomate2" alt="tomate2">
                 <h1>Cadastrar</h1>
                 
                 <div class="textfield">
@@ -52,7 +52,7 @@
                 <span id="mensagem_sucesso"></span>
             
 
-                <button type="button" class="btn-login" onclick="validarFormulario(usuario, email, senha, erro_usuario, erro_email, erro_senha, mensagem_sucesso)">Acessar Estufa</button>
+                <button type="button" class="btn-login" onclick="cadastrar()">Acessar Estufa</button>
 
                 <div class="register">
                     <p>Já tem uma conta? <a href="login.html">Login</a></p>
@@ -85,47 +85,81 @@
     erro_senha.innerHTML = "";
     mensagem_sucesso.innerHTML = "";
 
-   
-    let valido = true;
-
 
     if (valorusuario == "") {
         erro_usuario.innerHTML = "Preencha o usuário"; 
-        valido = false; 
+        return false; 
     }
 
   
     if (valoremail == "") {
         erro_email.innerHTML = "Preencha o email";
-        valido = false;
+        return false;
     }
 
  
     if (valorsenha == "") {
         erro_senha.innerHTML = "Preencha a senha";
         erro_senha.style.color = "red";
-        valido = false;
+        return false;
 
     } else if (valorsenha.length < 9) { 
         erro_senha.innerHTML = "Mínimo 9 caracteres";
         erro_senha.style.color = "red";
-        valido = false;
+        return false;
 
     } else if (!temMaiuscula) { 
         erro_senha.innerHTML = "Precisa de letra maiúscula";
         erro_senha.style.color = "red";
-        valido = false;
+        return false;
 
     } else if (!temEspecial) {
         erro_senha.innerHTML = "Precisa de caractere especial";
         erro_senha.style.color = "red";
-        valido = false;
-    }
-
-  
-    if (valido) {
-        alert("Cadastro realizado!"); 
-         window.location.href = "login.html"
+        return false;
     }
 }
+
+function cadastrar() {
+
+    if(validarFormulario()){
+        let valorusuario = usuario.value;
+        let valoremail = email.value;
+        let valorsenha = senha.value;
+    
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeServer: valorusuario,
+            emailServer: valoremail,
+            senhaServer: valorsenha
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+              setTimeout(() => {
+                alert("Cadastro realizado!"); 
+                window.location = "login.html";
+              }, "2000");
+    
+              limparFormulario();
+              finalizarAguardar();
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+    
+        return false;
+    } else{
+        return;
+    }
+  }
+
+
 </script>

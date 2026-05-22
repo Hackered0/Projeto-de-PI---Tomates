@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <title>Dashboard Tomato</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="./imagens/TM.png" alt="" />
+            <h1>TomatoMetrics</h1>
+        </div>
+        <nav>
+
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+
+        </nav>
+
+
+    </header>
+
+    <div class="container">
+
+        <div class="barra">
+            <img src="./imagens/user.png" alt="imagem_usuario">
+            <h2>Nome Usuário</h2>
+            <ul>
+                <li><a href="visaoGeral.html"> Visão Geral </a></li>
+                <li>Colaboradores</li>
+                <li> <a> Como Usar </a> </li>
+                <li>Configurações</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="barra">
+        <img src="./imagens/user.png" alt="imagem_usuario">
+        <h2>Nome Usuário</h2>
+        <ul>
+            <li><a href="visaoGeral.html"> Visão Geral </a></li>
+            <li>Colaboradores</li>
+            <li> <a> Como Usar </a> </li>
+            <li>Configurações</li>
+        </ul>
+    </div>
+
+
+    <div class="conteudo">
+        
+        <select id="filtroPeriodo" onchange="if(this.value) window.location.href = this.value;">
+            <option value="" selected disabled>📅 Selecione o Período</option>
+            <option value="detalhe-hoje.html">📅 Hoje</option>
+            <option value="detalhe-semana.html">📅 Semana</option>
+            <option value="detalhe-mes.html">📅 Mês</option>
+        </select>
+        <span id="identificar">Hoje</span>
+        <div class="cards">
+
+            <div class="card alerta">
+                <div class="icon">⚠️</div>
+                <div class="info">
+                    <p>Alertas Emitidos Hoje</p>
+                    <h2>4</h2>
+                    <span style="color: red; font-size: 13px;">● Cuidado</span>
+                </div>
+            </div>
+
+            <div class="card azul">
+                <div class="icon">🌡️</div>
+                <div class="info">
+                    <p>Temperatura Média</p>
+                    <h2>21°C</h2>
+                    <span class="status">● Estável</span>
+                </div>
+            </div>
+
+            <div class="card verde">
+                <div class="icon">💧</div>
+                <div class="info">
+                    <p>Umidade do Ar Média</p>
+                    <h2>55%</h2>
+                    <span class="status">● Estável</span>
+                </div>
+            </div>
+
+            <div class="card verde">
+                <div class="icon">🌱</div>
+                <div class="info">
+                    <p>Umidade do Solo Média</p>
+                    <h2>73%</h2>
+                    <span class="status">● Ideal</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MÉTRICAS -->
+
+        <div class="metricas">
+
+            <div class="metrica-card">
+                <h3>🌡️ Máxima Temperatura</h3>
+                <p>31°C</p>
+                <span>Maior temperatura registrada hoje</span>
+            </div>
+
+            <div class="metrica-card">
+                <h3>❄️ Mínima Temperatura</h3>
+                <p>15°C</p>
+                <span>Menor temperatura registrada hoje</span>
+            </div>
+
+
+            <div class="metrica-card">
+                <h3>💧 Máxima Umidade</h3>
+                <p>82%</p>
+                <span>Maior umidade registrada hoje</span>
+            </div>
+
+
+            <div class="metrica-card">
+                <h3>🧊 Mínima Umidade</h3>
+                <p>45%</p>
+                <span>Menor umidade registrada hoje</span>
+            </div>
+
+            <div class="metrica-card">
+                <h3>🛰️ Sensores Online</h3>
+                <p>12/12</p>
+                <span>Todos funcionando</span>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- GRÁFICOS + TEXTO -->
+
+        <div class="graficos">
+
+            <!-- TEMPERATURA -->
+            <div class="grafico-texto">
+
+                <div class="grafico">
+                    <canvas id="grafico_temperatura"></canvas>
+                </div>
+
+                <div class="explicacao">
+                    <h2>🌡️ Temperatura da Estufa</h2>
+
+                    <p>
+                        Este gráfico mostra a variação da temperatura dentro da estufa ao longo do dia.
+                        O monitoramento constante ajuda a evitar temperaturas muito altas ou muito baixas,
+                        garantindo um ambiente mais adequado para o crescimento saudável dos tomates.
+                    </p>
+
+                    <span>✔️ Faixa ideal: 20°C até 28°C</span>
+                </div>
+
+            </div>
+
+            <!-- UMIDADE -->
+            <div class="grafico-texto">
+
+                <div class="grafico">
+                    <canvas id="grafico_umidade"></canvas>
+                </div>
+
+                <div class="explicacao">
+                    <h2>💧 Umidade do Ar</h2>
+
+                    <p>
+                        O gráfico apresenta os níveis de umidade do ar registrados pelos sensores
+                        da estufa. Manter a umidade equilibrada ajuda a evitar problemas no desenvolvimento
+                        das plantas e melhora a qualidade do cultivo.
+                    </p>
+
+                    <span>✔️ Faixa ideal: 50% até 70%</span>
+                </div>
+
+            </div>
+
+            <!-- SOLO -->
+            <div class="grafico-texto">
+
+                <div class="grafico">
+                    <canvas id="grafico_umidade_solo"></canvas>
+                </div>
+
+                <div class="explicacao">
+                    <h2>🌱 Umidade do Solo</h2>
+
+                    <p>
+                        Este gráfico monitora a quantidade de água presente no solo da plantação.
+                        O acompanhamento desses dados ajuda a identificar quando o solo precisa
+                        de irrigação para manter os tomates saudáveis.
+                    </p>
+
+                    <span>✔️ Faixa ideal: 65% até 80%</span>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+
+
+
+
+        const grafico_temperatura = document.getElementById('grafico_temperatura');
+        const grafico_umidade = document.getElementById('grafico_umidade');
+        const grafico_umidade_solo = document.getElementById('grafico_umidade_solo');
+
+
+        const chartTemperatura = new Chart(grafico_temperatura, {
+            type: "line",
+            data: {
+                labels: ['12:00', '12:05', '12:10', '12:15', '12:20', '12:25'],
+                datasets: [{
+                    label: "Temperatura (°C)",
+                    data: [30, 29, 28, 25, 22, 23],
+                    borderWidth: 2,
+                    borderColor: '#FF6384',
+                    backgroundColor: '#FF6384',
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+        const chartUmidade = new Chart(grafico_umidade, {
+            type: "line",
+            data: {
+                labels: ['12:00', '12:05', '12:10', '12:15', '12:20', '12:25'],
+                datasets: [{
+                    label: "Umidade (%)",
+                    data: [50, 52, 55, 55, 58, 61],
+                    borderWidth: 2,
+                    borderColor: '#87CEFA',
+                    backgroundColor: '#87CEFA',
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+        const chartSolo = new Chart(grafico_umidade_solo, {
+            type: "line",
+            data: {
+                labels: ['12:00', '12:05', '12:10', '12:15', '12:20', '12:25'],
+                datasets: [{
+                    label: "Umidade do Solo (%)",
+                    data: [70, 75, 72, 70, 71, 78],
+                    borderWidth: 2,
+                    borderColor: '#4BC0C0',
+                    backgroundColor: '#4BC0C0',
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // const graficoMedias = document.getElementById('graficoMedias');
+
+        // const chartMedias = new Chart(graficoMedias, {
+        //     type: "bar",
+        //     data: {
+        //         labels: ["Temperatura Média (Cº)", "Umidade Média(%)", "Umidade do Solo(%)"],
+        //         datasets: [{
+        //             label: "Médias",
+        //             data: [26, 55, 73],
+        //             backgroundColor: [
+        //                 "#f77f00", // temperatura
+        //                 "#4cc9f0", // umidade
+        //                 "#52b788"  // solo
+        //             ],
+        //             borderRadius: 8
+        //         }]
+        //     },
+        //     options: {
+        //         plugins: {
+        //             legend: {
+        //                 display: false
+        //             }
+        //         },
+
+
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+    </script>
+
+</body>
+
+</html>
