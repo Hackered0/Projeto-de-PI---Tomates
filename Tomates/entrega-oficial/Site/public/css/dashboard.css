@@ -2,6 +2,8 @@ body {
     margin: 0;
     font-family: 'Garamond', serif;
     background-color: #eef2f1;
+    overflow-y: scroll;
+    
 }
 
 /* HEADER */
@@ -213,7 +215,7 @@ header nav a:hover {
 /* SIDEBAR */
 
 .barra {
-    position: fixed;
+   
 
     top: 80px;
     left: 0;
