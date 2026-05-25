@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="calculadorda.css" />
+
+
+    <title>Tomato Metrics</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="TM.png" alt="" />
+            <h1>TomatoMetrics</h1>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#sobre">Sobre</a>
+            <a href="calculadora.html">Calculadora</a>
+            <a href="dashboard_tomates.html">Dashboards</a>
+            <a href="#benefico">Beneficios</a>
+            <a href="#contatos">Contato</a>
+            <a href="login.html">Login</a>
+        </nav>
+
+
+    </header>
+    <div class="teste">
+        <div class="conteiner">
+            <div class="card">
+
+                <h1>Informações da Estufa</h1>
+                <div class="campos">
+
+                    <p>Tamanho em m³ da estufa:</p>
+                    <input type="text" id="ipt_metros" placeholder="Volume em metros cúbicos">
+
+                    <p>Quantidade de plantas por m³:</p>
+                    <input type="text" id="ipt_plantas" placeholder="Ex: 10">
+
+                    <p>Preço em R$ vendido por Kg?</p>
+                    <input type="text" id="ipt_venda" placeholder="Ex: 5">
+
+                    <p>Quantas estufas iguais você tem?</p>
+                    <input type="text" id="ipt_estufa" placeholder="Considere o total de estufas">
+
+                </div>
+
+                <button onclick="calcular()">Calcular</button>
+                <br>
+                <p class="subtitle">Considerando sem controle de microclima durante 4 meses. <br>
+                    Segundo artigos da embrapa.
+
+                </p>
+                <br>
+            </div>
+
+            <div id="div_resul" class="resultado"></div>
+        </div>
+    </div>
+    <script>
+function calcular() {
+
+div_resul.innerHTML = ``;
+
+let regex = new RegExp("[A-Za-z]");
+
+if (regex.test(ipt_metros.value) || ipt_metros.value == '') {
+alert('O campo do tamanho deve ser preenchido por um número');
+}
+
+else if (regex.test(ipt_plantas.value) || ipt_plantas.value == '') {
+alert('O campo da quantidade de plantas deve ser preenchido por um número');
+}
+
+else if (regex.test(ipt_venda.value) || ipt_venda.value == '') {
+alert('O campo preço deve ser preenchido por um número');
+}
+
+else if (regex.test(ipt_estufa.value) || ipt_estufa.value == '') {
+alert('O campo estufa deve ser preenchido por um número');
+}
+
+else {
+
+let metros = Number(ipt_metros.value);
+
+let qtd_plantas = Number(ipt_plantas.value);
+
+let venda = Number(ipt_venda.value);
+
+let qtd_estufa = Number(ipt_estufa.value);
+
+let qtd_tomateiros = metros * qtd_plantas;
+
+let qtd_tomates = qtd_tomateiros * 10;
+
+let valor_total = qtd_tomates * venda;
+
+let perda_ciclo = valor_total * 0.6;
+
+let perda_ano = perda_ciclo * 3;
+
+
+
+div_resul.innerHTML += `
+
+<h2 style="color:red">
+🚨 PREJUÍZO ESTIMADO
+</h2>
+
+<br>
+
+<h1 style="
+color:red;
+font-size:45px;
+">
+R$ ${perda_ano.toFixed(2)}
+</h1>
+
+<p>
+
+podem deixar de entrar no seu faturamento em aproximadamente 1 ano.
+
+</p>
+
+<hr class="line">
+
+<h3>
+Mas por que isso acontece?
+</h3>
+
+<p>
+
+Mesmo que sua estufa tenha espaço suficiente e plantas suficientes,
+isso não garante que toda produção consiga crescer no máximo potencial.
+
+<br><br>
+
+O tomateiro depende de um ambiente equilibrado para produzir.
+
+Quando existe excesso de calor, umidade inadequada ou falta de monitoramento,
+a planta começa a gastar energia tentando sobreviver em vez de produzir.
+
+<br><br>
+
+Na prática isso significa:
+
+<br><br>
+
+🍅 Menos tomates sendo produzidos<br>
+
+📉 Frutos menores ou menos valorizados<br>
+
+⚠️ Maior desperdício da produção<br>
+
+💸 Menor retorno financeiro
+
+</p>
+
+<hr class="line">
+
+<h3>
+Como chegamos nesse valor?
+</h3>
+
+<p>
+
+Sua estufa possui aproximadamente:
+
+<br><br>
+
+🌱 <strong>
+${qtd_tomateiros.toLocaleString('pt-BR')}
+</strong> tomateiros
+
+<br><br>
+
+Com potencial para produzir:
+
+<br>
+
+🍅 <strong>
+${qtd_tomates.toLocaleString('pt-BR')}
+Kg
+</strong>
+
+<br><br>
+
+O faturamento ideal seria:
+
+<br><br>
+
+<span style="
+color:green;
+font-size:28px;
+font-weight:bold;
+">
+
+R$ ${valor_total.toFixed(2)}
+
+</span>
+
+<br><br>
+
+Porém,
+considerando perdas médias estimadas sem controle adequado do ambiente,
+até
+
+<span style="
+color:red;
+font-size:30px;
+font-weight:bold;
+">
+
+60%
+
+</span>
+
+desse potencial pode não ser aproveitado.
+
+</p>
+
+<hr class="line">
+
+<h3>
+Impacto por ciclo
+</h3>
+
+<p>
+
+💸 Valor estimado perdido:
+
+</p>
+
+<h2 style="
+color:red;
+font-size:38px;
+">
+
+R$ ${perda_ciclo.toFixed(2)}
+
+</h2>
+
+<p>
+
+Esse valor representa produção que poderia gerar faturamento,
+mas que pode estar sendo perdida antes de chegar ao consumidor.
+
+</p>
+
+`;
+
+
+
+if (qtd_estufa >= 2) {
+
+let perda_total_estufas =
+perda_ciclo * qtd_estufa;
+
+let perda_anual_estufas =
+perda_total_estufas * 3;
+
+div_resul.innerHTML += `
+
+<hr class="line">
+
+<h2>
+
+📈 IMPACTO NAS SUAS ${qtd_estufa} ESTUFAS
+
+</h2>
+
+<p>
+
+Como você possui várias estufas,
+essa perda não acontece apenas uma vez.
+
+Ela pode se repetir em todas elas.
+
+</p>
+
+<br>
+
+💸 Perda total por ciclo:
+
+<br><br>
+
+<h2 style="
+color:red;
+">
+
+R$ ${perda_total_estufas.toFixed(2)}
+
+</h2>
+
+<br>
+
+📆 Perda total em 1 ano:
+
+<br><br>
+
+<h1 style="
+color:red;
+">
+
+R$ ${perda_anual_estufas.toFixed(2)}
+
+</h1>
+
+<p>
+
+Controlar temperatura e ambiente não significa apenas produzir mais.
+
+Também significa evitar perder parte do dinheiro que sua produção já teria potencial para gerar.
+
+</p>
+
+`;
+
+}
+
+}
+
+div_resul.innerHTML += `
+
+<br><br><br>
+
+<h6>
+
+Fontes utilizadas:
+
+<br><br>
+
+https://trebeschi.com.br/
+
+<br>
+
+https://www.cepea.org.br/hfbrasil/edicoes/56/tomate.pdf
+
+<br>
+
+https://youtu.be/MLZ0mFrcZqI
+
+<br>
+
+https://smu.com.vc/oferta/pink-farms
+
+</h6>
+
+`;
+
+}
+</script>
+    <footer>
+        <div class="fonteA">
+            <div>
+                <div class="logo">
+                    <img src="../Site/imagens/TM.png" alt="" />
+                    <h1>TomatoMetrics</h1>
+                </div>
+                <p>
+                    Tecnologia IoT de ponta para monitoramento <br>de estufas agrícolas de
+                    Tomate.
+                </p>
+                <ul>
+                    <li><img src="../Site/imagens/Linkedin.png" alt="" /></li>
+                    <li><img src="../Site/imagens/Facebook.png" alt="" /></li>
+                    <li><img src="../Site/imagens/Youtube.png" alt="" /></li>
+                </ul>
+            </div>
+            <ul>
+                <h3>Produtos</h3>
+                <a href="">Sensores IoT</a>
+                <br>
+                <a href="">Plataforma Web</a>
+                <br>
+                <a href="">Consultoria</a>
+                <br>
+                <a href="">Suporte Técnico</a>
+            </ul>
+            <ul>
+                <h3>Empresa</h3>
+                <a href="">Sobre Nós</a>
+                <br>
+                <a href="">Cases de Sucesso</a>
+                <br>
+                <a href="">Blog</a>
+                <br>
+                <a href="">Contato</a>
+            </ul>
+            <ul>
+                <h3>Recursos</h3>
+                <a href="">Documentação</a>
+                <br>
+                <a href="">Tutoriais</a>
+                <br>
+                <a href="">FAQ</a>
+                <br>
+                <a href="">Suporte</a>
+            </ul>
+        </div>
+        <div>
+            <p>© 2026 TomatoMetrics. Todos os direitos reservados.</p>
+            <ul>
+                <li>
+                    <p>Política de Privacidade</p>
+                </li>
+
+                <li>
+                    <p>Termos de Uso</p>
+                </li>
+
+                <li>
+                    <p>Cookies</p>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
