@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link rel="stylesheet" href="./css/dashboard.css">
-<title>Relatórios</title>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Relatórios</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 
@@ -14,58 +15,134 @@
 
 <body>
     <header>
-      <div class="logo">
-        <img src="./imagens/TM.png" alt="" />
-        <h1>TomatoMetrics</h1>
-      </div>
-      <nav>
-        
-        <a href="index.html">Home</a>
-        <a href="login.html">Login</a>
+        <div class="logo">
+            <img src="./imagens/TM.png" alt="" />
+            <h1>TomatoMetrics</h1>
+        </div>
+        <nav>
 
-      </nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
 
-      
+        </nav>
+
+
     </header>
 
-<div class="container">
+    <div class="container">
 
-    <div class="barra">
-        <img src="./imagens/user.png" alt = "imagem_usuario">
-        <h2>Nome Usuário</h2>
-        <ul>
-            <li><a href = "visaoGeral.html"> Visão Geral </a></li>
-            <li>Colaboradores</li>
-            <li> <a> Como Usar </a> </li>
-            <li>Configurações</li>
-        </ul>
-    </div>
-</div>
- <div class="conteudo">
-    <div class="alerta_critico">
-    <div class="topo_alerta">
-        <h2>⚠ Estufa 03 em Estado Crítico</h2>
-        <span class="status_critico">
-            CRÍTICO
-        </span>
-    </div>
-    <div class="info_alerta">
-        <div class="dado">
-            <h3>Temperatura</h3>
-            <p>42°C</p>
-        </div>
-        <div class="dado">
-            <h3>Umidade</h3>
-            <p>18%</p>
-        </div>
-        <div class="dado">
-            <h3>Última Atualização</h3>
-            <p>Agora mesmo</p>
+        <div class="barra">
+            <img src="./imagens/user.png" alt="imagem_usuario">
+            <h2>Nome Usuário</h2>
+            <ul>
+                <li><a href="visaoGeral.html"> Visão Geral </a></li>
+                <li>Colaboradores</li>
+                <li> <a> Como Usar </a> </li>
+                <li>Configurações</li>
+            </ul>
         </div>
     </div>
-    <button  class="btn_alerta">
-       <a href="detalhe-hoje.html">Ver Detalhes</a> 
-    </button>
+    <div class="conteudo">
+        <div class="cards_estufas">
 
-</div>
- </div>
+
+            <div class="alerta_critico">
+                <div class="topo_alerta">
+                    <h2>Estufa 03 em Estado Crítico</h2>
+                    <span class="status_critico">
+                        CRÍTICO
+                    </span>
+                </div>
+
+                <div class="info_alerta">
+                    <div class="dado">
+                        <h3>Temperatura</h3>
+                        <p>42°C</p>
+                    </div>
+
+                    <div class="dado">
+                        <h3>Umidade</h3>
+                        <p>18%</p>
+                    </div>
+
+                    <div class="dado">
+                        <h3>Última Atualização</h3>
+                        <p>Agora mesmo</p>
+                    </div>
+                </div>
+
+                <a href="detalhe-hoje.html"><button class="btn_alerta">
+                    Ver Detalhes
+                </button>
+                </a>
+            </div>
+
+
+            <div class="alerta_moderado">
+                <div class="topo_alerta">
+                    <h2>Estufa 05 em Alerta</h2>
+
+                    <span class="status_alerta">
+                        ALERTA
+                    </span>
+                </div>
+
+                <div class="info_alerta">
+                    <div class="dado">
+                        <h3>Temperatura</h3>
+                        <p>33°C</p>
+                    </div>
+
+                    <div class="dado">
+                        <h3>Umidade</h3>
+                        <p>39%</p>
+                    </div>
+
+                    <div class="dado">
+                        <h3>Última Atualização</h3>
+                        <p>5 min atrás</p>
+                    </div>
+                </div>
+
+                <a href="detalhe-hoje.html"><button class="btn_alerta">
+                    Ver Detalhes
+                </button>
+                </a>
+            </div>
+
+
+
+            <div class="alerta_normal">
+                <div class="topo_alerta">
+                    <h2>Estufa 01 Operando Normalmente</h2>
+
+                    <span class="status_normal">
+                        NORMAL
+                    </span>
+                </div>
+
+                <div class="info_alerta">
+                    <div class="dado">
+                        <h3>Temperatura</h3>
+                        <p>25°C</p>
+                    </div>
+
+                    <div class="dado">
+                        <h3>Umidade</h3>
+                        <p>72%</p>
+                    </div>
+
+                    <div class="dado">
+                        <h3>Última Atualização</h3>
+                        <p>1 min atrás</p>
+                    </div>
+                </div>
+
+                <a href="detalhe-hoje.html"><button class="btn_alerta">
+                    Ver Detalhes
+                </button>
+                </a>
+            </div>
+
+        </div>
+    </div>

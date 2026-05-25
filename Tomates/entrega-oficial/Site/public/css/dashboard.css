@@ -302,9 +302,9 @@ header nav a:hover {
 /* CONTEÚDO */
 
 .conteudo {
-    margin-left: 300px;
-    margin-top: 110px;
-
+    margin-left: 900px;
+    margin-top: -140px;
+    width: 225%;
     padding: 25px;
 }
 
@@ -335,7 +335,7 @@ header nav a:hover {
 
 .cards {
     margin-top: 25px;
-
+    width: 200%;
     display: grid;
 
     grid-template-columns: repeat(4, 1fr);
@@ -477,12 +477,9 @@ header nav a:hover {
 /* MÉTRICAS */
 
 .metricas {
-    display: grid;
-
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
+    display: flex;
     gap: 20px;
-
+    width: 200%;
     margin-bottom: 40px;
 }
 
@@ -511,7 +508,6 @@ header nav a:hover {
 /* VERDE = BOM */
 
 .metrica-verde {
-
     border-color: #52b788;
 }
 
@@ -528,7 +524,7 @@ header nav a:hover {
 /* VERMELHO = CRÍTICO */
 
 .metrica-vermelha {
-
+    
     border-color: #ff4d4d;
 
 }
@@ -683,3 +679,4 @@ header nav a:hover {
         transform: translateY(0);
     }
 }
+
