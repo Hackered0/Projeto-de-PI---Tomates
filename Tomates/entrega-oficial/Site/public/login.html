@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TomatoMetrics - Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="./css/login.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
     <div class="main-login">
-        <img src="../Site/imagens/tomate.png" class="img-tomate" alt="tomate">
-        <img src="../Site/imagens/tomate2.png" class="img-tomate2" alt="tomate2">
+        <img src="./imagens/tomate.png" class="img-tomate" alt="tomate">
+        <img src="./imagens/tomate2.png" class="img-tomate2" alt="tomate2">
 
         <div class="left-login">
             <h1>Cultive sua conexão<br>E entre para o nosso time</h1>
-            <img src="../Site/imagens/mobile-login-animate.svg" class="img">
+            <img src="./imagens/mobile-login-animate.svg" class="img">
         </div>
 
         <form>
@@ -72,31 +72,28 @@ function validarFormulario(usuario, senha, erro_usuario, erro_senha) {
     erro_usuario.innerHTML = "";
     erro_senha.innerHTML = "";
 
-
-    let valido = true;
-
     if (valorusuario == "") {
         erro_usuario.innerHTML = "Preencha o usuário";
         erro_usuario.style.color = "red";
-        valido = false;
+        return false;
     }
 
     if (valorsenha == "") {
         erro_senha.innerHTML = "Preencha a senha";
         erro_senha.style.color = "red";
-        valido = false;
+        return false;
     } else if (valorsenha.length < 9) {
         erro_senha.innerHTML = "Mínimo 9 caracteres";
         erro_senha.style.color = "red";
-        valido = false;
+        return false;
     } else if (!temMaiuscula) {
         erro_senha.innerHTML = "Precisa de letra maiúscula";
         erro_senhaa.style.color = "red";
-        valido = false;
+        return false;
     } else if (!temEspecial) {
         erro_senha.innerHTML = "Precisa de caractere especial";
         erro_senha.style.color = "red";
-        valido = false;
+        return false;
     }
 
     if (valido) {
@@ -104,6 +101,59 @@ function validarFormulario(usuario, senha, erro_usuario, erro_senha) {
         window.location.href = "dashboard_tomates.html";
     }
 }
+
+    function entrar() {
+        if(validarFormulario()){
+            let valorusuario = usuario.value;
+            let valorsenha = senha.value;
+
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: valorusuario,
+                    senhaServer: valorsenha
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+                        /* sessionStorage.FICHAS = JSON.stringify(json.fichas) */
+
+                        setTimeout(function () {
+                            window.location = "./dashboard_tomates.html";
+                        }, 1000); // apenas para exibir o loading
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+        }
+
+    }
 </script>
 
 </body>
