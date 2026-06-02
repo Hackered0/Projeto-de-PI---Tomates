@@ -60,50 +60,12 @@
     </div>
 
 <script>
-function validarFormulario() {
-
-    let valorusuario = usuario.value;
-    let valorsenha = senha.value;
-
-    let temMaiuscula = /[A-Z]/.test(valorsenha);
-    let temEspecial = /[^A-Za-z0-9]/.test(valorsenha);
-
-
-    erro_usuario.innerHTML = "";
-    erro_senha.innerHTML = "";
-
-    if (valorusuario == "") {
-        erro_usuario.innerHTML = "Preencha o usuário";
-        erro_usuario.style.color = "red";
-        return false;
-    }
-
-    if (valorsenha == "") {
-        erro_senha.innerHTML = "Preencha a senha";
-        erro_senha.style.color = "red";
-        return false;
-    } else if (valorsenha.length < 9) {
-        erro_senha.innerHTML = "Mínimo 9 caracteres";
-        erro_senha.style.color = "red";
-        return false;
-    } else if (!temMaiuscula) {
-        erro_senha.innerHTML = "Precisa de letra maiúscula";
-        erro_senhaa.style.color = "red";
-        return false;
-    } else if (!temEspecial) {
-        erro_senha.innerHTML = "Precisa de caractere especial";
-        erro_senha.style.color = "red";
-        return false;
-    } else {
-        return true;
-    }
-}
 
     function entrar() {
-        if(validarFormulario()){
+       
             let valorusuario = usuario.value;
             let valorsenha = senha.value;
-
+            console.log("To no fetch")
             fetch("/usuarios/autenticar", {
                 method: "POST",
                 headers: {
@@ -148,7 +110,7 @@ function validarFormulario() {
             })
 
             return false;
-        }
+        
 
     }
 </script>
