@@ -14,7 +14,7 @@ const HABILITAR_OPERACAO_INSERIR = true;
 const serial = async (
     valoresTemperatura,
     valoresUmidadeRelativa,
-    valoresUmidadeSoloBruta,
+    // valoresUmidadeSoloBruta,
     valoresUmidadeSoloRelativa
 ) => {
 
@@ -22,10 +22,10 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: '127.0.0.1',
-            user: 'usuario_banco',
-            password: 'Urubu#100',
+            user: 'aluno',
+            password: 'sptech',
             database: 'tomatometrics',
-            port: 3307
+            port: 3306
         }
     ).promise();
 
@@ -55,13 +55,13 @@ const serial = async (
         const valores = data.split(';');
         const umidadeRelativa = parseInt(valores[0]);
         const temperatura = parseFloat(valores[1]);
-        const umidadeSoloBruta = parseFloat(valores[2]);
-        const umidadeSoloRelativa = parseFloat(valores[3]);
+        // const umidadeSoloBruta = parseFloat(valores[2]);
+        const umidadeSoloRelativa = parseFloat(valores[2]);
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresTemperatura.push(temperatura);
         valoresUmidadeRelativa.push(umidadeRelativa);
-        valoresUmidadeSoloBruta.push(umidadeSoloBruta);
+        // valoresUmidadeSoloBruta.push(umidadeSoloBruta);
         valoresUmidadeSoloRelativa.push(umidadeSoloRelativa);
 
         // insere os dados no banco de dados (se habilitado)
@@ -69,13 +69,13 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO dados_DHT11 (retorno_umidade, retorno_temperatura, dht11r_idsensor ) VALUES (?, ?, 1 )',
+                'INSERT INTO retorno_dados (idSensor, temperatura, umidadeAr) VALUES (1, ?, ? )',
                 [temperatura, umidadeRelativa]
             );
             console.log("(1)valores inseridos no banco: ", temperatura + ", " + umidadeRelativa);
 
              await poolBancoDados.execute(
-                'INSERT INTO dados_solo_capacitivo (retorno_umidade_solo , solo_idsensor) VALUES (?, 2)',
+                'INSERT INTO retorno_dados (idSensor, umidadeSolo) VALUES (2, ?)',
                 [umidadeSoloRelativa]
             );
             console.log("(2)valores inseridos no banco: ", umidadeSoloRelativa);
@@ -94,7 +94,7 @@ const serial = async (
 const servidor = (
     valoresTemperatura,
     valoresUmidadeRelativa,
-    valoresUmidadeSoloBruta,
+    // valoresUmidadeSoloBruta,
     valoresUmidadeSoloRelativa
 ) => {
     const app = express();
@@ -122,9 +122,9 @@ const servidor = (
     app.get('/sensores/analogico', (_, response) => {
         return response.json(valoresUmidadeSoloRelativa);
     });
-    app.get('/sensores/analogico', (_, response) => {
-        return response.json(valoresUmidadeSoloBruta);
-    });
+    // app.get('/sensores/analogico', (_, response) => {
+    //     return response.json(valoresUmidadeSoloBruta);
+    // });
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
@@ -132,14 +132,14 @@ const servidor = (
     // arrays para armazenar os valores dos sensores
     const valoresTemperatura = [];
     const valoresUmidadeRelativa = [];
-    const valoresUmidadeSoloBruta = [];
+    // const valoresUmidadeSoloBruta = [];
     const valoresUmidadeSoloRelativa = [];
 
     // inicia a comunicação serial
     await serial(
         valoresTemperatura,
         valoresUmidadeRelativa,
-        valoresUmidadeSoloBruta,
+        // valoresUmidadeSoloBruta,
         valoresUmidadeSoloRelativa
     );
 
@@ -147,7 +147,7 @@ const servidor = (
     servidor(
         valoresTemperatura,
         valoresUmidadeRelativa,
-        valoresUmidadeSoloBruta,
+        // valoresUmidadeSoloBruta,
         valoresUmidadeSoloRelativa
     );
 })();
