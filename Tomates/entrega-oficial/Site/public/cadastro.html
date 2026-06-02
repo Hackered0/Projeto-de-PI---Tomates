@@ -119,9 +119,12 @@
         erro_senha.innerHTML = "Precisa de caractere especial";
         erro_senha.style.color = "red";
         return false;
+    } else {
+          console.log("deu certo")
+        return true;
     }
 
-    console.log("To no final da validação")
+  
 }
 
 function cadastrar() {
@@ -130,7 +133,7 @@ function cadastrar() {
         let valorusuario = usuario.value;
         let valoremail = email.value;
         let valorsenha = senha.value;
-        
+
         console.log("Cheguei no Fetch");
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
