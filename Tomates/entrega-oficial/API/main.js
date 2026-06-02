@@ -22,10 +22,10 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: '127.0.0.1',
-            user: 'usuario_banco',
-            password: 'Urubu#100',
+            user: 'aluno',
+            password: 'sptech',
             database: 'tomatometrics',
-            port: 3307
+            port: 3306
         }
     ).promise();
 
@@ -61,7 +61,7 @@ const serial = async (
         // armazena os valores dos sensores nos arrays correspondentes
         valoresTemperatura.push(temperatura);
         valoresUmidadeRelativa.push(umidadeRelativa);
-        valoresUmidadeSoloBruta.push(umidadeSoloBruta);
+        // valoresUmidadeSoloBruta.push(umidadeSoloBruta);
         valoresUmidadeSoloRelativa.push(umidadeSoloRelativa);
 
         // insere os dados no banco de dados (se habilitado)
@@ -69,13 +69,13 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO retorno_dados (idSensor, temperatura, umidadeAr, dtCaptura ) VALUES (1, ?, ?, ? )',
+                'INSERT INTO retorno_dados (idSensor, temperatura, umidadeAr) VALUES (1, ?, ? )',
                 [temperatura, umidadeRelativa]
             );
             console.log("(1)valores inseridos no banco: ", temperatura + ", " + umidadeRelativa);
 
              await poolBancoDados.execute(
-                'INSERT INTO retorno_dados (idSensor, umidadeSolo, dtCaptura) VALUES (2, ?)',
+                'INSERT INTO retorno_dados (idSensor, umidadeSolo) VALUES (2, ?)',
                 [umidadeSoloRelativa]
             );
             console.log("(2)valores inseridos no banco: ", umidadeSoloRelativa);
