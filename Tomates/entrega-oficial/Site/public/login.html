@@ -27,10 +27,10 @@
 
                     <!-- USUÁRIO -->
                     <div class="textfield">
-                        <label>Usuário</label>
+                        <label>E-mail</label>
                         <div class="input-container">
                             <i class='bx bx-user'></i>
-                            <input type="text" id="usuario" name="usuario" placeholder="Username">
+                            <input type="text" id="email" name="email" placeholder="E-mail">
                         </div>
                         <span id="erro_usuario"></span>
                     </div>
@@ -63,7 +63,7 @@
 
     function entrar() {
        
-            let valorusuario = usuario.value;
+            let valorusuario = email.value;
             let valorsenha = senha.value;
             console.log("To no fetch")
             fetch("/usuarios/autenticar", {
