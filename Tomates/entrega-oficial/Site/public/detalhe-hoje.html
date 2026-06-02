@@ -33,19 +33,6 @@
         <img src="imagens/user.png" alt="imagem_usuario">
 
 
-        <div class="container">
-
-            <div class="barra">
-                <img src="./imagens/user.png" alt="imagem_usuario">
-                <h2>Nome Usuário</h2>
-                <ul>
-                    <li><a href="visaoGeral.html"> Visão Geral </a></li>
-                    <li>Colaboradores</li>
-                    <li> <a> Como Usar </a> </li>
-                    <li>Configurações</li>
-                </ul>
-            </div>
-        </div>
 
         <div class="barra">
             <img src="./imagens/user.png" alt="imagem_usuario">
@@ -74,7 +61,7 @@
 
             <span id="identificar">Hoje</span>
 
-            <!-- CARDS -->
+
 
             <div class="cards">
 
@@ -83,7 +70,7 @@
 
 
                     <div class="info">
-                        <p>⚠️ Alertas Emitidos Hoje</p>
+                        <p> Alertas Emitidos Hoje</p>
                         <h2>4</h2>
                         <span style="color:red;">● Cuidado</span>
                     </div>
@@ -95,7 +82,7 @@
 
 
                     <div class="info">
-                        <p>🌡️ Temperatura Média</p>
+                        <p> Temperatura Média</p>
                         <h2>21°C</h2>
                         <span class="status">● Estável</span>
                     </div>
@@ -107,7 +94,7 @@
 
 
                     <div class="info">
-                        <p>💧 Umidade do Ar Média</p>
+                        <p>Umidade do Ar Média</p>
                         <h2>55%</h2>
                         <span class="status">● Estável</span>
                     </div>
@@ -119,7 +106,7 @@
 
 
                     <div class="info">
-                        <p>🌱 Umidade do Solo Média</p>
+                        <p> Umidade do Solo Média</p>
                         <h2>73%</h2>
                         <span class="status">● Ideal</span>
                     </div>
@@ -128,47 +115,13 @@
 
             </div>
 
-            <!-- MÉTRICAS -->
 
-            <div class="metricas">
 
-                <div class="metrica-card metrica-vermelha">
-                    <h3>Máxima Temperatura</h3>
-                    <p>31°C</p>
-                    <span>Maior temperatura registrada hoje</span>
-                </div>
 
-                <div class="metrica-card metrica-vermelha">
-                    <h3>Mínima Temperatura</h3>
-                    <p>15°C</p>
-                    <span>Menor temperatura registrada hoje</span>
-                </div>
-
-                <div class="metrica-card metrica-verde">
-                    <h3>Máxima Umidade</h3>
-                    <p>68%</p>
-                    <span>Maior umidade registrada hoje</span>
-                </div>
-
-                <div class="metrica-card metrica-amarela">
-                    <h3>Mínima Umidade</h3>
-                    <p>45%</p>
-                    <span>Menor umidade registrada hoje</span>
-                </div>
-
-                <div class="metrica-card metrica-verde">
-                    <h3>Sensores Online</h3>
-                    <p>12/12</p>
-                    <span>Todos funcionando</span>
-                </div>
-
-            </div>
-
-            <!-- GRÁFICOS -->
 
             <div class="graficos">
 
-                <!-- TEMPERATURA -->
+               
 
                 <div class="grafico-texto">
 
@@ -179,18 +132,18 @@
                     <div>
 
                         <button class="btn-info" onclick="mostrarTexto('texto1')">
-                            🌡️ Ver Explicação
+                             Ver Explicação
                         </button>
 
                         <div class="explicacao" id="texto1">
 
-                            <h2>🌡️ Temperatura da Estufa</h2>
+                            <h2> Temperatura da Estufa</h2>
 
                             <p>
                                 Este gráfico mostra a variação da temperatura dentro da estufa ao longo do dia.
                             </p>
 
-                            <span>✔️ Faixa ideal: 20°C até 28°C</span>
+                            <span> Faixa ideal: 20°C até 28°C</span>
 
                         </div>
 
@@ -198,7 +151,7 @@
 
                 </div>
 
-                <!-- UMIDADE -->
+
 
                 <div class="grafico-texto">
 
@@ -209,18 +162,18 @@
                     <div>
 
                         <button class="btn-info" onclick="mostrarTexto('texto2')">
-                            💧 Ver Explicação
+                             Ver Explicação
                         </button>
 
                         <div class="explicacao" id="texto2">
 
-                            <h2>💧 Umidade do Ar</h2>
+                            <h2> Umidade do Ar</h2>
 
                             <p>
                                 O gráfico apresenta os níveis de umidade do ar registrados pelos sensores.
                             </p>
 
-                            <span>✔️ Faixa ideal: 50% até 70%</span>
+                            <span> Faixa ideal: 50% até 70%</span>
 
                         </div>
 
@@ -228,7 +181,6 @@
 
                 </div>
 
-                <!-- SOLO -->
 
                 <div class="grafico-texto">
 
@@ -239,18 +191,18 @@
                     <div>
 
                         <button class="btn-info" onclick="mostrarTexto('texto3')">
-                            🌱 Ver Explicação
+                             Ver Explicação
                         </button>
 
                         <div class="explicacao" id="texto3">
 
-                            <h2>🌱 Umidade do Solo</h2>
+                            <h2> Umidade do Solo</h2>
 
                             <p>
                                 Este gráfico monitora a quantidade de água presente no solo.
                             </p>
 
-                            <span>✔️ Faixa ideal: 65% até 80%</span>
+                            <span> Faixa ideal: 65% até 80%</span>
 
                         </div>
 
@@ -268,7 +220,6 @@
 
                 const texto = document.getElementById(id);
 
-                // fecha todas as explicações
                 const todasExplicacoes = document.querySelectorAll('.explicacao');
 
                 todasExplicacoes.forEach(item => {
@@ -279,7 +230,6 @@
 
                 });
 
-                // abre ou fecha a clicada
                 if (texto.style.display === "block") {
 
                     texto.style.display = "none";
@@ -293,7 +243,6 @@
             }
 
 
-            // ================= TEMPERATURA =================
 
             const grafico_temperatura = document.getElementById('grafico_temperatura');
 
@@ -307,7 +256,6 @@
 
                     datasets: [
 
-                        // temperatura real
                         {
 
                             label: "Temperatura (°C)",
@@ -323,8 +271,7 @@
                             tension: 0.3
 
                         },
-
-                        // linha máxima
+     
                         {
 
                             label: "Máximo Ideal",
@@ -341,7 +288,7 @@
 
                         },
 
-                        // linha mínima
+    
                         {
 
                             label: "Mínimo Ideal",
@@ -380,7 +327,7 @@
             });
 
 
-            // Umidade
+
 
             const grafico_umidade = document.getElementById('grafico_umidade');
 
@@ -448,7 +395,7 @@
             });
 
 
-            // Solo
+
 
             const grafico_umidade_solo = document.getElementById('grafico_umidade_solo');
 
