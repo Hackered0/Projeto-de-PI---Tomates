@@ -60,7 +60,7 @@
     </div>
 
 <script>
-function validarFormulario(usuario, senha, erro_usuario, erro_senha) {
+function validarFormulario() {
 
     let valorusuario = usuario.value;
     let valorsenha = senha.value;
@@ -94,11 +94,8 @@ function validarFormulario(usuario, senha, erro_usuario, erro_senha) {
         erro_senha.innerHTML = "Precisa de caractere especial";
         erro_senha.style.color = "red";
         return false;
-    }
-
-    if (valido) {
-        alert("Login realizado!");
-        window.location.href = "dashboard_tomates.html";
+    } else {
+        return true;
     }
 }
 
