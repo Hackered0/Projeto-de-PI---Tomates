@@ -130,7 +130,8 @@ function cadastrar() {
         let valorusuario = usuario.value;
         let valoremail = email.value;
         let valorsenha = senha.value;
-    
+        
+        console.log("Cheguei no Fetch");
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
           method: "POST",
