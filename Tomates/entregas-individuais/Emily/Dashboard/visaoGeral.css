@@ -19,7 +19,7 @@ header h1 {
     margin-bottom: 15px;
 }
 
-.conteudo{
+.conteudo {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -43,12 +43,15 @@ header h1 {
 }
 
 .barra img {
-    width: 45%;
-    margin-top: 20px;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
     border-radius: 50%;
     padding: 8px;
     background-color: #1b4332;
+    margin-bottom: 15px;
     box-shadow: 0 0 15px rgba(183, 228, 199, 0.3);
+    margin-top: 10px;
 
 }
 
@@ -92,7 +95,7 @@ header h1 {
     border-left: 10px solid #d90429;
     border-radius: 14px;
     padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .topo_alerta {
@@ -177,8 +180,8 @@ header h1 {
 
 .cards_estufas h1 {
     width: 100%;
-    
-    
+
+
 }
 
 
@@ -190,7 +193,7 @@ header h1 {
     border-left: 10px solid #f77f00;
     border-radius: 14px;
     padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .status_alerta {
@@ -231,7 +234,7 @@ header h1 {
     border-left: 10px solid #2a9d8f;
     border-radius: 14px;
     padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .status_normal {
@@ -265,4 +268,3 @@ header h1 {
     transition: 0.2;
     transform: scale(0.97);
 }
-
