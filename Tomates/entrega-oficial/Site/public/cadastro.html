@@ -85,9 +85,11 @@
     erro_senha.innerHTML = "";
     mensagem_sucesso.innerHTML = "";
 
+    console.log("AAAAAAA TO no inicio")
 
     if (valorusuario == "") {
         erro_usuario.innerHTML = "Preencha o usuário"; 
+        console.log("To no valor usuario ")
         return false; 
     }
 
@@ -118,6 +120,8 @@
         erro_senha.style.color = "red";
         return false;
     }
+
+    console.log("To no final da validação")
 }
 
 function cadastrar() {
@@ -144,6 +148,7 @@ function cadastrar() {
           .then(function (resposta) {
             console.log("resposta: ", resposta);
               setTimeout(() => {
+                 console.log("Deu certo irmão")
                 alert("Cadastro realizado!"); 
                 window.location = "login.html";
               }, "2000");
