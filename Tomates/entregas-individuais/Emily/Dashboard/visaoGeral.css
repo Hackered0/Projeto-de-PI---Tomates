@@ -42,6 +42,13 @@ header h1 {
     box-shadow: 4px 0 15px rgba(0, 0, 0, 0.15);
 }
 
+.titulo_visao {
+    display: flex;
+    align-items: center;
+    margin-left: 520px;
+    
+}
+
 .barra img {
     width: 120px;
     height: 120px;
@@ -173,6 +180,7 @@ header h1 {
     display: flex;
     gap: 25px;
     flex-wrap: wrap;
+    align-items: center;
     margin-top: 7rem;
     /* flex-direction: column; */
     margin-left: 18rem;

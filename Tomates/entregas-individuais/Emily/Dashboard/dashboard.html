@@ -31,16 +31,16 @@
             <h1>Visão Geral</h1>
             <div class="filtros">
 
-                <a href="detalhe-hoje.html" class="btn-filtro">📅 Hoje</a>
+                <a href="detalhe-hoje.html" class="btn-filtro"> Hoje</a>
 
-                <a href="detalhe-semana.html" class="btn-filtro">📅 Semana</a>
+                <a href="detalhe-semana.html" class="btn-filtro"> Semana</a>
                 
                 <span id="identificar">Hoje</span>
             </div>
 
             
 
-            <!-- CARDS -->
+       
 
             <div class="cards">
 
@@ -94,7 +94,7 @@
 
             </div>
 
-            <!-- MÉTRICAS -->
+           
 
             <div class="metricas">
 
@@ -130,11 +130,11 @@
 
             </div>
 
-            <!-- GRÁFICOS -->
+      
 
             <div class="graficos">
 
-                <!-- TEMPERATURA -->
+         
 
                 <div class="grafico-texto">
 
@@ -164,7 +164,7 @@
 
                 </div>
 
-                <!-- UMIDADE -->
+           
 
                 <div class="grafico-texto">
 
@@ -194,7 +194,7 @@
 
                 </div>
 
-                <!-- SOLO -->
+         
 
                 <div class="grafico-texto">
 
@@ -234,7 +234,7 @@
 
         const texto = document.getElementById(id);
 
-        // abre ou fecha a explicação quando clicada
+    
         if (texto.style.display === "block") {
 
             texto.style.display = "none";
@@ -248,7 +248,7 @@
     }
 
 
-    // ================= TEMPERATURA =================
+    
 
     const grafico_temperatura = document.getElementById('grafico_temperatura');
 
@@ -262,7 +262,7 @@
 
             datasets: [
 
-                // temperatura real
+               
                 {
 
                     label: "Temperatura (°C)",
@@ -279,7 +279,7 @@
 
                 },
 
-                // linha máxima
+                
                 {
 
                     label: "Máximo Ideal",
@@ -296,7 +296,7 @@
 
                 },
 
-                // linha mínima
+              
                 {
 
                     label: "Mínimo Ideal",
@@ -335,7 +335,7 @@
     });
 
 
-    // Umidade
+
 
     const grafico_umidade = document.getElementById('grafico_umidade');
 
@@ -403,7 +403,7 @@
     });
 
 
-    // Solo
+ 
 
     const grafico_umidade_solo = document.getElementById('grafico_umidade_solo');
 
