@@ -58,7 +58,7 @@
 
 
                     <div class="info">
-                        <p>Temperatura Média</p>
+                        <p>Temperatura Média hoje</p>
                         <h2>21°C</h2>
                         <span class="status">● Estável</span>
                     </div>
@@ -70,7 +70,7 @@
 
 
                     <div class="info">
-                        <p>Umidade do Ar Média</p>
+                        <p>Umidade do Ar Média hoje</p>
                         <h2>55%</h2>
                         <span class="status">● Ideal</span>
                     </div>
@@ -82,7 +82,7 @@
 
 
                     <div class="info">
-                        <p>Umidade do Solo Média</p>
+                        <p>Umidade do Solo Média hoje</p>
                         <h2>73%</h2>
                         <span class="status">● Ideal</span>
                     </div>
@@ -92,7 +92,7 @@
             </div>
 
             <div class="sensores">
-                <span style="size: 18px; font-weight: bold;">Sensores de umidade do solo:</span>
+                <span style="size: 18px; font-weight: bold; margin-bottom: 40px;">Sensores de umidade do solo:</span>
                 <select name="" id="sensor">
                     <option value="sensor1">Todos os sensores</option>
                     <option value="sensor1">Sensor 1</option>
@@ -110,10 +110,6 @@
 
 
                     <div class="grafico-texto">
-
-                        <div class="grafico">
-                            <canvas id="grafico_temperatura"></canvas>
-                        </div>
 
                         <div>
 
@@ -135,14 +131,16 @@
 
                         </div>
 
+                        <div class="grafico">
+                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(193, 48, 0);"> Temperatura</h2>
+                            <canvas id="grafico_temperatura"></canvas>
+                        </div>
+
+                        
+
                     </div>
 
                     <div class="grafico-texto">
-
-                        <div class="grafico">
-                            <canvas id="grafico_umidade"></canvas>
-                        </div>
-
                         <div>
 
                             <button class="btn-info" onclick="mostrarTexto('texto2')">
@@ -163,14 +161,17 @@
 
                         </div>
 
+                        <div class="grafico">
+                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(0, 78, 167);">Umidade do Ar</h2>
+                            <canvas id="grafico_umidade"></canvas>
+                        </div>
+
+                        
+
                     </div>
 
 
                     <div class="grafico-texto">
-
-                        <div class="grafico">
-                            <canvas id="grafico_umidade_solo"></canvas>
-                        </div>
 
                         <div>
 
@@ -192,6 +193,13 @@
 
                         </div>
 
+
+                        <div class="grafico">
+                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(0, 108, 88);">Umidade do Solo</h2>
+                            <canvas id="grafico_umidade_solo"></canvas>
+                        </div>
+
+                        
                     </div>
 
 
