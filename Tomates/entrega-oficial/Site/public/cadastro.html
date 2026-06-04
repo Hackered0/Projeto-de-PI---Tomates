@@ -85,9 +85,11 @@
     erro_senha.innerHTML = "";
     mensagem_sucesso.innerHTML = "";
 
+    console.log("AAAAAAA TO no inicio")
 
     if (valorusuario == "") {
         erro_usuario.innerHTML = "Preencha o usuário"; 
+        console.log("To no valor usuario ")
         return false; 
     }
 
@@ -117,7 +119,12 @@
         erro_senha.innerHTML = "Precisa de caractere especial";
         erro_senha.style.color = "red";
         return false;
+    } else {
+          console.log("deu certo")
+        return true;
     }
+
+  
 }
 
 function cadastrar() {
@@ -126,7 +133,8 @@ function cadastrar() {
         let valorusuario = usuario.value;
         let valoremail = email.value;
         let valorsenha = senha.value;
-    
+
+        console.log("Cheguei no Fetch");
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
           method: "POST",
@@ -144,6 +152,7 @@ function cadastrar() {
           .then(function (resposta) {
             console.log("resposta: ", resposta);
               setTimeout(() => {
+                 console.log("Deu certo irmão")
                 alert("Cadastro realizado!"); 
                 window.location = "login.html";
               }, "2000");
