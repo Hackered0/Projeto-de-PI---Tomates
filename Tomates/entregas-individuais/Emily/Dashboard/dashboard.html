@@ -33,18 +33,20 @@
 
                 <a href="detalhe-hoje.html" class="btn-filtro"> Hoje</a>
 
+                <a href="detalhe-semana.html" class="btn-filtro">📅 Semana</a>
+
+                <span id="identificar">Hoje</span>
+            </div>
+
                 <a href="detalhe-semana.html" class="btn-filtro"> Semana</a>
                 
                 <span id="identificar">Hoje</span>
             </div>
 
             
-
-       
-
             <div class="cards">
 
-                <div class="card-alerta">
+                <div class="card alerta">
 
 
 
@@ -56,7 +58,7 @@
 
                 </div>
 
-                <div class="card-azul">
+                <div class="card azul">
 
 
 
@@ -68,19 +70,19 @@
 
                 </div>
 
-                <div class="card-verde">
+                <div class="card verde">
 
 
 
                     <div class="info">
                         <p>Umidade do Ar Média</p>
                         <h2>55%</h2>
-                        <span class="status">● Estável</span>
+                        <span class="status">● Ideal</span>
                     </div>
 
                 </div>
 
-                <div class="card-verde">
+                <div class="card verde">
 
 
 
@@ -93,6 +95,22 @@
                 </div>
 
             </div>
+            <div class="sensores">
+                <span style="size: 18px; weight: bold;">Sensores de umidade do solo:</span>
+                <select name="" id="sensor">
+                    <option value="sensor1">Média dos sensores</option>
+                    <option value="sensor1">Sensor 1</option>
+                    <option value="sensor2">Sensor 2</option>
+                    <option value="sensor3">Sensor 3</option>
+                    <option value="sensor4">Sensor 4</option>
+                    <option value="sensor5">Sensor 5</option>
+                    <option value="sensor6">Sensor 6</option>
+                </select>
+
+            </div>
+
+            <div class="grafico-tabela">
+                <div class="graficos">
 
            
 
@@ -132,45 +150,137 @@
 
       
 
-            <div class="graficos">
+
+                    <div class="grafico-texto">
 
          
 
-                <div class="grafico-texto">
+                        <div class="grafico">
+                            <canvas id="grafico_temperatura"></canvas>
+                        </div>
 
-                    <div class="grafico">
-                        <canvas id="grafico_temperatura"></canvas>
-                    </div>
+                        <div>
 
-                    <div>
+                            <button class="btn-info" onclick="mostrarTexto('texto1')">
+                                Ver Explicação
+                            </button>
 
-                        <button class="btn-info" onclick="mostrarTexto('texto1')">
-                            Ver Explicação
-                        </button>
+                            <div class="explicacao" id="texto1">
 
-                        <div class="explicacao" id="texto1">
+                                <h2>Temperatura da Estufa</h2>
 
-                            <h2>Temperatura da Estufa</h2>
+                                <p>
+                                    Este gráfico mostra a variação da temperatura dentro da estufa ao longo do dia.
+                                </p>
 
-                            <p>
-                                Este gráfico mostra a variação da temperatura dentro da estufa ao longo do dia.
-                            </p>
+                                <span>Faixa ideal: 20°C até 28°C</span>
 
-                            <span>Faixa ideal: 20°C até 28°C</span>
+                            </div>
 
                         </div>
 
                     </div>
 
-                </div>
+                    <div class="grafico-texto">
 
-           
+                        <div class="grafico">
+                            <canvas id="grafico_umidade"></canvas>
+                        </div>
 
-                <div class="grafico-texto">
+                        <div>
 
-                    <div class="grafico">
-                        <canvas id="grafico_umidade"></canvas>
+                            <button class="btn-info" onclick="mostrarTexto('texto2')">
+                                Ver Explicação
+                            </button>
+
+                            <div class="explicacao" id="texto2">
+
+                                <h2>Umidade do Ar</h2>
+
+                                <p>
+                                    O gráfico apresenta os níveis de umidade do ar registrados pelos sensores.
+                                </p>
+
+                                <span>Faixa ideal: 50% até 70%</span>
+
+                            </div>
+
+                        </div>
+
                     </div>
+
+
+                    <div class="grafico-texto">
+
+                        <div class="grafico">
+                            <canvas id="grafico_umidade_solo"></canvas>
+                        </div>
+
+                        <div>
+
+                            <button class="btn-info" onclick="mostrarTexto('texto3')">
+                                Ver Explicação
+                            </button>
+
+                            <div class="explicacao" id="texto3">
+
+                                <h2>Umidade do Solo</h2>
+
+                                <p>
+                                    Este gráfico monitora a quantidade de água presente no solo.
+                                </p>
+
+                                <span>Faixa ideal: 65% até 80%</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <div class="todos-sensores">
+
+                    <table>
+                        <!-- tr == coluna
+                            tr == linha -->
+                        <tr class="linha">
+                            <th>Nome</th>
+                            <th>Horário</th>
+                            <th>Ativo</th>
+                        </tr>
+                        <tr>
+                            <td>Sensor1</td>
+                            <td>10:38</td>
+                            <td style="color: green;">Online</td>
+                        </tr>
+                        <tr>
+                            <td>Sensor2</td>
+                            <td>10:38</td>
+                            <td style="color: green;">Online</td>
+                        </tr>
+                        <tr>
+                            <td>Sensor3</td>
+                            <td>10:38</td>
+                            <td style="color: green;">Online</td>
+                        </tr>
+                        <tr>
+                            <td>Sensor4</td>
+                            <td>10:38</td>
+                            <td style="color: green;">Online</td>
+                        </tr>
+                        <tr>
+                            <td>Sensor5</td>
+                            <td>10:05</td>
+                            <td style="color: red;">Offline</td>
+                        </tr>
+                        <tr>
+                            <td>Sensor6</td>
+                            <td>10:38</td>
+                            <td style="color: green;">Online</td>
+                        </tr>
 
                     <div>
 
@@ -225,6 +335,7 @@
                 </div>
             </div>
 
+
 </body>
 
 </html>
@@ -234,7 +345,6 @@
 
         const texto = document.getElementById(id);
 
-    
         if (texto.style.display === "block") {
 
             texto.style.display = "none";
@@ -246,9 +356,6 @@
         }
 
     }
-
-
-    
 
     const grafico_temperatura = document.getElementById('grafico_temperatura');
 
@@ -262,7 +369,6 @@
 
             datasets: [
 
-               
                 {
 
                     label: "Temperatura (°C)",
@@ -279,7 +385,6 @@
 
                 },
 
-                
                 {
 
                     label: "Máximo Ideal",
@@ -333,7 +438,6 @@
         }
 
     });
-
 
 
 
@@ -403,8 +507,11 @@
     });
 
 
+<<<<<<< HEAD
+=======
  
 
+>>>>>>> 84fdb6e0117ea6131855c64d195c88742ebacf57
     const grafico_umidade_solo = document.getElementById('grafico_umidade_solo');
 
     new Chart(grafico_umidade_solo, {

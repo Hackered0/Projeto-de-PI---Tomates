@@ -11,6 +11,7 @@ header {
     background-color: #1b4332;
     align-items: center;
     padding: 0;
+    z-index: 1000;
 }
 
 header h1 {
@@ -89,7 +90,11 @@ header h1 {
 }
 
 .dados {
-    margin-top: 10%;
+    margin-left: 40%;
+    width: 100%;
+    margin-top:7%;
+    display: block;
+    height: 100%;
 }
 
 .dados h1 {
@@ -99,12 +104,12 @@ header h1 {
 }
 
 .filtros {
-    width: 100%;
+    width: 50%;
     display: flex;
 }
 
 .btn-filtro {
-    width: 13%;
+    width: 90%;
     padding: 6px 15px;
     text-decoration: none;
     border: 3px solid #ff3939;
@@ -118,34 +123,195 @@ header h1 {
 #identificar {
     font-size: 25px;
     font-weight: bold;
-    margin-left: 20%;
     margin-top: 5%;
+    margin-left: 22rem;
 }
 
 .cards {
-    width: 100%;
+    margin-top: 25px;
+    width: 78%;
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    margin-bottom: 35px;
+}
+
+.card {
     display: flex;
-    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 20px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    min-height: 110px;
+
+    transition: 0.3s;
 }
 
-.card-alerta {
-    border: 3px solid #ff0000;
-    padding: 20px 50px;
-    border-radius: 18px;
-    margin-right: 15px;
+.card:hover {
+    transform: translateY(-5px);
 }
 
-.card-azul {
-    border: 3px solid #ffbf00;
-    padding: 20px 50px;
-    border-radius: 18px;
+
+.alerta {
+    border: 2px solid #ff4d4d;
+    box-shadow: 0 0 14px rgba(255,0,0,0.30);
+}
+
+.azul {
+    border: 2px solid #ffd166;
+
+    box-shadow: 0 0 14px rgba(255,209,102,0.35);
+}
+
+.verde {
+    border: 2px solid #52b788;
+
+    box-shadow: 0 0 14px rgba(82,183,136,0.35);
+}
+
+
+.info p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 14px;
+
+    color: #000000;
+}
+
+.info h2 {
+    margin: 6px 0;
+
+    font-size: 30px;
+
+    color: #000000;
+}
+
+.btn-info{
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+.btn-info:active{
+    background-color: #3a3a3a;
+    transition: 0.3s;
+    transform: scale(0.97);
+    color: white;
+}
+.sensores{
+    width: 50%;
+    
+}
+
+.explicacao {
+    display: none;
+
+    width: 100%;
+    height: auto;
+    padding: 18px;
+
+    background: #fefefe;
+
+    color: rgb(0, 0, 0);
+
+    border-radius: 15px;
+    margin-right: 30px;
+    border: 3px solid #183126;
+
+    animation: 0.3s ease;
+    margin-top: 10px;
+}
+
+.explicacao h2 {
+    color: #006aff;
+
+    margin-bottom: 12px;
+}
+
+.explicacao p {
+    line-height: 26px;
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.explicacao span {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 17px;
+    background: rgba(80, 80, 80, 0.15);
+}
+
+.grafico-tabela{
+    display: flex;
+    height: 100%;
+    width: 100%;
 
 }
 
-.card-verde {
-    border: 3px solid #1f8902;
-    padding: 20px 40px;
-    border-radius: 18px;
-    margin-left: 15px;
+.graficos {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    flex: 1;
+    height: 200%;
+    width: 100%;
+}
 
+.grafico-texto {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 20px;
+}
+
+.grafico {
+    margin-top: 20px;
+    width: 60%;
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.todos-sensores{
+    height: 20%;
+    display: flex;
+    flex: 1;
+    width: 50%;
+    margin-left: 40px;
+}
+
+.linha{
+    border: 1px solid black;
+}
+
+table, 
+th, 
+td{
+    border: 1px;
+    border-collapse: collapse;
+    margin-left: 30px;
+}
+
+td, th{
+    border: 1px solid black;
+    width: 110px;
+    height: 30px;
+    margin-left: 130px;
+}
+td{
+    text-align: center;
 }
