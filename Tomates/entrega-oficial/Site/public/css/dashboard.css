@@ -65,24 +65,6 @@ body {
     margin-right: 50px;
 }
 
-.logo_container img {
-    width: 40px; 
-    height: auto;
-
-}
-
-.logo_container h2 {
-    color: white;
-    margin: 0; 
-    font-size: 20px; 
-}
-
-.sidebar h3 {
-    color: white;
-    padding: 15px;
-    font-size: 25px;
-    text-align: center;
-}
 
 main {
     flex: 1; 

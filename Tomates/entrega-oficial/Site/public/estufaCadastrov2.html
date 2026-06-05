@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./css/cadastroEstufa.css">
+    <title>Dashboard Tomato</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            <img src="/Tomates/entrega-oficial/Site/imagens/TM.png" alt="">
+
+            <img src="./imagens/TM.png" alt="" />
+            <h1>TomatoMetrics</h1>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+        </nav>
+
+    </header>
+
+        <div class="barra">
+            <img src="./imagens/user.png" alt="imagem_usuario">
+            <h2>Nome Usuário</h2>
+
+            <ul>
+                <li><a href="visaoGeral.html">Visão Geral</a></li>
+                <li>Colaboradores</li>
+                <li>Como Usar</li>
+                <li>Cadastrar estufa</li>
+            </ul>
+
+        </div>
+        
+                <div class="right-cadastro">
+            <div class="card-cadastro">
+                <h1>Cadastrar estufa</h1>
+                
+        <div class="textfield"> 
+            <label for="usuario">Estufa</label> 
+            <div class="input-container"> 
+               <i class="bx bx-home-alt-2"></i>
+                <input type="text" id="ipt_estufa" placeholder="Nome da estufa" required> 
+            </div> 
+            <div class="input-container" style="height: 60px;"> 
+               <i class="bx bx-lock"></i>
+                <input type="text" id="ipt_senha" placeholder="Senha de usuário" required> 
+            </div> 
+        </div>
+
+                <button type="button" class="btn-login" onclick="cadastrar()">Cadastrar estufa</button>
+        </div>
+
+</body>
+</html>
+<script>
+    function cadastrar(){
+        let estufa = ipt_estufa.value;
+        let senha = ipt_senha.value
+        
+        console.log('Iniciando')
+
+        if (estufa == ""){
+        console.log('verificando estufa');
+            alert('Preecnha o nome da estufa');
+            return false;
+        }
+        if (senha == ""){
+        console.log('Verificando senha')
+            alert('Preencha a senha');
+            return false;
+        }
+        if (senha != 1){}
+    }
+</script>
