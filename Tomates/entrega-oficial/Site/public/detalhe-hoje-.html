@@ -91,20 +91,6 @@
 
             </div>
 
-            <div class="sensores">
-                <span style="size: 18px; font-weight: bold; margin-bottom: 40px;">Sensores de umidade do solo:</span>
-                <select name="" id="sensor">
-                    <option value="sensor1">Todos os sensores</option>
-                    <option value="sensor1">Sensor 1</option>
-                    <option value="sensor2">Sensor 2</option>
-                    <option value="sensor3">Sensor 3</option>
-                    <option value="sensor4">Sensor 4</option>
-                    <option value="sensor5">Sensor 5</option>
-                    <option value="sensor6">Sensor 6</option>
-                </select>
-
-            </div>
-
             <div class="grafico-tabela">
                 <div class="graficos">
 
@@ -132,11 +118,12 @@
                         </div>
 
                         <div class="grafico">
-                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(193, 48, 0);"> Temperatura</h2>
+                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(193, 48, 0);"> Temperatura Hoje
+                            </h2>
                             <canvas id="grafico_temperatura"></canvas>
                         </div>
 
-                        
+
 
                     </div>
 
@@ -162,11 +149,12 @@
                         </div>
 
                         <div class="grafico">
-                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(0, 78, 167);">Umidade do Ar</h2>
+                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(0, 78, 167);">Umidade do Ar Hoje
+                            </h2>
                             <canvas id="grafico_umidade"></canvas>
                         </div>
 
-                        
+
 
                     </div>
 
@@ -174,10 +162,26 @@
                     <div class="grafico-texto">
 
                         <div>
+                            <div class="sensores">
 
-                            <button class="btn-info" onclick="mostrarTexto('texto3')">
-                                Ver Explicação
-                            </button>
+
+                                <button class="btn-info" onclick="mostrarTexto('texto3')">
+                                    Ver Explicação
+                                </button>
+                                <span style="size: 18px; font-weight: bold; margin-bottom: 40px;">Sensores de umidade do
+                                    solo:</span>
+                                <select name="" id="sensor">
+                                    <option value="sensor1">Todos os sensores</option>
+                                    <option value="sensor1">Sensor 1</option>
+                                    <option value="sensor2">Sensor 2</option>
+                                    <option value="sensor3">Sensor 3</option>
+                                    <option value="sensor4">Sensor 4</option>
+                                    <option value="sensor5">Sensor 5</option>
+                                    <option value="sensor6">Sensor 6</option>
+                                </select>
+                            </div>
+
+
 
                             <div class="explicacao" id="texto3">
 
@@ -195,11 +199,12 @@
 
 
                         <div class="grafico">
-                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(0, 108, 88);">Umidade do Solo</h2>
+                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(0, 108, 88);">Umidade do Solo Hoje
+                            </h2>
                             <canvas id="grafico_umidade_solo"></canvas>
                         </div>
 
-                        
+
                     </div>
 
 
@@ -310,7 +315,7 @@
 
                     label: "Máximo Ideal",
 
-                    data: [28, 28, 28, 28, 28, 28],
+                    data: [27, 27, 27, 27, 27, 27],
 
                     borderWidth: 2,
 
@@ -326,7 +331,7 @@
 
                     label: "Mínimo Ideal",
 
-                    data: [20, 20, 20, 20, 20, 20],
+                    data: [18, 18, 18, 18, 18, 18],
 
                     borderWidth: 2,
 
@@ -459,7 +464,7 @@
 
                     label: "Máximo Ideal",
 
-                    data: [80, 80, 80, 80, 80, 80],
+                    data: [90, 90, 90, 90, 90, 90],
 
                     borderWidth: 2,
 
@@ -475,7 +480,7 @@
 
                     label: "Mínimo Ideal",
 
-                    data: [65, 65, 65, 65, 65, 65],
+                    data: [50, 50, 50, 50, 50, 50],
 
                     borderWidth: 2,
 

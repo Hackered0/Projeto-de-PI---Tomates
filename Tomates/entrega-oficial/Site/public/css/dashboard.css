@@ -211,7 +211,8 @@ header h1 {
     font-weight: bold;
     background-color: #ffffff;
     cursor: pointer;
-    margin-bottom: 15px;
+    margin-top: 30px;
+    margin-right: 60px;
 }
 
 .btn-info:active{
@@ -223,7 +224,6 @@ header h1 {
 
 .sensores{
     width: 100%;
-    margin-bottom: 30px;
 }
 
 .explicacao {
@@ -237,6 +237,7 @@ header h1 {
     margin-right: 30px;
     border: 3px solid #183126;
     animation: 0.3s ease;
+    margin-top: 10px;
 }
 
 .explicacao h2 {
