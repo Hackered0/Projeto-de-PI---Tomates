@@ -4,255 +4,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard -TomatoMetrics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-            <img src="/Tomates/entrega-oficial/Site/imagens/TM.png" alt="" />
-            <h1>TomatoMetrics</h1>
+    <div class="layout">
+
+        <div class="sidebar">
+
+            <div class="logo_container">
+                <img src="/Tomates/entrega-oficial/Site/public/imagens/TM.png" alt="Logo">
+                <h2>TomatoMetrics</h2>
+            </div>
+
+            <h3> Olá, Usuário! </h3>
+
+            <div class="links_dash">
+                <a href="visaoGeral.html"> Visão Geral </a>
+                <a href="#"> Cadastro Estufas </a>
+                <a href="#"> Como Usar </a>
+                <a href="index.html"> Sair </a>
+            </div>
+
         </div>
-    </header>
 
-    <div class="barra">
-        <img src="imagens/user.png" alt="imagem_usuario">
-        <h2><span id="b_boa"> </span> <span id="b_usuario"> Usuário </span></h2>
-        <ul>
-            <li><a href="visaoGeral.html"> Visão Geral </a></li>
-            <li> <a href="#"> Como Usar </a> </li>
-            <li> <a href="index.html"> Sair </a></li>
-        </ul>
-    </div>
-    <div class="conteudo">
-        <div class="dados">
-            <h1>Visão Geral</h1>
-            <div class="filtros">
+        <main>
+            <div class="conteudo_dash">
 
-                <a href="detalhe-hoje-.html" class="btn-filtro">Hoje</a>
-
-                <a href="detalhe-semana.html" class="btn-filtro">Semana</a>
-
-                <span id="identificar">Hoje</span>
-            </div>
-
-
-            <div class="cards">
-
-                <div class="card alerta">
-
-
-
-                    <div class="info">
-                        <p>Alertas Emitidos Hoje</p>
-                        <h2>4</h2>
-                        <span style="color:red;">● Cuidado</span>
+                <div class="dash_titulo">
+                    <div>
+                        <h2> Painel de Monitoramento de Microclima - Estufa X </h2>
+                        <span> Acompanhe o Estado Atual da sua Estufa. </span>
                     </div>
-
-                </div>
-
-                <div class="card azul">
-
-
-
-                    <div class="info">
-                        <p>Temperatura Média hoje</p>
-                        <h2>21°C</h2>
-                        <span class="status">● Estável</span>
-                    </div>
-
-                </div>
-
-                <div class="card verde">
-
-
-
-                    <div class="info">
-                        <p>Umidade do Ar Média hoje</p>
-                        <h2>55%</h2>
-                        <span class="status">● Ideal</span>
-                    </div>
-
-                </div>
-
-                <div class="card verde">
-
-
-
-                    <div class="info">
-                        <p>Umidade do Solo Média hoje</p>
-                        <h2>73%</h2>
-                        <span class="status">● Ideal</span>
-                    </div>
-
                 </div>
 
             </div>
 
-            <div class="sensores">
-                <span style="size: 18px; font-weight: bold; margin-bottom: 40px;">Sensores de umidade do solo:</span>
-                <select name="" id="sensor">
-                    <option value="sensor1">Todos os sensores</option>
-                    <option value="sensor1">Sensor 1</option>
-                    <option value="sensor2">Sensor 2</option>
-                    <option value="sensor3">Sensor 3</option>
-                    <option value="sensor4">Sensor 4</option>
-                    <option value="sensor5">Sensor 5</option>
-                    <option value="sensor6">Sensor 6</option>
-                </select>
-
+            <div class="hoje_semana">
+                <a> Hoje </a>
+                <a> Semana </a>
             </div>
 
-            <div class="grafico-tabela">
-                <div class="graficos">
+            <div class="cards_kpis">
 
-
-                    <div class="grafico-texto">
-
-                        <div>
-
-                            <button class="btn-info" onclick="mostrarTexto('texto1')">
-                                Ver Explicação
-                            </button>
-
-                            <div class="explicacao" id="texto1">
-
-                                <h2>Temperatura da Estufa</h2>
-
-                                <p>
-                                    Este gráfico mostra a variação da temperatura dentro da estufa ao longo do dia.
-                                </p>
-
-                                <span>Faixa ideal: 20°C até 28°C</span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="grafico">
-                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(193, 48, 0);"> Temperatura</h2>
-                            <canvas id="grafico_temperatura"></canvas>
-                        </div>
-
-                        
-
-                    </div>
-
-                    <div class="grafico-texto">
-                        <div>
-
-                            <button class="btn-info" onclick="mostrarTexto('texto2')">
-                                Ver Explicação
-                            </button>
-
-                            <div class="explicacao" id="texto2">
-
-                                <h2>Umidade do Ar</h2>
-
-                                <p>
-                                    O gráfico apresenta os níveis de umidade do ar registrados pelos sensores.
-                                </p>
-
-                                <span>Faixa ideal: 50% até 70%</span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="grafico">
-                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(0, 78, 167);">Umidade do Ar</h2>
-                            <canvas id="grafico_umidade"></canvas>
-                        </div>
-
-                        
-
-                    </div>
-
-
-                    <div class="grafico-texto">
-
-                        <div>
-
-                            <button class="btn-info" onclick="mostrarTexto('texto3')">
-                                Ver Explicação
-                            </button>
-
-                            <div class="explicacao" id="texto3">
-
-                                <h2>Umidade do Solo</h2>
-
-                                <p>
-                                    Este gráfico monitora a quantidade de água presente no solo.
-                                </p>
-
-                                <span>Faixa ideal: 65% até 80%</span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="grafico">
-                            <h2 style="text-align: center; margin-bottom: 10px; color: rgb(0, 108, 88);">Umidade do Solo</h2>
-                            <canvas id="grafico_umidade_solo"></canvas>
-                        </div>
-
-                        
-                    </div>
-
-
+                <div class="card_alertas">
+                    <h4> Alertas emitidos hoje </h4>
+                    <h2> 4 </h2>
+                    <p class='status_critico'> Cuidado </p>
 
                 </div>
 
-                <div class="todos-sensores">
+                <div class="card_temperatura_atual">
+                    <h4> Temperatura Atual </h4>
+                    <h2> 24ºC </h2>
+                    <p class='status_ideal'> Ideal </p>
 
-                    <table>
-                        <!-- tr == coluna
-                            tr == linha -->
-                        <tr class="linha">
-                            <th>Nome</th>
-                            <th>Horário</th>
-                            <th>Ativo</th>
-                        </tr>
-                        <tr>
-                            <td>Sensor1</td>
-                            <td>10:38</td>
-                            <td style="color: green;">Online</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor2</td>
-                            <td>10:38</td>
-                            <td style="color: green;">Online</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor3</td>
-                            <td>10:38</td>
-                            <td style="color: green;">Online</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor4</td>
-                            <td>10:38</td>
-                            <td style="color: green;">Online</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor5</td>
-                            <td>10:05</td>
-                            <td style="color: red;">Offline</td>
-                        </tr>
-                        <tr>
-                            <td>Sensor6</td>
-                            <td>10:38</td>
-                            <td style="color: green;">Online</td>
-                        </tr>
+                </div>
 
+                <div class="card_umidadeAr_atual">
+                    <h4> Umidade do Ar Atual </h4>
+                    <h2> 69% </h2>
+                    <p class='status_atencao'> Atenção </p>
+                </div>
 
+                <div class="card_umidadeSolo_atual">
+                    <h4> Umidade do Solo Atual </h4>
+                    <h2> 68% </h2>
+                    <p class='status_ideal'> Ideal</p>
+                </div>
+
+            </div>
+            
+            <div class="secao_status">
+                
+                <div class="card_resumo_sensores">
+                    <h3>Status de Conectividade</h3>
+                    <div class="metrica_saude">4 / 5</div>
+                    <p style="color: #666; font-family: Garamond; font-size: 15px; margin: 0;">Sensores operando normalmente na Estufa X</p>
+                </div>
+
+                <div class="container_tabela">
+                    <table class="tabela_sensores">
+                        <thead>
+                            <tr>
+                                <th>Sensor</th>
+                                <th>Tipo de Parâmetro</th>
+                                <th>Localização / Setor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sensor Termo_01</td>
+                                <td>Temperatura Ambiente</td>
+                                <td>Zona Central</td>
+                                <td><span class="online">Online</span></td>
+                            </tr>
+                            <tr>
+                                <td>Sensor UmiAr_01</td>
+                                <td>Umidade do Ar</td>
+                                <td>Zona Central</td>
+                                <td><span class="online">Online</span></td>
+                            </tr>
+                            <tr>
+                                <td>Sensor Solo_01</td>
+                                <td>Umidade do Solo</td>
+                                <td>Setor Norte</td>
+                                <td><span class="online">Online</span></td>
+                            </tr>
+                            <tr>
+                                <td>Sensor Solo_02</td>
+                                <td>Umidade do Solo</td>
+                                <td>Setor Sul</td>
+                                <td><span class="offline">Offline</span></td>
+                            </tr>
+                            <tr>
+                                <td>Sensor Solo_03</td>
+                                <td>Umidade do Solo</td>
+                                <td>Setor Central</td>
+                                <td><span class="online">Online</span></td>
+                            </tr>
+                        </tbody>
                     </table>
+                </div>
 
+            </div>
+
+            <div class="grafico">
+                <canvas class="grafico_temperatura"> </canvas>
+
+            </div>
+            <div class="grafico">
+                <canvas class="grafico_ar"> </canvas>
+            </div>
+
+            <div class="grafico" style="height: auto; min-height: 430px;">
+                <div style="display: flex; justify-content: flex-end; align-items: center; gap: 10px;">
+                    <label style="font-family: 'Garamond'; font-weight: bold; color: black;">Filtrar por:</label>
+                    <select id="mudar_sensor" class="seletor_sensor">
+                        <option value="sensor_1">Sensor Solo 01 - Setor Norte</option>
+                        <option value="sensor_2">Sensor Solo 02 - Setor Sul</option>
+                        <option value="sensor_3">Sensor Solo 03 - Setor Central</option>
+                    </select>
+                </div>
+                <div style="height: 380px; position: relative;">
+                    <canvas class="grafico_solo"> </canvas>
                 </div>
             </div>
-        </div>
+        </main>
+
     </div>
 
 
@@ -261,234 +163,272 @@
 </html>
 <script>
 
-    function mostrarTexto(id) {
-
-        const texto = document.getElementById(id);
-
-        if (texto.style.display === "block") {
-
-            texto.style.display = "none";
-
-        } else {
-
-            texto.style.display = "block";
-
-        }
-
-    }
+    const temperatura = document.querySelector('.grafico_temperatura').getContext('2d');
+    const umidadeAr = document.querySelector('.grafico_ar').getContext('2d');
+    const umidadeSolo = document.querySelector('.grafico_solo').getContext('2d');
 
 
-    const grafico_temperatura = document.getElementById('grafico_temperatura');
-
-    new Chart(grafico_temperatura, {
-
-        type: "line",
-
+    const graficoTemperatura = new Chart(temperatura, {
+        type: 'line',
         data: {
 
-            labels: ['12:00', '12:05', '12:10', '12:15', '12:20', '12:25'],
+            labels: ['01/06 08:00', '01/06 14:00', '01/06 08:00', '01/06 14:00', '01/06 08:00', '01/06 14:00', '01/06 08:00'],
 
             datasets: [
-
                 {
-
-                    label: "Temperatura (°C)",
-
-                    data: [30, 29, 28, 25, 18, 23],
-
+                    label: 'Temperatura Atual',
+                    data: [23, 27, 21, 29, 24, 25, 15],
+                    borderColor: 'blue',
+                    backgroundColor: 'transparent',
                     borderWidth: 3,
-
-                    borderColor: '#FF6384',
-
-                    backgroundColor: '#FF6384',
-
-                    tension: 0.3
-
+                    tension: 0.3,
+                    pointBackgroundColor: 'blue',
+                    pointRadius: 4
                 },
-
                 {
-
-                    label: "Máximo Ideal",
-
-                    data: [28, 28, 28, 28, 28, 28],
-
+                    label: 'Limite Ideal Máximo',
+                    data: [26, 26, 26, 26, 26, 26, 26],
+                    borderColor: '#ff1a1a',
+                    backgroundColor: 'transparent',
                     borderWidth: 2,
-
-                    borderColor: '#ff0000',
-
-                    borderDash: [8, 5],
-
-                    pointRadius: 0
-
+                    borderDash: [6, 6],
+                    pointRadius: 0,
+                    fill: false
                 },
-
                 {
-
-                    label: "Mínimo Ideal",
-
-                    data: [20, 20, 20, 20, 20, 20],
-
+                    label: 'Limite Ideal Mínimo',
+                    data: [18, 18, 18, 18, 18, 18, 18],
+                    borderColor: '#ffcc00',
+                    backgroundColor: 'transparent',
                     borderWidth: 2,
-
-                    borderColor: '#0066ff',
-
-                    borderDash: [8, 5],
-
-                    pointRadius: 0
-
+                    borderDash: [6, 6],
+                    pointRadius: 0,
+                    fill: false
                 }
-
             ]
         },
-
         options: {
-
             responsive: true,
-
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Temperatura em Tempo Real - Estufa X',
+                    color: 'black',
+                    font: {
+                        family: 'Garamond',
+                        size: 32,
+                        weight: 'bold'
+                    },
+                    padding: {
+                        top: 10,
+                        bottom: 15
+                    }
+                },
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: {
+                            family: 'Garamond',
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        color: 'black'
+                    }
+                }
+            },
             scales: {
-
                 y: {
-
-                    beginAtZero: false
-
+                    beginAtZero: false,
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Temperatura (°C)',
+                        font: { family: 'Garamond', size: 14, weight: 'bold' },
+                        color: 'black'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Data e Horário',
+                        font: { family: 'Garamond', size: 14, weight: 'bold' },
+                        color: 'black'
+                    }
                 }
-
             }
-
         }
-
     });
 
-
-
-    const grafico_umidade = document.getElementById('grafico_umidade');
-
-    new Chart(grafico_umidade, {
-
-        type: "line",
-
+    const graficoUmidadeAr = new Chart(umidadeAr, {
+        type: 'line',
         data: {
-
-            labels: ['12:00', '12:05', '12:10', '12:15', '12:20', '12:25'],
-
+            labels: ['01/06 08:00', '01/06 14:00', '01/06 08:00', '01/06 14:00', '01/06 08:00', '01/06 14:00', '01/06 08:00'],
             datasets: [
-
                 {
-
-                    label: "Umidade (%)",
-
-                    data: [50, 52, 55, 40, 58, 61],
-
+                    label: 'Umidade do Ar Atual',
+                    data: [62, 69, 65, 71, 68, 63, 67],
+                    borderColor: 'lightblue',
+                    backgroundColor: 'transparent',
                     borderWidth: 3,
-
-                    borderColor: '#87CEFA',
-
-                    backgroundColor: '#87CEFA',
-
-                    tension: 0.3
-
+                    tension: 0.3,
+                    pointBackgroundColor: 'lightblue',
+                    pointRadius: 4
                 },
-
                 {
-
-                    label: "Máximo Ideal",
-
-                    data: [70, 70, 70, 70, 70, 70],
-
+                    label: 'Limite Ideal Máximo',
+                    data: [75, 75, 75, 75, 75, 75, 75],
+                    borderColor: '#ff1a1a',
+                    backgroundColor: 'transparent',
                     borderWidth: 2,
-
-                    borderColor: '#ff0000',
-
-                    borderDash: [8, 5],
-
-                    pointRadius: 0
-
+                    borderDash: [6, 6],
+                    pointRadius: 0,
+                    fill: false
                 },
-
                 {
-
-                    label: "Mínimo Ideal",
-
-                    data: [50, 50, 50, 50, 50, 50],
-
+                    label: 'Limite Ideal Mínimo',
+                    data: [60, 60, 60, 60, 60, 60, 60],
+                    borderColor: '#ffcc00',
+                    backgroundColor: 'transparent',
                     borderWidth: 2,
-
-                    borderColor: '#0066ff',
-
-                    borderDash: [8, 5],
-
-                    pointRadius: 0
-
+                    borderDash: [6, 6],
+                    pointRadius: 0,
+                    fill: false
                 }
-
             ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Umidade do Ar em Tempo Real - Estufa X',
+                    color: 'black',
+                    font: { family: 'Garamond', size: 32, weight: 'bold' },
+                    padding: { top: 10, bottom: 15 }
+                },
+                legend: {
+                    position: 'top',
+                    labels: { font: { family: 'Garamond', size: 14, weight: 'bold' }, color: 'black' }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                    title: { display: true, text: 'Umidade (%)', font: { family: 'Garamond', size: 14, weight: 'bold' }, color: 'black' }
+                },
+                x: {
+                    grid: { display: false },
+                    title: { display: true, text: 'Data e Horário', font: { family: 'Garamond', size: 14, weight: 'bold' }, color: 'black' }
+                }
+            }
         }
-
     });
 
+    const dadosSensoresSolo = {
+        sensor_1: [68, 65, 70, 66, 69, 67, 68],
+        sensor_2: [58, 60, 61, 59, 62, 57, 60],
+        sensor_3: [74, 73, 75, 72, 74, 76, 73]
+    };
 
-    const grafico_umidade_solo = document.getElementById('grafico_umidade_solo');
-
-    new Chart(grafico_umidade_solo, {
-
-        type: "line",
-
+    const graficoSolo = new Chart(umidadeSolo, {
+        type: 'line',
         data: {
-
-            labels: ['12:00', '12:05', '12:10', '12:15', '12:20', '12:25'],
-
+            labels: ['01/06 08:00', '01/06 14:00', '01/06 08:00', '01/06 14:00', '01/06 08:00', '01/06 14:00', '01/06 08:00'],
             datasets: [
-
                 {
-
-                    label: "Umidade do Solo (%)",
-
-                    data: [70, 50, 72, 70, 71, 85],
-
-                    borderWidth: 3,
-
-                    borderColor: '#4BC0C0',
-
-                    backgroundColor: '#4BC0C0',
-
-                    tension: 0.3
-
+                    label: 'Umidade do Solo Atual',
+                    data: dadosSensoresSolo.sensor_1, 
+                    borderColor: '#795548',     
+                    backgroundColor: 'transparent',
+                    borderWidth: 3,                
+                    tension: 0.3,                 
+                    pointBackgroundColor: '#5d4037',
+                    pointRadius: 4
                 },
-
                 {
-
-                    label: "Máximo Ideal",
-
-                    data: [80, 80, 80, 80, 80, 80],
-
-                    borderWidth: 2,
-
-                    borderColor: '#ff0000',
-
-                    borderDash: [8, 5],
-
-                    pointRadius: 0
-
+                    label: 'Limite Ideal Máximo',
+                    data: [80, 80, 80, 80, 80, 80, 80], 
+                    borderColor: '#ff1a1a',         
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,   
+                    borderDash: [6, 6],         
+                    pointRadius: 0,                 
+                    fill: false
                 },
-
                 {
-
-                    label: "Mínimo Ideal",
-
-                    data: [65, 65, 65, 65, 65, 65],
-
+                    label: 'Limite Ideal Mínimo',
+                    data: [60, 60, 60, 60, 60, 60, 60], 
+                    borderColor: '#ffcc00',        
+                    backgroundColor: 'transparent',
                     borderWidth: 2,
-
-                    borderColor: '#0066ff',
-
-                    borderDash: [8, 5],
-
-                    pointRadius: 0
-
+                    borderDash: [6, 6],
+                    pointRadius: 0,
+                    fill: false
                 }
-
             ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false, 
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Umidade do Solo em Tempo Real - Estufa X',
+                    color: 'black', 
+                    font: { family: 'Garamond', 
+                    size: 32, 
+                    weight: 'bold' },
+                    padding: { 
+                        top: 5,
+                         bottom: 10 }
+                },
+                legend: {
+                    position: 'top',
+                    labels: { font: { 
+                        family: 'Garamond', 
+                        size: 14,
+                         weight: 'bold'
+                         }, 
+                         color: 'black' 
+                        }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                    title: { display: true, 
+                        text: 'Umidade Solo (%)', 
+                        font: { 
+                            family: 'Garamond', 
+                            size: 14, 
+                            weight: 'bold'
+                         }, 
+                            color: 'black' 
+                        }
+                },
+                x: {
+                    grid: { display: false },
+                    title: { display: true, 
+                        text: 'Data e Horário', 
+                        font: {
+                             family: 'Garamond',
+                              size: 14,
+                               weight: 'bold' }, 
+                               color: 'black' }
+                }
+            }
         }
-
     });
+
+    
+   
 </script>
