@@ -4,81 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="./css/cadastroEstufa.css">
-    <title>Dashboard Tomato</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Cadastro de Estufas - TomatoMetrics</title>
+    <link rel="stylesheet" href="css/cadastroEstufa.css">
 </head>
 
 <body>
+    <div class="layout">
 
-    <header>
+        <div class="sidebar">
 
-        <div class="logo">
-            <img src="/Tomates/entrega-oficial/Site/imagens/TM.png" alt="">
+            <div class="logo_container">
+                <img src="/Tomates/entrega-oficial/Site/public/imagens/TM.png" alt="Logo">
+                <h2>TomatoMetrics</h2>
+            </div>
 
-            <img src="./imagens/TM.png" alt="" />
-            <h1>TomatoMetrics</h1>
-        </div>
+            <h3> Olá, Usuário! </h3>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="login.html">Login</a>
-        </nav>
-
-    </header>
-
-        <div class="barra">
-            <img src="./imagens/user.png" alt="imagem_usuario">
-            <h2>Nome Usuário</h2>
-
-            <ul>
-                <li><a href="visaoGeral.html">Visão Geral</a></li>
-                <li>Colaboradores</li>
-                <li>Como Usar</li>
-                <li>Cadastrar estufa</li>
-            </ul>
+            <div class="links_dash">
+                <a href="visaoGeral.html"> Visão Geral </a>
+                <a href="estufaCadastrov2.html"> Cadastro Estufas </a>
+                <a href="comoUsar.html"> Como Usar </a>
+                <a href="index.html"> Sair </a>
+            </div>
 
         </div>
-        
-                <div class="right-cadastro">
-            <div class="card-cadastro">
-                <h1>Cadastrar estufa</h1>
+
+        <main>
+            <div class="container_cadastro">
+                <h2>Cadastrar Nova Estufa</h2>
+                <p>Preencha as informações abaixo para registrar e iniciar o monitoramento de um novo microclima.</p>
                 
-        <div class="textfield"> 
-            <label for="usuario">Estufa</label> 
-            <div class="input-container"> 
-               <i class="bx bx-home-alt-2"></i>
-                <input type="text" id="ipt_estufa" placeholder="Nome da estufa" required> 
-            </div> 
-            <div class="input-container" style="height: 60px;"> 
-               <i class="bx bx-lock"></i>
-                <input type="text" id="ipt_senha" placeholder="Senha de usuário" required> 
-            </div> 
-        </div>
+                <form class="form_cadastro" onsubmit="event.preventDefault();">
+                    <div class="campo_form">
+                        <label for="nome_estufa">Nome da Estufa</label>
+                        <input type="text" id="nome_estufa" placeholder="Ex: Estufa Zona Norte - Tomate Cereja">
+                    </div>
 
-                <button type="button" class="btn-login" onclick="cadastrar()">Cadastrar estufa</button>
-        </div>
+                   <div class="campo_form">
+                        <label for="nome_estufa">Senha</label>
+                        <input type="text" id="nome_estufa" placeholder="">
+                    </div>
 
+                    <div class="campo_form">
+                        <label for="nome_estufa">Sensores Alocados:</label>
+                        <input type="text" id="nome_estufa" placeholder="">
+                    </div>
+
+                    <button type="submit" class="btn_cadastrar">Finalizar Cadastro</button>
+                </form>
+            </div>
+        </main>
+
+    </div>
+</body>
+
+</html>
+    <script>
+        function cadastrar(){
+            let estufa = document.getElementById('ipt_estufa').value;
+            let senha = document.getElementById('ipt_senha').value;
+            
+            console.log('Iniciando Validação...');
+
+            if (estufa.trim() == ""){
+                alert('Preencha o nome da estufa');
+                return false;
+            }
+            if (senha.trim() == ""){
+                alert('Preencha a senha');
+                return false;
+            }
+            
+            alert('Estufa cadastrada com sucesso!');
+        }
+    </script>
 </body>
 </html>
-<script>
-    function cadastrar(){
-        let estufa = ipt_estufa.value;
-        let senha = ipt_senha.value
-        
-        console.log('Iniciando')
-
-        if (estufa == ""){
-        console.log('verificando estufa');
-            alert('Preecnha o nome da estufa');
-            return false;
-        }
-        if (senha == ""){
-        console.log('Verificando senha')
-            alert('Preencha a senha');
-            return false;
-        }
-        if (senha != 1){}
-    }
-</script>
