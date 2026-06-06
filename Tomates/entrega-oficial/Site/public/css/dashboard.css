@@ -20,7 +20,7 @@ body {
     background-color: #2d6a4f;
     padding: 20px;
     box-sizing: border-box;
-    position: sticky;
+    position: fixed;
     top: 0;
     height: 1080px; 
 }
@@ -588,20 +588,24 @@ main {
     flex: 3;
     background-color: white;
     border-radius: 12px;
-    padding: 20px;
+    padding: 25px 20px;
     box-shadow: 0 8px 18px rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    gap: 10px; 
 }
 
 .card_resumo_sensores h3 {
     font-family: 'Garamond', serif;
     color: #1b4332;
-    margin: 0 0 10px 0;
-    font-size: 30px;
+    margin: 0;
+    font-size: 24px;
+    flex: none;
+    height: auto;
+    width: auto;
 }
 
 .card_resumo_sensores .metrica_saude {
@@ -619,22 +623,21 @@ main {
     padding: 20px;
     box-shadow: 0 8px 18px rgba(0,0,0,0.05);
 }
-
 .tabela_sensores {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate; 
+    border-spacing: 0;        
     font-family: 'Garamond', serif;
     text-align: left;
 }
-
 .tabela_sensores th {
-    background-color: #2d6a4f;
+    background-color: #2d6a4f; 
     color: white;
-    padding: 12px;
+    padding: 14px 12px;
     font-weight: bold;
     font-size: 16px;
+    border-radius: 0;
 }
-
 .tabela_sensores th:first-child { 
     border-top-left-radius: 8px; 
     border-bottom-left-radius: 8px; 
@@ -651,10 +654,9 @@ main {
     font-size: 15px;
 }
 
-
-.badge {
+.sensor {
     padding: 4px 10px;
-    border-radius: 20px;
+
     font-weight: bold;
     font-size: 13px;
     display: inline-block;
