@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Estufas - TomatoMetrics</title>
+    <link rel="stylesheet" href="css/cadastroEstufa.css">
+</head>
+
+<body>
+    <div class="layout">
+
+        <div class="sidebar">
+
+            <div class="logo_container">
+                <img src="/Tomates/entrega-oficial/Site/public/imagens/TM.png" alt="Logo">
+                <h2>TomatoMetrics</h2>
+            </div>
+
+            <h3> Olá, Usuário! </h3>
+
+            <div class="links_dash">
+                <a href="visaoGeral.html"> Visão Geral </a>
+                <a href="estufaCadastrov2.html"> Cadastro Estufas </a>
+                <a href="comoUsar.html"> Como Usar </a>
+                <a href="index.html"> Sair </a>
+            </div>
+
+        </div>
+
+        <main>
+            <div class="container_cadastro">
+                <h2>Cadastrar Nova Estufa</h2>
+                <p>Preencha as informações abaixo para registrar e iniciar o monitoramento de um novo microclima.</p>
+                
+                <form class="form_cadastro" onsubmit="event.preventDefault();">
+                    <div class="campo_form">
+                        <label for="nome_estufa">Nome da Estufa</label>
+                        <input type="text" id="ipt_estufa" placeholder="Ex: Estufa Zona Norte - Tomate Cereja">
+                    </div>
+
+                   <div class="campo_form">
+                        <label for="nome_estufa">Senha</label>
+                        <input type="text" id="ipt_senha" placeholder="">
+                    </div>
+
+                    <div class="campo_form">
+                        <label for="nome_estufa">Sensores Alocados:</label>
+                        <input type="text" id="ipt_sensores" placeholder="">
+                    </div>
+
+                    <button type="submit" class="btn_cadastrar" onclick="finalizar">Finalizar Cadastro</button>
+                </form>
+            </div>
+        </main>
+
+    </div>
+</body>
+
+</html>
+    <script>
+        function cadastrar(){
+            let estufa = document.getElementById('ipt_estufa').value;
+            let senha = document.getElementById('ipt_senha').value;
+            
+            console.log('Iniciando Validação...');
+
+            if (estufa.trim() == ""){
+                alert('Preencha o nome da estufa');
+                return false;
+            }
+            if (senha.trim() == ""){
+                alert('Preencha a senha');
+                return false;
+            }
+            else{
+                console.log('Validação concluída')
+                return true;
+            }
+        }
+        function finalizar(){
+            if (cadastrar()){
+                let valorEstufa = ipt_estufa.value;
+                let valorSenha = ipt_senha.value;
+                let valorSensor = ipt_sensor.value;
+
+                console.log('Estamos no fetch');
+
+                fetch("/estufa/cadastrar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        estufaServer: valorEstufa,
+                        sensorServer: valorSensor,
+                    })
+                })
+            }
+        }
+            alert('Estufa cadastrada com sucesso!');
+        
+    </script>
+</body>
+</html>
