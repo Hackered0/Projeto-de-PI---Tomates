@@ -1,0 +1,182 @@
+* {
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: white;
+    color: #EAECFB;
+    font-family: 'Garamond', serif;
+}
+
+.layout {
+    display: flex;
+    min-height: 729px;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2d6a4f;
+    padding: 20px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    height: 1080px; 
+}
+
+.links_dash {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.links_dash a {
+    padding: 13px 70px;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    margin-bottom: 6px;
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.links_dash a:hover {
+    transition: 0.2s;
+    transform: scale(1.05);
+    background: #40916c;
+}
+
+.logo_container {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px; 
+    margin-bottom: 20px; 
+    margin-right: 50px;
+}
+
+.logo_container img {
+    width: 40px; 
+    height: auto;
+    margin-left: 55px;
+}
+
+.logo_container h2 {
+    color: white;
+    margin: 0; 
+    font-size: 20px; 
+}
+
+.sidebar h3 {
+    color: white;
+    padding: 15px;
+    font-size: 25px;
+    text-align: center;
+}
+
+main {
+    flex: 1; 
+    padding: 40px; 
+    background-color: #f4f7f6; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* ==========================================================================
+   ESTILOS EXCLUSIVOS DO FORMULÁRIO DE CADASTRO (Seguindo a identidade do App)
+   ========================================================================== */
+.container_cadastro {
+    background-color: white;
+    width: 100%;
+    max-width: 700px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+}
+
+.container_cadastro h2 {
+    color: #1b4332;
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.container_cadastro p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.form_cadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo_form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo_form label {
+    color: #2d6a4f;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.campo_form input, 
+.campo_form textarea {
+    font-family: 'Garamond', serif;
+    font-size: 16px;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.campo_form input:focus, 
+.campo_form textarea:focus {
+    border-color: #40916c;
+}
+
+.linha_dupla {
+    display: flex;
+    gap: 20px;
+}
+
+.linha_dupla .campo_form {
+    flex: 1;
+}
+
+.btn_cadastrar {
+    font-family: 'Garamond', serif;
+    background-color: #40916c;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    margin-top: 10px;
+}
+
+.btn_cadastrar:hover {
+    background-color: #2d6a4f;
+    transform: scale(1.02);
+}
+
+.btn_cadastrar:active {
+    transform: scale(0.98);
+}
