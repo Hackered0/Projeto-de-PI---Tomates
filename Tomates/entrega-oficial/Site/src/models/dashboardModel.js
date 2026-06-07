@@ -60,10 +60,23 @@ function buscarAlertasHoje() {
     return database.executar(instrucao);
 }
 
+function buscarSensores() {
+    var instrucao = `
+        SELECT
+            nome_sensor,
+            tipo_sensor,
+            status
+        FROM sensor;
+    `;
+
+    return database.executar(instrucao);
+}
+
 module.exports = {
     buscarUltimosDados,
     buscarDadosHoje,
     buscarDadosSemana,
-    buscarAlertasHoje
+    buscarAlertasHoje,
+    buscarSensores
 };
 
