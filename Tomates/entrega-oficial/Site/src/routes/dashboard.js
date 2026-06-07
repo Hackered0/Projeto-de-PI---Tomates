@@ -1,17 +1,22 @@
 var express = require("express");
 var router = express.Router();
 
-
 var dashboardController = require("../controllers/dashboardController");
 
-router.post("/cadastrar", function (req, res) {
-   
-    dashboardController.cadastrar(req, res);
+router.get("/ultimosDados", function (req, res) {
+    dashboardController.buscarUltimosDados(req, res);
 });
 
-router.get("/listar", function (req, res) {
+router.get("/dadosHoje", function (req, res) {
+    dashboardController.buscarDadosHoje(req, res);
+});
 
-    dashboardController.listar(req, res);
+router.get("/dadosSemana", function (req, res) {
+    dashboardController.buscarDadosSemana(req, res);
+});
+
+router.get("/alertasHoje", function (req, res) {
+    dashboardController.buscarAlertasHoje(req, res);
 });
 
 module.exports = router;

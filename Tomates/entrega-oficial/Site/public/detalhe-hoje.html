@@ -51,28 +51,26 @@
 
                 <div class="card_alertas">
                     <h4> Alertas emitidos hoje </h4>
-                    <h2> 4 </h2>
-                    <p class='status_critico'> Cuidado </p>
-
+                    <h2 id="card_alertas">  </h2>
+                    <p class='status_critico' id="status_alertas"> Cuidado </p>
                 </div>
 
                 <div class="card_temperatura_atual">
                     <h4> Temperatura Atual </h4>
-                    <h2> 24ºC </h2>
-                    <p class='status_ideal'> Ideal </p>
-
+                    <h2 id="card_temperatura"> ºC </h2>
+                    <p class='status_ideal' id="status_temperatura"> Ideal </p>
                 </div>
 
                 <div class="card_umidadeAr_atual">
                     <h4> Umidade do Ar Atual </h4>
-                    <h2> 69% </h2>
-                    <p class='status_atencao'> Atenção </p>
+                    <h2 id="card_umidade_ar"> % </h2>
+                    <p class='status_atencao' id="status_umidade_ar"> Atenção </p>
                 </div>
 
                 <div class="card_umidadeSolo_atual">
                     <h4> Umidade do Solo Atual </h4>
-                    <h2> 68% </h2>
-                    <p class='status_ideal'> Ideal</p>
+                    <h2 id="card_umidade_solo"> % </h2>
+                    <p class='status_ideal' id="status_umidade_solo"> Ideal</p>
                 </div>
 
             </div>
@@ -429,6 +427,84 @@
         }
     });
 
+    fetch("/dashboard/dadosHoje")
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (dados) {
+
+            var temperaturaBanco = [];
+            var umidadeArBanco = [];
+            var umidadeSoloBanco = [];
+            var quantidadeAlertas = 0;
+
+            for (var i = 0; i < dados.length; i++) {
+
+                if (temperaturaBanco.length < 7) {
+                    temperaturaBanco.push(dados[i].temperatura);
+                    umidadeArBanco.push(dados[i].umidadeAr);
+                    umidadeSoloBanco.push(dados[i].umidadeSolo);
+                }
+
+            }
+
+            for (var i = 0; i < dados.length; i++) {
+
+                if (dados[i].temperatura < 18 || dados[i].temperatura > 26) {
+                    quantidadeAlertas++;
+                }
+
+                if (dados[i].umidadeAr < 60 || dados[i].umidadeAr > 75) {
+                    quantidadeAlertas++;
+                }
+
+                if (dados[i].umidadeSolo < 60 || dados[i].umidadeSolo > 80) {
+                    quantidadeAlertas++;
+                }
+
+            }
+
+            if (dados.length > 0) {
+
+                card_alertas.innerHTML = quantidadeAlertas;
+
+                card_temperatura.innerHTML = dados[0].temperatura + "ºC";
+                card_umidade_ar.innerHTML = dados[0].umidadeAr + "%";
+                card_umidade_solo.innerHTML = dados[0].umidadeSolo + "%";
+
+                if (quantidadeAlertas == 0) {
+                    status_alertas.innerHTML = "Ideal";
+                } else {
+                    status_alertas.innerHTML = "Cuidado";
+                }
+
+                if (dados[0].temperatura >= 18 && dados[0].temperatura <= 26) {
+                    status_temperatura.innerHTML = "Ideal";
+                } else {
+                    status_temperatura.innerHTML = "Atenção";
+                }
+
+                if (dados[0].umidadeAr >= 60 && dados[0].umidadeAr <= 75) {
+                    status_umidade_ar.innerHTML = "Ideal";
+                } else {
+                    status_umidade_ar.innerHTML = "Atenção";
+                }
+
+                if (dados[0].umidadeSolo >= 60 && dados[0].umidadeSolo <= 80) {
+                    status_umidade_solo.innerHTML = "Ideal";
+                } else {
+                    status_umidade_solo.innerHTML = "Atenção";
+                }
+
+                graficoTemperatura.data.datasets[0].data = temperaturaBanco;
+                graficoUmidadeAr.data.datasets[0].data = umidadeArBanco;
+                graficoSolo.data.datasets[0].data = umidadeSoloBanco;
+
+                graficoTemperatura.update();
+                graficoUmidadeAr.update();
+                graficoSolo.update();
+            }
+
+        });
     
-   
 </script>
