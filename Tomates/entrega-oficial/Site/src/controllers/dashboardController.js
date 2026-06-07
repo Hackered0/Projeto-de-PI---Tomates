@@ -40,9 +40,19 @@ function buscarAlertasHoje(req, res) {
         });
 }
 
+function buscarSensores(req, res) {
+    dashboardModel.buscarSensores()
+        .then(function (resultado) {
+            res.json(resultado);
+        })
+        .catch(function (erro) {
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 module.exports = {
     buscarUltimosDados,
     buscarDadosHoje,
     buscarDadosSemana,
-    buscarAlertasHoje
+    buscarAlertasHoje,
+    buscarSensores
 };
