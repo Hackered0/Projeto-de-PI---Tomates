@@ -19,4 +19,7 @@ router.get("/alertasHoje", function (req, res) {
     dashboardController.buscarAlertasHoje(req, res);
 });
 
+router.get("/sensores", function (req, res) {
+    dashboardController.buscarSensores(req, res);
+});
 module.exports = router;
