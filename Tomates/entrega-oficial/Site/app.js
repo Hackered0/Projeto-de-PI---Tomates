@@ -19,7 +19,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresasRouter = require("./src/routes/empresas");
 var dashboardRouter = require("./src/routes/dashboard");
-var estufaRouter = require("./src/routes/estufa");
+var estufaRouter = require("./src/routes/estufas");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
