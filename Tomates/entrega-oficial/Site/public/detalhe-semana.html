@@ -19,7 +19,7 @@
                 <h2>TomatoMetrics</h2>
             </div>
 
-            <h3> Olá, Usuário! </h3>
+            <h3> Olá, <span id="b_usuario">Usuário</span>! </h3>
 
             <div class="links_dash">
                 <a href="visaoGeral.html"> Visão Geral </a>
@@ -51,7 +51,7 @@
 
                 <div class="card_alertas">
                     <h4> Alertas emitidos hoje </h4>
-                    <h2 id="card_alertas">  </h2>
+                    <h2 id="card_alertas"> </h2>
                     <p class='status_critico' id="status_alertas"> Cuidado </p>
                 </div>
 
@@ -74,38 +74,37 @@
                 </div>
 
             </div>
-            
-             <div class="secao_status">
 
-            <div class="card_resumo_sensores">
-                <h3>Status de Conectividade</h3>
+            <div class="secao_status">
 
-                <div class="metrica_saude" id="sensores_online">
-                    /
+                <div class="card_resumo_sensores">
+                    <h3>Status de Conectividade</h3>
+
+                    <div class="metrica_saude" id="sensores_online">
+                        /
+                    </div>
+
+                    <p id="texto_sensores" style="color: #666; font-family: Garamond; font-size: 15px; margin: 0;">
+                        Carregando sensores...
+                    </p>
                 </div>
 
-                <p id="texto_sensores"
-                    style="color: #666; font-family: Garamond; font-size: 15px; margin: 0;">
-                    Carregando sensores...
-                </p>
-            </div>
+                <div class="container_tabela">
+                    <table class="tabela_sensores">
+                        <thead>
+                            <tr>
+                                <th>Sensor</th>
+                                <th>Tipo de Parâmetro</th>
+                                <th>Localização / Setor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
 
-            <div class="container_tabela">
-                <table class="tabela_sensores">
-                    <thead>
-                        <tr>
-                            <th>Sensor</th>
-                            <th>Tipo de Parâmetro</th>
-                            <th>Localização / Setor</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="corpo_tabela_sensores">
-                    </tbody>
-                </table>
+                        <tbody id="corpo_tabela_sensores">
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
             <div class="grafico">
                 <canvas class="grafico_temperatura"> </canvas>
@@ -137,6 +136,8 @@
 
 </html>
 <script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
 
     const temperatura = document.querySelector('.grafico_temperatura').getContext('2d');
     const umidadeAr = document.querySelector('.grafico_ar').getContext('2d');
@@ -320,28 +321,28 @@
             datasets: [
                 {
                     label: 'Umidade do Solo Atual',
-                    data: dadosSensoresSolo.sensor_1, 
-                    borderColor: '#795548',     
+                    data: dadosSensoresSolo.sensor_1,
+                    borderColor: '#795548',
                     backgroundColor: 'transparent',
-                    borderWidth: 3,                
-                    tension: 0.3,                 
+                    borderWidth: 3,
+                    tension: 0.3,
                     pointBackgroundColor: '#5d4037',
                     pointRadius: 4
                 },
                 {
                     label: 'Limite Ideal Máximo',
-                    data: [80, 80, 80, 80, 80, 80, 80], 
-                    borderColor: '#ff1a1a',         
+                    data: [80, 80, 80, 80, 80, 80, 80],
+                    borderColor: '#ff1a1a',
                     backgroundColor: 'transparent',
-                    borderWidth: 2,   
-                    borderDash: [6, 6],         
-                    pointRadius: 0,                 
+                    borderWidth: 2,
+                    borderDash: [6, 6],
+                    pointRadius: 0,
                     fill: false
                 },
                 {
                     label: 'Limite Ideal Mínimo',
-                    data: [60, 60, 60, 60, 60, 60, 60], 
-                    borderColor: '#ffcc00',        
+                    data: [60, 60, 60, 60, 60, 60, 60],
+                    borderColor: '#ffcc00',
                     backgroundColor: 'transparent',
                     borderWidth: 2,
                     borderDash: [6, 6],
@@ -352,174 +353,182 @@
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, 
+            maintainAspectRatio: false,
             plugins: {
                 title: {
                     display: true,
                     text: 'Umidade do Solo em Tempo Real - Estufa X',
-                    color: 'black', 
-                    font: { family: 'Garamond', 
-                    size: 32, 
-                    weight: 'bold' },
-                    padding: { 
+                    color: 'black',
+                    font: {
+                        family: 'Garamond',
+                        size: 32,
+                        weight: 'bold'
+                    },
+                    padding: {
                         top: 5,
-                         bottom: 10 }
+                        bottom: 10
+                    }
                 },
                 legend: {
                     position: 'top',
-                    labels: { font: { 
-                        family: 'Garamond', 
-                        size: 14,
-                         weight: 'bold'
-                         }, 
-                         color: 'black' 
-                        }
+                    labels: {
+                        font: {
+                            family: 'Garamond',
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        color: 'black'
+                    }
                 }
             },
             scales: {
                 y: {
                     beginAtZero: false,
                     grid: { color: 'rgba(0, 0, 0, 0.05)' },
-                    title: { display: true, 
-                        text: 'Umidade Solo (%)', 
-                        font: { 
-                            family: 'Garamond', 
-                            size: 14, 
+                    title: {
+                        display: true,
+                        text: 'Umidade Solo (%)',
+                        font: {
+                            family: 'Garamond',
+                            size: 14,
                             weight: 'bold'
-                         }, 
-                            color: 'black' 
-                        }
+                        },
+                        color: 'black'
+                    }
                 },
                 x: {
                     grid: { display: false },
-                    title: { display: true, 
-                        text: 'Data e Horário', 
+                    title: {
+                        display: true,
+                        text: 'Data e Horário',
                         font: {
-                             family: 'Garamond',
-                              size: 14,
-                               weight: 'bold' }, 
-                               color: 'black' }
+                            family: 'Garamond',
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        color: 'black'
+                    }
                 }
             }
         }
     });
 
-fetch("/dashboard/buscaDadosSemana")
-    .then(function (resposta) {
-        return resposta.json();
-    })
-    .then(function (dados) {
+    fetch("/dashboard/buscaDadosSemana")
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (dados) {
 
-        var temperaturaBanco = [];
-        var umidadeArBanco = [];
-        var umidadeSoloBanco = [];
-        var quantidadeAlertas = 0;
+            var temperaturaBanco = [];
+            var umidadeArBanco = [];
+            var umidadeSoloBanco = [];
+            var quantidadeAlertas = 0;
 
-        var contadorDia = 0;
+            var contadorDia = 0;
 
-        for (var i = 0; i < dados.length; i++) {
+            for (var i = 0; i < dados.length; i++) {
 
-            if (contadorDia == 0 && temperaturaBanco.length < 7) {
+                if (contadorDia == 0 && temperaturaBanco.length < 7) {
 
-                temperaturaBanco.push(dados[i].temperatura);
-                umidadeArBanco.push(dados[i].umidadeAr);
-                umidadeSoloBanco.push(dados[i].umidadeSolo);
+                    temperaturaBanco.push(dados[i].temperatura);
+                    umidadeArBanco.push(dados[i].umidadeAr);
+                    umidadeSoloBanco.push(dados[i].umidadeSolo);
 
-            }
+                }
 
-            contadorDia = contadorDia + 1;
+                contadorDia = contadorDia + 1;
 
-            if (contadorDia == 144) {
-                contadorDia = 0;
-            }
-
-        }
-
-        for (var i = 0; i < dados.length; i++) {
-
-            if (dados[i].temperatura < 18 || dados[i].temperatura > 26) {
-                quantidadeAlertas++;
-            }
-
-            if (dados[i].umidadeAr < 60 || dados[i].umidadeAr > 75) {
-                quantidadeAlertas++;
-            }
-
-            if (dados[i].umidadeSolo < 60 || dados[i].umidadeSolo > 80) {
-                quantidadeAlertas++;
-            }
-
-        }
-
-        if (dados.length > 0) {
-
-            card_alertas.innerHTML = quantidadeAlertas;
-
-            card_temperatura.innerHTML =
-                dados[0].temperatura + "ºC";
-
-            card_umidade_ar.innerHTML =
-                dados[0].umidadeAr + "%";
-
-            card_umidade_solo.innerHTML =
-                dados[0].umidadeSolo + "%";
-
-            if (quantidadeAlertas == 0) {
-                status_alertas.innerHTML = "Ideal";
-            } else {
-                status_alertas.innerHTML = "Cuidado";
-            }
-
-            if (dados[0].temperatura >= 18 &&
-                dados[0].temperatura <= 26) {
-
-                status_temperatura.innerHTML = "Ideal";
-
-            } else {
-
-                status_temperatura.innerHTML = "Atenção";
+                if (contadorDia == 144) {
+                    contadorDia = 0;
+                }
 
             }
 
-            if (dados[0].umidadeAr >= 60 &&
-                dados[0].umidadeAr <= 75) {
+            for (var i = 0; i < dados.length; i++) {
 
-                status_umidade_ar.innerHTML = "Ideal";
+                if (dados[i].temperatura < 18 || dados[i].temperatura > 26) {
+                    quantidadeAlertas++;
+                }
 
-            } else {
+                if (dados[i].umidadeAr < 60 || dados[i].umidadeAr > 75) {
+                    quantidadeAlertas++;
+                }
 
-                status_umidade_ar.innerHTML = "Atenção";
-
-            }
-
-            if (dados[0].umidadeSolo >= 60 &&
-                dados[0].umidadeSolo <= 80) {
-
-                status_umidade_solo.innerHTML = "Ideal";
-
-            } else {
-
-                status_umidade_solo.innerHTML = "Atenção";
+                if (dados[i].umidadeSolo < 60 || dados[i].umidadeSolo > 80) {
+                    quantidadeAlertas++;
+                }
 
             }
 
-            graficoTemperatura.data.datasets[0].data =
-                temperaturaBanco;
+            if (dados.length > 0) {
 
-            graficoUmidadeAr.data.datasets[0].data =
-                umidadeArBanco;
+                card_alertas.innerHTML = quantidadeAlertas;
 
-            graficoSolo.data.datasets[0].data =
-                umidadeSoloBanco;
+                card_temperatura.innerHTML =
+                    dados[0].temperatura + "ºC";
 
-            graficoTemperatura.update();
-            graficoUmidadeAr.update();
-            graficoSolo.update();
+                card_umidade_ar.innerHTML =
+                    dados[0].umidadeAr + "%";
 
-        }
+                card_umidade_solo.innerHTML =
+                    dados[0].umidadeSolo + "%";
 
-    });
-       fetch("/dashboard/sensores")
+                if (quantidadeAlertas == 0) {
+                    status_alertas.innerHTML = "Ideal";
+                } else {
+                    status_alertas.innerHTML = "Cuidado";
+                }
+
+                if (dados[0].temperatura >= 18 &&
+                    dados[0].temperatura <= 26) {
+
+                    status_temperatura.innerHTML = "Ideal";
+
+                } else {
+
+                    status_temperatura.innerHTML = "Atenção";
+
+                }
+
+                if (dados[0].umidadeAr >= 60 &&
+                    dados[0].umidadeAr <= 75) {
+
+                    status_umidade_ar.innerHTML = "Ideal";
+
+                } else {
+
+                    status_umidade_ar.innerHTML = "Atenção";
+
+                }
+
+                if (dados[0].umidadeSolo >= 60 &&
+                    dados[0].umidadeSolo <= 80) {
+
+                    status_umidade_solo.innerHTML = "Ideal";
+
+                } else {
+
+                    status_umidade_solo.innerHTML = "Atenção";
+
+                }
+
+                graficoTemperatura.data.datasets[0].data =
+                    temperaturaBanco;
+
+                graficoUmidadeAr.data.datasets[0].data =
+                    umidadeArBanco;
+
+                graficoSolo.data.datasets[0].data =
+                    umidadeSoloBanco;
+
+                graficoTemperatura.update();
+                graficoUmidadeAr.update();
+                graficoSolo.update();
+
+            }
+
+        });
+    fetch("/dashboard/sensores")
         .then(function (resposta) {
             return resposta.json();
         })

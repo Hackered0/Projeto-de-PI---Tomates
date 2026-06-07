@@ -19,7 +19,7 @@
                 <h2>TomatoMetrics</h2>
             </div>
 
-            <h3> Olá, Usuário! </h3>
+            <h3> Olá, <span id="b_usuario">Usuário</span>! </h3>
 
             <div class="links_dash">
                 <a href="visaoGeral.html"> Visão Geral </a>
@@ -137,6 +137,8 @@
 
 </html>
 <script>
+    
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     const temperatura = document.querySelector('.grafico_temperatura').getContext('2d');
     const umidadeAr = document.querySelector('.grafico_ar').getContext('2d');
