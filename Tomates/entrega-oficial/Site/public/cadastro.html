@@ -49,6 +49,14 @@
                     </div>
                     <span id="erro_senha"></span>
                 </div>
+                    <div class="textfield">
+                    <label  for="usuario">Confirmar senha</label>
+                    <div class="input-container">
+                        <i class='bx bx-user'></i>
+                        <input type="password" id="confirmar_senha" name="confirmar_senha" placeholder="Confirme sua senha" required>
+                    </div>
+                    <span id="erro_confimar_senha"></span>
+                </div>
                 <span id="mensagem_sucesso"></span>
             
 
@@ -73,6 +81,7 @@
     let valorusuario = usuario.value;
     let valoremail = email.value;
     let valorsenha = senha.value;
+    let valorConfirmarSenha = confirmar_senha.value;
 
     let temMaiuscula = /[A-Z]/.test(valorsenha);
 
@@ -83,6 +92,7 @@
     erro_usuario.innerHTML = "";
     erro_email.innerHTML = "";
     erro_senha.innerHTML = "";
+    erro_confimar_senha.innerHTML = "";
     mensagem_sucesso.innerHTML = "";
 
     console.log("AAAAAAA TO no inicio")
@@ -118,6 +128,10 @@
     } else if (!temEspecial) {
         erro_senha.innerHTML = "Precisa de caractere especial";
         erro_senha.style.color = "red";
+        return false;
+    } else if (valorConfirmarSenha != valorsenha) {
+        erro_confimar_senha.innerHTML = "Erro ao confirmar senha";
+        erro_confimar_senha.style.color = "red";
         return false;
     } else {
           console.log("deu certo")
