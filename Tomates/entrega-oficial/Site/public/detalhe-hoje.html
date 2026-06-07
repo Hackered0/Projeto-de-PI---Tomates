@@ -75,60 +75,37 @@
 
             </div>
             
-            <div class="secao_status">
-                
-                <div class="card_resumo_sensores">
-                    <h3>Status de Conectividade</h3>
-                    <div class="metrica_saude">4 / 5</div>
-                    <p style="color: #666; font-family: Garamond; font-size: 15px; margin: 0;">Sensores operando normalmente na Estufa X</p>
+        <div class="secao_status">
+
+            <div class="card_resumo_sensores">
+                <h3>Status de Conectividade</h3>
+
+                <div class="metrica_saude" id="sensores_online">
+                    /
                 </div>
 
-                <div class="container_tabela">
-                    <table class="tabela_sensores">
-                        <thead>
-                            <tr>
-                                <th>Sensor</th>
-                                <th>Tipo de Parâmetro</th>
-                                <th>Localização / Setor</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Sensor Termo_01</td>
-                                <td>Temperatura Ambiente</td>
-                                <td>Zona Central</td>
-                                <td><span class="sensor online">Online</span></td>
-                            </tr>
-                            <tr>
-                                <td>Sensor UmiAr_01</td>
-                                <td>Umidade do Ar</td>
-                                <td>Zona Central</td>
-                                <td><span class="sensor online">Online</span></td>
-                            </tr>
-                            <tr>
-                                <td>Sensor Solo_01</td>
-                                <td>Umidade do Solo</td>
-                                <td>Setor Norte</td>
-                                <td><span class="sensor online">Online</span></td>
-                            </tr>
-                            <tr>
-                                <td>Sensor Solo_02</td>
-                                <td>Umidade do Solo</td>
-                                <td>Setor Sul</td>
-                                <td><span class="sensor offline">Offline</span></td>
-                            </tr>
-                            <tr>
-                                <td>Sensor Solo_03</td>
-                                <td>Umidade do Solo</td>
-                                <td>Setor Central</td>
-                                <td><span class="sensor online">Online</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
+                <p id="texto_sensores"
+                    style="color: #666; font-family: Garamond; font-size: 15px; margin: 0;">
+                    Carregando sensores...
+                </p>
             </div>
+
+            <div class="container_tabela">
+                <table class="tabela_sensores">
+                    <thead>
+                        <tr>
+                            <th>Sensor</th>
+                            <th>Tipo de Parâmetro</th>
+                            <th>Localização / Setor</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="corpo_tabela_sensores">
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
             <div class="grafico">
                 <canvas class="grafico_temperatura"> </canvas>
@@ -506,5 +483,55 @@
             }
 
         });
-    
+    fetch("/dashboard/sensores")
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (sensores) {
+
+            var online = 0;
+            var total = sensores.length;
+            var tabela = "";
+
+            for (var i = 0; i < sensores.length; i++) {
+
+                if (sensores[i].status == 1) {
+
+                    online = online + 1;
+
+                    tabela = tabela + `
+                        <tr>
+                            <td>${sensores[i].nome_sensor}</td>
+                            <td>${sensores[i].tipo_sensor}</td>
+                            <td>Estufa cadastrada</td>
+                            <td><span class="sensor online">Online</span></td>
+                        </tr>
+                    `;
+
+                } else {
+
+                    tabela = tabela + `
+                        <tr>
+                            <td>${sensores[i].nome_sensor}</td>
+                            <td>${sensores[i].tipo_sensor}</td>
+                            <td>Estufa cadastrada</td>
+                            <td><span class="sensor offline">Offline</span></td>
+                        </tr>
+                    `;
+
+                }
+
+            }
+
+            sensores_online.innerHTML = online + " / " + total;
+
+            if (online == total) {
+                texto_sensores.innerHTML = "Sensores operando normalmente";
+            } else {
+                texto_sensores.innerHTML = "Existem sensores offline";
+            }
+
+            corpo_tabela_sensores.innerHTML = tabela;
+
+        });
 </script>
