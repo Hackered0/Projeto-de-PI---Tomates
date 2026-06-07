@@ -14,11 +14,11 @@
         <div class="sidebar">
 
             <div class="logo_container">
-                <img src="/Tomates/entrega-oficial/Site/public/imagens/TM.png" alt="Logo">
+                <img src="imagens/TM.png" alt="Logo">
                 <h2>TomatoMetrics</h2>
             </div>
 
-            <h3> Olá, Usuário! </h3>
+            <h3> Olá, <span id="b_usuario">Usuário</span>! </h3>
 
             <div class="links_dash">
                 <a href="visaoGeral.html"> Visão Geral </a>
@@ -60,6 +60,8 @@
 
 </html>
     <script>
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
         function cadastrar(){
             let estufa = document.getElementById('ipt_estufa').value;
             let senha = document.getElementById('ipt_senha').value;
