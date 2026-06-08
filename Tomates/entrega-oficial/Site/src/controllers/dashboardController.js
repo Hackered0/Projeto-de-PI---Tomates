@@ -90,7 +90,7 @@ module.exports = {
     buscarAlertasHoje,
     buscarResumoEstufas,
     buscarEstufasEmpresa,
-    buscarDadosdaSemana
+    buscarDadosdaSemana,
     buscarAlertasHoje,
     buscarSensores
 };
