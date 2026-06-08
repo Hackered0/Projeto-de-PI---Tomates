@@ -89,7 +89,7 @@ header nav a:hover {
 }
 
 .section-1 {
-  background-image: url(/Tomates/entrega-oficial/Site/public/imagens/Fundo.png);
+  background-image: url(../imagens/fundo.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

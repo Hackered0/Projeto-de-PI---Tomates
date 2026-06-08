@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,24 @@
     <title>Dashboard - TomatoMetrics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        /* Estilos para as abas dinâmicas */
+        .hoje_semana button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #e0e0e0;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        .hoje_semana button.active {
+            background-color: #ff5252;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,7 +32,7 @@
 
         <div class="sidebar">
             <div class="logo_container">
-                <img src=".//imagens/TM.png" alt="Logo">
+                <img src="./imagens/TM.png" alt="Logo">
                 <h2>TomatoMetrics</h2>
             </div>
 
@@ -32,8 +50,8 @@
             <div class="conteudo_dash">
                 <div class="dash_titulo">
                     <div>
-                        <h2 id="titulo_estufa"></h2>
-                        <span> Acompanhe o Estado Atual da sua Estufa. Você está no HOJE. </span>
+                        <h2 id="titulo_estufa">Painel de Monitoramento</h2>
+                        <span id="texto_informativo"> Acompanhe o Estado Atual da sua Estufa. Você está no HOJE. </span>
                         <p style="margin-top: 8px; font-size: 14px; color: white; font-weight: bold;">
                             Data e Hora Atual: <span id="relogio_atual" style="color: #ffca28; margin-right: 15px;">--/--/---- --:--:--</span>
                             Última atualização dos dados: <span id="data_status" style="color: white;">--/--/---- --:--:--</span>
@@ -43,8 +61,8 @@
             </div>
 
             <div class="hoje_semana">
-                <a href="detalhe-hoje.html"> Hoje </a>
-                <a href="detalhe-semana.html"> Semana </a>
+                <button id="btn_hoje" class="active" onclick="mudarModo('hoje')">Hoje</button>
+                <button id="btn_semana" onclick="mudarModo('semana')">Semana</button>
             </div>
 
             <div class="cards_kpis">
@@ -77,7 +95,7 @@
                 <div class="card_resumo_sensores">
                     <h3>Status de Conectividade</h3>
                     <div class="metrica_saude">5 / 5</div>
-                    <p style="color: #666; font-family: Garamond; font-size: 15px; margin: 0;">Sensores operando normalmente na Estufa X</p>
+                    <p style="color: #666; font-family: Garamond; font-size: 15px; margin: 0;">Sensores operando normalmente</p>
                 </div>
 
                 <div class="container_tabela">
@@ -150,6 +168,7 @@
     </div>
 
 <script>
+let modoAtual = "hoje"; // Pode ser 'hoje' ou 'semana'
 let ultimaDataCaptura = "";
 const idEstufa = sessionStorage.ID_ESTUFA;
 const nomeEstufa = sessionStorage.NOME_ESTUFA;
@@ -172,108 +191,100 @@ let graficoUmidadeAr;
 let graficoSolo;
 
 document.getElementById("titulo_estufa").innerHTML = `Painel de Monitoramento de Microclima - ${nomeEstufa}`;
-b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+document.getElementById("b_usuario").innerHTML = sessionStorage.NOME_USUARIO;
 
-// Função para atualizar o relógio do dia e horário atual no cabeçalho
-function atualizarRelogio() {
-    const agora = new Date();
-    document.getElementById("relogio_atual").innerText = agora.toLocaleString('pt-BR');
-}
-
-// CORREÇÃO AQUI: Agora retorna a DATA Completa junto com o Horário (ex: 08/06/2026 14:30:00)
-
-// Nova função para formatar o Eixo X com o Dia da Semana + Data
 // FUNÇÃO AUXILIAR: Garante que a data seja interpretada corretamente como hora LOCAL
 function obterDataLocal(dataStr) {
     if (!dataStr) return null;
     if (dataStr.includes("Z")) {
-        // Se já vier no formato ISO internacional (UTC) do JSON nativo
         return new Date(dataStr);
     } else {
-        // Se vier formatada do MySQL (com hífens), trocamos por barras '/'
-        // Isso força todos os navegadores (incluindo Safari) a lerem como Horário Local
         let dataLimpa = dataStr.replace(/-/g, "/").replace("T", " ");
         return new Date(dataLimpa);
     }
 }
 
-function formatarDataSemana(dataStr) {
-    if (!dataStr) return "";
+function formatarDataHoraManual(dataObj) {
+    if (!dataObj || isNaN(dataObj.getTime())) return "--/--/---- --:--:--";
     
-    // Força o fuso horário local caso venha apenas o formato YYYY-MM-DD do banco
-    let data = dataStr.includes(" ") || dataStr.includes("T") ? new Date(dataStr) : new Date(dataStr + "T00:00:00");
+    const dia = String(dataObj.getDate()).padStart(2, '0');
+    const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); 
+    const ano = dataObj.getFullYear();
+    const horas = String(dataObj.getHours()).padStart(2, '0');
+    const minutos = String(dataObj.getMinutes()).padStart(2, '0');
+    const segundos = String(dataObj.getSeconds()).padStart(2, '0');
     
-    const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-    let diaNome = diasSemana[data.getDay()];
-    let dataFormatada = data.toLocaleDateString('pt-BR'); // Retorna DD/MM/YYYY
-    
-    return `${diaNome}, ${dataFormatada}`; // Resultado: "Segunda, 08/06/2026"
+    return `${dia}/${mes}/${ano} ${horas}:${minutos}:${segundos}`;
 }
-// Configuração de animação otimizada para evitar lag
-const animacaoOtimizada = {
-    duration: 400,       
-    easing: 'linear'     
-};
+
+function atualizarRelogio() {
+    const agora = new Date();
+    document.getElementById("relogio_atual").innerText = formatarDataHoraManual(agora);
+}
+
+function formatarLabelEixo(dataStr, modo) {
+    let data = obterDataLocal(dataStr);
+    if (!data || isNaN(data.getTime())) return "";
+    
+    if (modo === 'semana') {
+        const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+        let diaNome = diasSemana[data.getDay()];
+        let diaMes = String(data.getDate()).padStart(2, '0') + '/' + String(data.getMonth() + 1).padStart(2, '0');
+        return `${diaNome}, ${diaMes}`; 
+    } else {
+        // Alterado aqui para mostrar a data e hora no modo Hoje
+        let dia = String(data.getDate()).padStart(2, '0');
+        let mes = String(data.getMonth() + 1).padStart(2, '0');
+        let horas = String(data.getHours()).padStart(2, '0');
+        let minutos = String(data.getMinutes()).padStart(2, '0');
+        return `${dia}/${mes} - ${horas}:${minutos}`;
+    }
+}
+
+function formatarDataHoraCompleta(dataStr) {
+    let data = obterDataLocal(dataStr);
+    return formatarDataHoraManual(data);
+}
+
+const animacaoOtimizada = { duration: 400, easing: 'linear' };
 
 function inicializarGraficos() {
     const ctxTemp = document.querySelector('.grafico_temperatura').getContext('2d');
     graficoTemperatura = new Chart(ctxTemp, {
         type: 'line',
-        data: {
-            labels: [],
-            datasets: [
-                { label: 'Temperatura Ambiente (ºC)', data: [], borderColor: '#e64a19', tension: 0.3, fill: false },
-                { label: `Limite Máx Ideal (${LIMITES.tempMax}ºC)`, data: [], borderColor: '#ff5252', borderDash: [5, 5], pointRadius: 0, fill: false },
-                { label: `Limite Mín Ideal (${LIMITES.tempMin}ºC)`, data: [], borderColor: '#ffca28', borderDash: [5, 5], pointRadius: 0, fill: false }
-            ]
-        },
-        options: { 
-            responsive: true, 
-            maintainAspectRatio: false,
-            animation: animacaoOtimizada 
-        }
+        data: { labels: [], datasets: [
+            { label: 'Temperatura Ambiente (ºC)', data: [], borderColor: '#e64a19', tension: 0.3, fill: false },
+            { label: `Limite Máx Ideal (${LIMITES.tempMax}ºC)`, data: [], borderColor: '#ff5252', borderDash: [5, 5], pointRadius: 0, fill: false },
+            { label: `Limite Mín Ideal (${LIMITES.tempMin}ºC)`, data: [], borderColor: '#ffca28', borderDash: [5, 5], pointRadius: 0, fill: false }
+        ]},
+        options: { responsive: true, maintainAspectRatio: false, animation: animacaoOtimizada }
     });
 
     const ctxAr = document.querySelector('.grafico_ar').getContext('2d');
     graficoUmidadeAr = new Chart(ctxAr, {
         type: 'line',
-        data: {
-            labels: [],
-            datasets: [
-                { label: 'Umidade do Ar (%)', data: [], borderColor: '#1976d2', tension: 0.3, fill: false },
-                { label: `Limite Máx Ideal (${LIMITES.umiArMax}%)`, data: [], borderColor: '#ff5252', borderDash: [5, 5], pointRadius: 0, fill: false },
-                { label: `Limite Mín Ideal (${LIMITES.umiArMin}%)`, data: [], borderColor: '#ffca28', borderDash: [5, 5], pointRadius: 0, fill: false }
-            ]
-        },
-        options: { 
-            responsive: true, 
-            maintainAspectRatio: false,
-            animation: animacaoOtimizada 
-        }
+        data: { labels: [], datasets: [
+            { label: 'Umidade do Ar (%)', data: [], borderColor: '#1976d2', tension: 0.3, fill: false },
+            { label: `Limite Máx Ideal (${LIMITES.umiArMax}%)`, data: [], borderColor: '#ff5252', borderDash: [5, 5], pointRadius: 0, fill: false },
+            { label: `Limite Mín Ideal (${LIMITES.umiArMin}%)`, data: [], borderColor: '#ffca28', borderDash: [5, 5], pointRadius: 0, fill: false }
+        ]},
+        options: { responsive: true, maintainAspectRatio: false, animation: animacaoOtimizada }
     });
 
     const ctxSolo = document.querySelector('.grafico_solo').getContext('2d');
     graficoSolo = new Chart(ctxSolo, {
         type: 'line',
-        data: {
-            labels: [],
-            datasets: [
-                { label: 'Umidade do Solo (%)', data: [], borderColor: '#388e3c', tension: 0.3, fill: false },
-                { label: `Limite Máx Ideal (${LIMITES.umiSoloMax}%)`, data: [], borderColor: '#ff5252', borderDash: [5, 5], pointRadius: 0, fill: false },
-                { label: `Limite Mín Ideal (${LIMITES.umiSoloMin}%)`, data: [], borderColor: '#ffca28', borderDash: [5, 5], pointRadius: 0, fill: false }
-            ]
-        },
-        options: { 
-            responsive: true, 
-            maintainAspectRatio: false,
-            animation: animacaoOtimizada 
-        }
+        data: { labels: [], datasets: [
+            { label: 'Umidade do Solo (%)', data: [], borderColor: '#388e3c', tension: 0.3, fill: false },
+            { label: `Limite Máx Ideal (${LIMITES.umiSoloMax}%)`, data: [], borderColor: '#ff5252', borderDash: [5, 5], pointRadius: 0, fill: false },
+            { label: `Limite Mín Ideal (${LIMITES.umiSoloMin}%)`, data: [], borderColor: '#ffca28', borderDash: [5, 5], pointRadius: 0, fill: false }
+        ]},
+        options: { responsive: true, maintainAspectRatio: false, animation: animacaoOtimizada }
     });
 }
 
 function avaliarMetrica(valor, min, max, margemAtencao) {
     if (valor == null) return { status: 'Ideal', classe: 'status_ideal', tema: 'tema-ideal' };
-    
     if (valor < min) {
         if (min - valor > margemAtencao) return { status: 'Crítico', classe: 'status_critico', tema: 'tema-critico' };
         return { status: 'Atenção', classe: 'status_atencao', tema: 'tema-atencao' };
@@ -286,7 +297,6 @@ function avaliarMetrica(valor, min, max, margemAtencao) {
 
 function processarKpi(metrica, valor, min, max, margemAtencao, idDiv, idStatus) {
     let analise = avaliarMetrica(valor, min, max, margemAtencao);
-    
     let divCard = document.getElementById(idDiv);
     let pStatus = document.getElementById(idStatus);
     
@@ -305,25 +315,17 @@ function processarKpi(metrica, valor, min, max, margemAtencao, idDiv, idStatus) 
 function atualizarCardGeralAlertas() {
     let divAlertas = document.getElementById("div_card_alertas");
     let pAlertas = document.getElementById("status_alertas");
-    
     if (estadosAtuais.temperatura === 'Crítico' || estadosAtuais.umidadeAr === 'Crítico' || estadosAtuais.umidadeSolo === 'Crítico') {
-        divAlertas.className = "card_alertas tema-critico";
-        pAlertas.className = "status_critico";
-        pAlertas.innerText = "Crítico";
+        divAlertas.className = "card_alertas tema-critico"; pAlertas.className = "status_critico"; pAlertas.innerText = "Crítico";
     } else if (estadosAtuais.temperatura === 'Atenção' || estadosAtuais.umidadeAr === 'Atenção' || estadosAtuais.umidadeSolo === 'Atenção') {
-        divAlertas.className = "card_alertas tema-atencao";
-        pAlertas.className = "status_atencao";
-        pAlertas.innerText = "Atenção";
+        divAlertas.className = "card_alertas tema-atencao"; pAlertas.className = "status_atencao"; pAlertas.innerText = "Atenção";
     } else {
-        divAlertas.className = "card_alertas tema-ideal";
-        pAlertas.className = "status_ideal";
-        pAlertas.innerText = "Ideal";
+        divAlertas.className = "card_alertas tema-ideal"; pAlertas.className = "status_ideal"; pAlertas.innerText = "Ideal";
     }
 }
 
 function atualizarCards(dado) {
     if (!dado) return;
-
     if (dado.temperatura != null) {
         document.getElementById("card_temperatura").innerText = `${dado.temperatura} ºC`;
         processarKpi('temperatura', dado.temperatura, LIMITES.tempMin, LIMITES.tempMax, 3, "div_card_temperatura", "status_temperatura");
@@ -338,27 +340,48 @@ function atualizarCards(dado) {
     }
 }
 
-function trocarSensorSolo() {
-    buscarDadosIniciais(); 
+function mudarModo(novoModo) {
+    modoAtual = novoModo;
+    document.getElementById("btn_hoje").className = modoAtual === 'hoje' ? 'active' : '';
+    document.getElementById("btn_semana").className = modoAtual === 'semana' ? 'active' : '';
+    
+    document.getElementById("texto_informativo").innerText = 
+        modoAtual === 'hoje' ? "Acompanhe o Estado Atual da sua Estufa. Você está no HOJE." : "Acompanhe o Histórico da sua Estufa. Você está na SEMANA.";
+
+    buscarDadosServidor();
 }
 
-function buscarDadosIniciais() {
-    let idSensorSoloSelecionado = document.getElementById("mudar_sensor").value;
+function trocarSensorSolo() {
+    buscarDadosServidor(); 
+}
 
-    fetch(`/dashboard/dadosHoje/${idEstufa}/${idSensorSoloSelecionado}`)
-        .then(resposta => resposta.json())
+function buscarDadosServidor() {
+    let idSensorSoloSelecionado = document.getElementById("mudar_sensor").value;
+    
+    let rotaFetch = modoAtual === 'hoje' 
+        ? `/dashboard/dadosHoje/${idEstufa}/${idSensorSoloSelecionado}`
+        : `/dashboard/buscarDadosdaSemana/${idEstufa}/${idSensorSoloSelecionado}`;
+
+    fetch(rotaFetch)
+        .then(resposta => {
+            if (!resposta.ok) throw new Error(`Erro HTTP: ${resposta.status}`);
+            return resposta.json();
+        })
         .then(dados => {
             if (!Array.isArray(dados)) return;
 
-            dados.reverse();
-            let dadosGrafico = dados.slice(-7);
+            if (modoAtual === 'hoje') {
+                dados.reverse(); 
+            }
+            
+            let dadosGrafico = modoAtual === 'hoje' ? dados.slice(-7) : dados;
 
             let labelsX = [];
             let temps = [], umidAr = [], umidSolo = [];
             let tMax = [], tMin = [], aMax = [], aMin = [], sMax = [], sMin = [];
 
             dadosGrafico.forEach(dado => {
-                labelsX.push(formatarHora(dado.dtCaptura));
+                labelsX.push(formatarLabelEixo(dado.dtCaptura, modoAtual));
 
                 if(dado.temperatura != null) ultimaTemperaturaValida = dado.temperatura;
                 if(dado.umidadeAr != null) ultimaUmidadeArValida = dado.umidadeAr;
@@ -402,10 +425,12 @@ function buscarDadosIniciais() {
                 umidadeSolo: ultimaUmidadeSoloValida
             });
         })
-        .catch(erro => console.error("Erro na busca inicial:", erro));
+        .catch(erro => console.error("Erro na busca de dados:", erro));
 }
 
 function buscarTempoReal() {
+    if (modoAtual !== 'hoje') return; 
+
     let idSensorSoloSelecionado = document.getElementById("mudar_sensor").value;
 
     fetch(`/dashboard/tempoReal/${idEstufa}/${idSensorSoloSelecionado}`)
@@ -419,21 +444,19 @@ function buscarTempoReal() {
             if (dado.dtCaptura && dado.dtCaptura != ultimaDataCaptura) {
                 ultimaDataCaptura = dado.dtCaptura;
                 document.getElementById("data_status").innerText = formatarDataHoraCompleta(dado.dtCaptura);
-                atualizarGraficos(dado);
+                atualizarGraficosTempoReal(dado);
             }
         })
         .catch(erro => console.error("Erro no tempo real:", erro));
 }
 
-function atualizarGraficos(dado) {
-    let labelEixo = formatarHora(dado.dtCaptura);
+function atualizarGraficosTempoReal(dado) {
+    let labelEixo = formatarLabelEixo(dado.dtCaptura, 'hoje');
 
-    // Gráfico de Temperatura
     graficoTemperatura.data.labels.push(labelEixo);
     graficoTemperatura.data.datasets[0].data.push(dado.temperatura != null ? dado.temperatura : ultimaTemperaturaValida);
     graficoTemperatura.data.datasets[1].data.push(LIMITES.tempMax);
     graficoTemperatura.data.datasets[2].data.push(LIMITES.tempMin);
-
     if (graficoTemperatura.data.labels.length > 7) {
         graficoTemperatura.data.labels.shift();
         graficoTemperatura.data.datasets[0].data.shift();
@@ -442,12 +465,10 @@ function atualizarGraficos(dado) {
     }
     graficoTemperatura.update(); 
 
-    // Gráfico de Umidade do Ar
     graficoUmidadeAr.data.labels.push(labelEixo);
     graficoUmidadeAr.data.datasets[0].data.push(dado.umidadeAr != null ? dado.umidadeAr : ultimaUmidadeArValida);
     graficoUmidadeAr.data.datasets[1].data.push(LIMITES.umiArMax);
     graficoUmidadeAr.data.datasets[2].data.push(LIMITES.umiArMin);
-    
     if (graficoUmidadeAr.data.labels.length > 7) {
         graficoUmidadeAr.data.labels.shift();
         graficoUmidadeAr.data.datasets[0].data.shift();
@@ -456,12 +477,10 @@ function atualizarGraficos(dado) {
     }
     graficoUmidadeAr.update();
 
-    // Gráfico de Umidade do Solo
     graficoSolo.data.labels.push(labelEixo);
     graficoSolo.data.datasets[0].data.push(dado.umidadeSolo != null ? dado.umidadeSolo : ultimaUmidadeSoloValida);
     graficoSolo.data.datasets[1].data.push(LIMITES.umiSoloMax);
     graficoSolo.data.datasets[2].data.push(LIMITES.umiSoloMin);
-    
     if (graficoSolo.data.labels.length > 7) {
         graficoSolo.data.labels.shift();
         graficoSolo.data.datasets[0].data.shift();
@@ -473,15 +492,10 @@ function atualizarGraficos(dado) {
 
 window.onload = () => {
     inicializarGraficos(); 
-    buscarDadosIniciais(); 
-    
-    // Inicia e atualiza o relógio a cada 1 segundo
+    buscarDadosServidor(); 
     atualizarRelogio();
     setInterval(atualizarRelogio, 1000);
-    
-    setInterval(() => {
-        buscarTempoReal();
-    }, 4000); 
+    setInterval(buscarTempoReal, 4000); 
 };
 </script>
 </body>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Visão Geral</title>
     <link rel="stylesheet" href="css/visaogeral.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -14,124 +14,28 @@
 </html>
 
 <body>
-    <header>
-        <div class="logo">
-            <img src="/Tomates/entrega-oficial/Site/imagens/TM.png" alt="" />
-            <h1>TomatoMetrics</h1>
-        </div>
-    </header>
 
-    <div class="barra">
-        <img src="imagens/user.png" alt="imagem_usuario">
-        <h2><span id="b_boa"> </span> <span id="b_usuario"> Usuário </span></h2>
-        <ul>
-            <li><a href="visaoGeral.html"> Visão Geral </a></li>
-            <li> <a href="#"> Como Usar </a> </li>
-            <li> <a href="index.html"> Sair </a></li>
-        </ul>
+    <div class="sidebar">
+
+        <div class="logo_container">
+            <img src=".//imagens/TM.png" alt="Logo">
+            <h2>TomatoMetrics</h2>
+        </div>
+
+        <h3> Olá, <span id="b_usuario"> Usuário! </span></h3>
+
+        <div class="links_dash">
+            <a href="visaoGeral.html"> Visão Geral </a>
+            <a href="estufaCadastrov2.html"> Cadastro Estufas </a>
+            <a href="comoUsar.html"> Como Usar </a>
+            <a href="index.html"> Sair </a>
+        </div>
+
     </div>
+
     <div class="conteudo">
         <div class="cards_estufas">
             <h1>Visão Geral</h1>
-
-
-            <div class="alerta_critico">
-                <div class="topo_alerta">
-                    <h2>Estufa 03</h2>
-                    <span class="status_critico">
-                        CRÍTICO
-                    </span>
-                </div>
-
-                <div class="info_alerta">
-                    <div class="dado">
-                        <h3>Temperatura</h3>
-                        <p>42°C</p>
-                    </div>
-
-                    <div class="dado">
-                        <h3>Umidade</h3>
-                        <p>18%</p>
-                    </div>
-
-                    <div class="dado">
-                        <h3>Última Atualização</h3>
-                        <p>Agora mesmo</p>
-                    </div>
-                </div>
-                <a href="detalhe-hoje.html">
-                <button class="btn_alerta">
-                    Ver Detalhes
-                </button>
-                </a>
-            </div>
-
-
-            <div class="alerta_moderado">
-                <div class="topo_alerta">
-                    <h2>Estufa 05</h2>
-
-                    <span class="status_alerta">
-                        ALERTA
-                    </span>
-                </div>
-
-                <div class="info_alerta">
-                    <div class="dado">
-                        <h3>Temperatura</h3>
-                        <p>33°C</p>
-                    </div>
-
-                    <div class="dado">
-                        <h3>Umidade</h3>
-                        <p>39%</p>
-                    </div>
-
-                    <div class="dado">
-                        <h3>Última Atualização</h3>
-                        <p>5 min atrás</p>
-                    </div>
-                </div>
-                <a href="detalhe-hoje.html">
-                <button class="btn_alerta_moderado">
-                    Ver Detalhes
-                </button>
-                </a>
-            </div>
-
-
-
-            <div class="alerta_normal">
-                <div class="topo_alerta">
-                    <h2>Estufa 01</h2>
-
-                    <span class="status_normal">
-                        NORMAL
-                    </span>
-                </div>
-
-                <div class="info_alerta">
-                    <div class="dado">
-                        <h3>Temperatura</h3>
-                        <p>25°C</p>
-                    </div>
-
-                    <div class="dado">
-                        <h3>Umidade</h3>
-                        <p>72%</p>
-                    </div>
-
-                    <div class="dado">
-                        <h3>Última Atualização</h3>
-                        <p>1 min atrás</p>
-                    </div>
-                </div>
-                <a href="detalhe-hoje.html">
-                <button class="btn_normal">
-                    Ver Detalhes
-                </button>
-                </a>
-            </div>
 
         </div>
     </div>
@@ -139,3 +43,128 @@
 </body>
 
 </html>
+
+<script>
+    let usuario = sessionStorage.NOME_USUARIO;
+    b_usuario.innerHTML = usuario;
+    const idEmpresa = sessionStorage.ID_EMPRESA;
+
+    document.addEventListener("DOMContentLoaded", () => {
+        carregarEstufas();
+    });
+
+        function abrirDashboard(id,nome){
+
+    sessionStorage.ID_ESTUFA = id;
+    sessionStorage.NOME_ESTUFA = nome;
+
+    window.location =
+    "detalhe-hoje_copy.html";
+}
+    function carregarEstufas() {
+
+        fetch(`/dashboard/estufas/${idEmpresa}`)
+            .then(res => res.json())
+            .then(estufas => {
+
+                const container =
+                    document.querySelector(".cards_estufas");
+
+                container.innerHTML =
+                    "<h1>Visão Geral</h1>";
+
+                if (estufas.length === 0) {
+
+                    container.innerHTML += `
+                    <p>Nenhuma estufa cadastrada.</p>
+                `;
+
+                    return;
+                }
+
+                estufas.forEach(estufa => {
+
+                    const status =
+                        definirStatus(
+                            estufa.temperatura,
+                            estufa.umidadeAr
+                        );
+
+                    let classeCard = "";
+                    let classeStatus = "";
+                    let classeBotao = "";
+
+                    if (status == "CRÍTICO") {
+                        classeCard = "alerta_critico";
+                        classeStatus = "status_critico";
+                        classeBotao = "btn_alerta";
+                    }
+                    else if (status == "ALERTA") {
+                        classeCard = "alerta_moderado";
+                        classeStatus = "status_alerta";
+                        classeBotao = "btn_alerta_moderado";
+                    }
+                    else {
+                        classeCard = "alerta_normal";
+                        classeStatus = "status_normal";
+                        classeBotao = "btn_normal";
+                    }
+
+                    container.innerHTML += `
+                    <div class="${classeCard}">
+
+                        <div class="topo_alerta">
+                            <h2>${estufa.nome_estufa}</h2>
+
+                            <span class="${classeStatus}">
+                                ${status}
+                            </span>
+                        </div>
+
+                        <div class="info_alerta">
+
+                            <div class="dado">
+                                <h3>Temperatura</h3>
+                                <p>${estufa.temperatura ?? "--"}°C</p>
+                            </div>
+
+                            <div class="dado">
+                                <h3>Umidade</h3>
+                                <p>${estufa.umidadeAr ?? "--"}%</p>
+                            </div>
+
+                        </div>
+
+                        <button
+                            onclick="
+                            abrirDashboard(
+                            ${estufa.id_estufa},
+                            '${estufa.nome_estufa}'
+                            )"
+                            class="${classeBotao}">
+                            Ver Detalhes
+                            </button>
+                    </div>
+                    `;
+                });
+
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
+
+    function definirStatus(temp, umi) {
+
+        if (temp >= 40 || umi <= 20) {
+            return "CRÍTICO";
+        }
+
+        if (temp >= 30 || umi <= 40) {
+            return "ALERTA";
+        }
+
+        return "NORMAL";
+    }
+
+</script>
