@@ -125,28 +125,7 @@
                     </table>
                 </div>
             </div>
-
-            <div class="grafico">
-                <canvas class="grafico_temperatura"></canvas>
-            </div>
-            <div class="grafico">
-                <canvas class="grafico_ar"></canvas>
-            </div>
-
-            <div class="grafico" style="height: auto; min-height: 430px;">
-                <div style="display: flex; justify-content: flex-end; align-items: center; gap: 10px;">
-                    <label style="font-family: 'Garamond'; font-weight: bold; color: black;">Filtrar por:</label>
-                    <select id="mudar_sensor" class="seletor_sensor" onchange="trocarSensorSolo()">
-                        <option value="1">Sensor Solo 01 - Setor Norte</option>
-                        <option value="2">Sensor Solo 02 - Setor Sul</option>
-                        <option value="3">Sensor Solo 03 - Setor Central</option>
-                    </select>
-                </div>
-                <div style="height: 380px; position: relative;">
-                    <canvas class="grafico_solo"></canvas>
-                </div>
-            </div>
-        </main>
+        </div>
     </div>
 
 <script>
@@ -256,7 +235,9 @@ function inicializarGraficos() {
     graficoSolo = new Chart(ctxSolo, {
         type: 'line',
         data: {
-            labels: [],
+
+            labels: ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sabádo', 'Domingo'],
+
             datasets: [
                 { label: 'Umidade do Solo (%)', data: [], borderColor: '#388e3c', tension: 0.3, fill: false },
                 { label: `Limite Máx Ideal (${LIMITES.umiSoloMax}%)`, data: [], borderColor: '#ff5252', borderDash: [5, 5], pointRadius: 0, fill: false },

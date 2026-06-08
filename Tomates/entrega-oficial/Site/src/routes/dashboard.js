@@ -18,4 +18,7 @@ router.get("/tempoReal/:idEstufa/:idSensorSolo", dashboardController.buscarTempo
 router.get("/buscarDadosdaSemana/:idEstufa/:idSensorSolo", dashboardController.buscarDadosdaSemana);
 
 
+router.get("/sensores", function (req, res) {
+    dashboardController.buscarSensores(req, res);
+});
 module.exports = router;

@@ -74,6 +74,15 @@ function buscarEstufasEmpresa(req, res) {
         });
 }
 
+function buscarSensores(req, res) {
+    dashboardModel.buscarSensores()
+        .then(function (resultado) {
+            res.json(resultado);
+        })
+        .catch(function (erro) {
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 module.exports = {
     buscarTempoReal,   
     buscarDadosHoje,
@@ -82,4 +91,6 @@ module.exports = {
     buscarResumoEstufas,
     buscarEstufasEmpresa,
     buscarDadosdaSemana
+    buscarAlertasHoje,
+    buscarSensores
 };
